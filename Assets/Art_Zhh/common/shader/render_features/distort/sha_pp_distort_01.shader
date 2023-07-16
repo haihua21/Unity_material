@@ -1,10 +1,12 @@
-Shader "Cus/LineStyle"
+Shader "Cus/pp/distort"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_lineStrength("lineStrength", Float) = 1.0
-		_lineColor("lineColor", Color) = (0,0,0,0)
+        _NoiseTex("Noise", 2D) = "black"{}	
+        _DistortInt("DistortInt", Float) = 0.5		
+        _DistortScale("DistortScale", Float) = 1.0	
+        _DistortSpeed("DistortSpeed", Float) = 1.0				
 		_baseColor("baseColor", Color) = (1,1,1,0)
     }
     SubShader
@@ -18,7 +20,7 @@ Shader "Cus/LineStyle"
             #pragma vertex vert
             #pragma fragment frag
             // make fog work
-            #pragma multi_compile_fog
+            // #pragma multi_compile_fog
 
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
@@ -36,11 +38,16 @@ Shader "Cus/LineStyle"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _baseColor;
 			float4 _MainTex_ST;
-			float _lineStrength;
-			float4 _lineColor;
+            float4 _NoiseTex_ST;
+			float _DistortInt;
+            float _DistortScale;
+            float _DistortSpeed;
+			
 			CBUFFER_END
 			TEXTURE2D(_MainTex);
+            TEXTURE2D(_NoiseTex);
 			SAMPLER(sampler_MainTex);
+            SAMPLER(sampler_NoiseTex);
 
             v2f vert (appdata v)
             {
@@ -54,10 +61,12 @@ Shader "Cus/LineStyle"
             half4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-				half4 col = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv);
-				float grayscale  = col.r * 0.2126729f + col.g * 0.7151522f + col.b * 0.0721750f;
-				float ddVal = (saturate(ddx(grayscale) + ddy(grayscale))*_lineStrength);
-				half3 finalCol = _baseColor.rgb * (1.0 - ddVal) + _lineColor.rgb * ddVal;
+				// half4 col = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv);  // 采用屏幕
+                half2 noiseuv = i.uv/_DistortScale;
+                noiseuv += _Time.x *_DistortSpeed;
+                half4 noise =SAMPLE_TEXTURE2D(_NoiseTex,sampler_NoiseTex,noiseuv);
+                half2 uv = saturate(i.uv + noise * _DistortInt*0.1);
+                half4 col = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, uv)*_baseColor ;  // 采用屏幕                
                 return col;
             }
             ENDHLSL

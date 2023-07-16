@@ -66,12 +66,12 @@ public class Cus_DistortPass : ScriptableRenderPass
         Camera camera = cameraData.camera;
         RenderTargetIdentifier source = currentTarget;
         int destination = TempTargetId;
-
-        mat.SetFloat("_Distort", Cus_DistortVolume.Distort.value);  
+        
         mat.SetFloat("_DistortScale", Cus_DistortVolume.DistortScale.value);
-        mat.SetFloat("_DistortSpeed", Cus_DistortVolume.DistortSpeed.value);          
+        mat.SetFloat("_DistortSpeed", Cus_DistortVolume.DistortSpeed.value); 
+        mat.SetFloat("_DistortInt", Cus_DistortVolume.DistortInt.value);          
         mat.SetColor("_baseColor", Cus_DistortVolume.baseColor.value);
-        mat.SetTexture("_NormalMap",Cus_DistortVolume.NormalMap.value);
+        mat.SetTexture("_NoiseTex",Cus_DistortVolume.NoiseTex.value);
 
         cmd.SetGlobalTexture(MainTexId, source);
         cmd.GetTemporaryRT(destination, cameraData.camera.scaledPixelWidth, cameraData.camera.scaledPixelHeight, 0, FilterMode.Trilinear, RenderTextureFormat.Default);
