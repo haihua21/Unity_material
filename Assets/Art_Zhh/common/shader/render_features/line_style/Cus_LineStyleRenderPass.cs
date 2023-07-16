@@ -4,27 +4,27 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class LineStylePass : ScriptableRenderPass
+public class Cus_LineStylePass : ScriptableRenderPass
 {
     //指定输入输出贴图
-    static readonly string renderTag = "LineStyle Effects";
+    static readonly string renderTag = "Cus_LineStyle Effects";
     static readonly int MainTexId = Shader.PropertyToID("_MainTex");   // 和shader 对应上
     static readonly int TempTargetId = Shader.PropertyToID("_TempTargetColorTint");
 
-    private LineStyle lineStyleVolume;
+    private Cus_LineStyle Cus_lineStyleVolume;
     private Material mat;
     RenderTargetIdentifier currentTarget;
 
     // 构造函数 
-    public LineStylePass(RenderPassEvent passEvent,Shader lineStyleShader)
+    public Cus_LineStylePass(RenderPassEvent passEvent,Shader Cus_lineStyleShader)
     {
         renderPassEvent = passEvent;
-        if(lineStyleShader == null)
+        if(Cus_lineStyleShader == null)
         {
             Debug.LogError("Shader不存在");
             return;
         }
-        mat = CoreUtils.CreateEngineMaterial(lineStyleShader);
+        mat = CoreUtils.CreateEngineMaterial(Cus_lineStyleShader);
     }
     //初始化
     public void Setup(in RenderTargetIdentifier currentTarget)
@@ -43,12 +43,12 @@ public class LineStylePass : ScriptableRenderPass
             return;
         }
         VolumeStack stack = VolumeManager.instance.stack;
-        lineStyleVolume = stack.GetComponent<LineStyle>();
-        if(lineStyleVolume == null)
+        Cus_lineStyleVolume = stack.GetComponent<Cus_LineStyle>();
+        if(Cus_lineStyleVolume == null)
         {
             return;
         }
-        if (lineStyleVolume.isShow.value == false)
+        if (Cus_lineStyleVolume.isShow.value == false)
         {
             return;
         }
@@ -67,9 +67,9 @@ public class LineStylePass : ScriptableRenderPass
         RenderTargetIdentifier source = currentTarget;
         int destination = TempTargetId;
 
-        mat.SetFloat("_lineStrength", lineStyleVolume.lineStrength.value);
-        mat.SetColor("_lineColor", lineStyleVolume.lineColor.value);
-        mat.SetColor("_baseColor", lineStyleVolume.baseColor.value);
+        mat.SetFloat("_lineStrength", Cus_lineStyleVolume.lineStrength.value);
+        mat.SetColor("_lineColor", Cus_lineStyleVolume.lineColor.value);
+        mat.SetColor("_baseColor", Cus_lineStyleVolume.baseColor.value);
 
         cmd.SetGlobalTexture(MainTexId, source);
         cmd.GetTemporaryRT(destination, cameraData.camera.scaledPixelWidth, cameraData.camera.scaledPixelHeight, 0, FilterMode.Trilinear, RenderTextureFormat.Default);

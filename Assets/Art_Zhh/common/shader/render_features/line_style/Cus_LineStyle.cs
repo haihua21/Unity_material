@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-[System.Serializable, VolumeComponentMenu("Custom/LineStyle")] //添加到Volume 目录中
-public class LineStyle : VolumeComponent
+[System.Serializable, VolumeComponentMenu("Custom/Cus_LineStyle")] //添加到Volume 目录中
+public class Cus_LineStyle : VolumeComponent
 {
     public BoolParameter isShow = new BoolParameter(false, true);  //当场景没有Volume时，停止执行 Volume 
     [Tooltip("Strength of the line.")]
