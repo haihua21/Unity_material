@@ -4,7 +4,7 @@ Shader "code/pp/distort"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _NoiseTex("Noise", 2D) = "black"{}	
-        _DistortInt("DistortInt", Float) = 0.5		
+        _DistortInt("DistortInt",Range(0, 1)) = 0.5		
         _DistortScale("DistortScale", Float) = 1.0	
         _DistortSpeed("DistortSpeed", Float) = 1.0				
 		_baseColor("baseColor", Color) = (1,1,1,0)

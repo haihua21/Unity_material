@@ -11,8 +11,7 @@ public class Cus_Distort : VolumeComponent
     public TextureParameter NoiseTex = new TextureParameter(null); 
     [Tooltip("Dirtiness texture to add smudges or dust to the bloom effect.")]  
 
-    public MinFloatParameter DistortInt = new MinFloatParameter(1, 0,true);
-    [Tooltip("The color of the line.")]       
+    public ClampedFloatParameter DistortInt = new ClampedFloatParameter(0.1f,0.1f,1f,true);       
 
     public MinFloatParameter DistortScale = new MinFloatParameter(1, 0,true);
     [Tooltip("The color of the line.")]  
