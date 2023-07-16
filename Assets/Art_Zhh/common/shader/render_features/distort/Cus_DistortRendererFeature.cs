@@ -19,6 +19,7 @@ public class Cus_DistortRendererFeature : ScriptableRendererFeature  //RenderFea
     {
         this.name = "Cus_DistortPass"; 
         pass = new Cus_DistortPass(RenderPassEvent.BeforeRenderingPostProcessing, settings.shader);
+        pass.renderPassEvent = settings.renderPassEvent;
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
