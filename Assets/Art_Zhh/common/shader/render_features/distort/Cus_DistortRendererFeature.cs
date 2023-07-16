@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class Cus_WaterRendererFeature : ScriptableRendererFeature  //RenderFeature中显示名称
+public class Cus_DistortRendererFeature : ScriptableRendererFeature  //RenderFeature中显示名称
 {
     [System.Serializable]
     public class Settings
@@ -14,11 +14,11 @@ public class Cus_WaterRendererFeature : ScriptableRendererFeature  //RenderFeatu
         public Shader shader;
     }
     public Settings settings = new Settings();
-    Cus_WaterPass pass;
+    Cus_DistortPass pass;
     public override void Create()
     {
-        this.name = "Cus_WaterPass"; 
-        pass = new Cus_WaterPass(RenderPassEvent.BeforeRenderingPostProcessing, settings.shader);
+        this.name = "Cus_DistortPass"; 
+        pass = new Cus_DistortPass(RenderPassEvent.BeforeRenderingPostProcessing, settings.shader);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

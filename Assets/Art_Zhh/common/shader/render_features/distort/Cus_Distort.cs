@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-[System.Serializable, VolumeComponentMenu("Custom/Cus_Water")] //添加到Volume 目录中
-public class Cus_Water : VolumeComponent
+[System.Serializable, VolumeComponentMenu("Custom/Cus_Distort")] //添加到Volume 目录中
+public class Cus_Distort : VolumeComponent
 {
     public BoolParameter isShow = new BoolParameter(false, true);  //当场景没有Volume时，停止执行 Volume 
     [Tooltip("Strength of the line.")]
