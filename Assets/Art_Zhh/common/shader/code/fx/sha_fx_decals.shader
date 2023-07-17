@@ -5,10 +5,11 @@ Shader "code/fx/decals"
         _MainTex ("Base Map", 2D) = "black" {}        
         [HDR]_BaseColor ("Base Color", Color) = (1,1,1,1)
         [MaterialToggle(_Red_ON)] _USE_RED_CHANNEL ("Use Red Channel", float) = 0
-        [MaterialToggle(_Gradient_ON)] _Gradient_CHANNEL ("Gradient Channel", float) = 0
-         _Power("Power", Range(1,2)) = 1	
+        _MaskTex ("Mask Map",2D) = "black" {}
+        [HDR]_BaskColor ("Bask Color", Color) = (1,1,1,1)            
         _smoothstepStart ("SmoothstepStart", Range(0,0.2)) = 0
         _smoothstepRange ("SmoothstepRange", Range(0.01,0.2)) = 0.1 
+        _RotateSpeed("Rotate Speed",float) = 0
        	
     }
     SubShader
@@ -33,6 +34,8 @@ Shader "code/fx/decals"
           
         TEXTURE2D(_MainTex);
         SAMPLER(sampler_MainTex);
+        TEXTURE2D(_MaskTex);
+        SAMPLER(sampler_MaskTex);  
        
         //
         float smoothStepMaskRange(float x, float start, float fade)
@@ -59,16 +62,17 @@ Shader "code/fx/decals"
            // #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
            // #pragma multi_compile _ _SHADOWS_SOFT    
             #pragma multi_compile _Red_OFF _Red_ON     
-            #pragma multi_compile _Gradient_OFF _Gradient_ON
+           
            
            // #pragma multi_compile_instancing
 
             UNITY_INSTANCING_BUFFER_START(UnityPerMaterial)        
 			UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _BaskColor)
+            UNITY_DEFINE_INSTANCED_PROP(float, _RotateSpeed)
 			UNITY_DEFINE_INSTANCED_PROP(float, _smoothstepStart)
 			UNITY_DEFINE_INSTANCED_PROP(float, _smoothstepRange)        
-		    UNITY_INSTANCING_BUFFER_END(UnityPerMaterial)
-            UNITY_DEFINE_INSTANCED_PROP(float, _Power)           
+		    UNITY_INSTANCING_BUFFER_END(UnityPerMaterial)                  
 
             //
             struct Attributes
@@ -111,16 +115,26 @@ Shader "code/fx/decals"
             {
                 UNITY_SETUP_INSTANCE_ID(IN);              
              
-                //
-
+                // UV 采样
                 float2 texcoordSS = IN.positionSS.xy / IN.positionSS.w;
                 float depth = SampleSceneDepth(texcoordSS);
                 float3 positionWS = ComputeWorldSpacePosition(texcoordSS, depth, UNITY_MATRIX_I_VP);
                 //
                 float3 positionOS = TransformWorldToObject(positionWS);
-                clip(0.5 - abs(positionOS));   //<========
+                clip(0.5 - abs(positionOS));  
                 float2 texcoordOS = positionOS.xz + 0.5;
+               
+                //  加入UV旋转
+                float angle = _Time.xy * _RotateSpeed;
+                texcoordOS -= float2(0.5,0.5);
+                texcoordOS = float2(texcoordOS.x*cos(angle)-texcoordOS.y*sin(angle),texcoordOS.y*cos(angle)+texcoordOS.x*sin(angle));
+                texcoordOS += float2(0.5,0.5);
+
+
+                // 采用 _MainTex \ _maskMap
                 float4 baseMap = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, texcoordOS);
+                float4 maskMap = SAMPLE_TEXTURE2D(_MaskTex,sampler_MaskTex,texcoordOS) * _BaskColor;
+                
                
                 #if defined(_Red_ON)
                     baseMap = half4(baseMap.r, baseMap.r, baseMap.r, baseMap.r);
@@ -147,11 +161,11 @@ Shader "code/fx/decals"
                 float smoothMask = smoothStepMaskRange(positionOS.x, sStart, sEnd) * smoothStepMaskRange(positionOS.y, sStart, sEnd) * smoothStepMaskRange(positionOS.z, sStart, sEnd);
                 //
                 float4 finalColor = (float4(baseMap.xyz * min(1, mainAtten + 0.5) + additionalAtten, baseMap.w * smoothMask) * UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor))* 1.5;
-                
-                #if defined(_Gradient_ON)               
-                float finalColor_A = finalColor.w * saturate( 1 - positionOS.y * _Power);
+                finalColor = finalColor + (maskMap * maskMap.x);                   
+                            
+                float finalColor_A = finalColor.w * saturate( 1 - positionOS.y );
                 finalColor = float4 (finalColor.xyz,finalColor_A);               
-                #endif
+               
 
                 return finalColor;            
                
