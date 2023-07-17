@@ -63,7 +63,7 @@ Shader "code/pp/distort"
                 // sample the texture
 				// half4 col = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv);  // 采用屏幕
                 half2 noiseuv = i.uv/_DistortScale;
-                noiseuv += _Time.x *_DistortSpeed;
+                noiseuv += _Time.x *-_DistortSpeed;
                 half4 noise =SAMPLE_TEXTURE2D(_NoiseTex,sampler_NoiseTex,noiseuv);
                 half2 uv = saturate(i.uv + noise * _DistortInt*0.1);
                 half4 col = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, uv)*_baseColor ;  // 采用屏幕                
