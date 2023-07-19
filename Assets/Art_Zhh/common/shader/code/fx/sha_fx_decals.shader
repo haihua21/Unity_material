@@ -5,11 +5,13 @@ Shader "code/fx/decals"
         _MainTex ("Base Map", 2D) = "black" {}        
         [HDR]_BaseColor ("Base Color", Color) = (1,1,1,1)
         [MaterialToggle(_Red_ON)] _USE_RED_CHANNEL ("Use Red Channel", float) = 0
+        _BaseMapRotateSpeed("BaseMap Rotate Speed",float) = 0
         _MaskTex ("Mask Map",2D) = "black" {}
-        [HDR]_BaskColor ("Bask Color", Color) = (1,1,1,1)            
+        [HDR]_MaskColor ("Mask Color", Color) = (1,1,1,1)        
+        _MRotateSpeed("MaskMap Rotate Speed",float) = 10          
         _smoothstepStart ("SmoothstepStart", Range(0,0.2)) = 0
         _smoothstepRange ("SmoothstepRange", Range(0.01,0.2)) = 0.1 
-        _RotateSpeed("Rotate Speed",float) = 0
+        
        	
     }
     SubShader
@@ -68,8 +70,9 @@ Shader "code/fx/decals"
 
             UNITY_INSTANCING_BUFFER_START(UnityPerMaterial)        
 			UNITY_DEFINE_INSTANCED_PROP(float4, _BaseColor)
-            UNITY_DEFINE_INSTANCED_PROP(float4, _BaskColor)
-            UNITY_DEFINE_INSTANCED_PROP(float, _RotateSpeed)
+            UNITY_DEFINE_INSTANCED_PROP(float4, _MaskColor)
+            UNITY_DEFINE_INSTANCED_PROP(float, _BaseMapRotateSpeed)
+            UNITY_DEFINE_INSTANCED_PROP(float, _MRotateSpeed)
 			UNITY_DEFINE_INSTANCED_PROP(float, _smoothstepStart)
 			UNITY_DEFINE_INSTANCED_PROP(float, _smoothstepRange)        
 		    UNITY_INSTANCING_BUFFER_END(UnityPerMaterial)                  
@@ -125,15 +128,18 @@ Shader "code/fx/decals"
                 float2 texcoordOS = positionOS.xz + 0.5;
                
                 //  加入UV旋转
-                float angle = _Time.xy * _RotateSpeed;
+                float angle = _Time.xy * _BaseMapRotateSpeed;
+                float angleMask = _Time.xy * _MRotateSpeed;
                 texcoordOS -= float2(0.5,0.5);
-                texcoordOS = float2(texcoordOS.x*cos(angle)-texcoordOS.y*sin(angle),texcoordOS.y*cos(angle)+texcoordOS.x*sin(angle));
-                texcoordOS += float2(0.5,0.5);
+                float2 texcoordOS_B = float2(texcoordOS.x*cos(angle)-texcoordOS.y*sin(angle),texcoordOS.y*cos(angle)+texcoordOS.x*sin(angle)); 
+                float2 texcoordOS_M = float2(texcoordOS.x*cos(angleMask)-texcoordOS.y*sin(angleMask),texcoordOS.y*cos(angleMask)+texcoordOS.x*sin(angleMask));               
+                texcoordOS_B += float2(0.5,0.5);                
+                texcoordOS_M += float2(0.5,0.5);
 
 
                 // 采用 _MainTex \ _maskMap
-                float4 baseMap = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, texcoordOS);
-                float4 maskMap = SAMPLE_TEXTURE2D(_MaskTex,sampler_MaskTex,texcoordOS) * _BaskColor;
+                float4 baseMap = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, texcoordOS_B) ;
+                float4 maskMap = SAMPLE_TEXTURE2D(_MaskTex, sampler_MaskTex, texcoordOS_M) * _MaskColor;
                 
                
                 #if defined(_Red_ON)
@@ -161,10 +167,19 @@ Shader "code/fx/decals"
                 float smoothMask = smoothStepMaskRange(positionOS.x, sStart, sEnd) * smoothStepMaskRange(positionOS.y, sStart, sEnd) * smoothStepMaskRange(positionOS.z, sStart, sEnd);
                 //
                 float4 finalColor = (float4(baseMap.xyz * min(1, mainAtten + 0.5) + additionalAtten, baseMap.w * smoothMask) * UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor))* 1.5;
-                finalColor = finalColor + (maskMap * maskMap.x);                   
-                            
+                
+                             
+                             
                 float finalColor_A = finalColor.w * saturate( 1 - positionOS.y );
-                finalColor = float4 (finalColor.xyz,finalColor_A);               
+                finalColor = float4 (finalColor.xyz,finalColor_A);  
+
+
+
+                 // finalColor = min(finalColor , maskMap);    //变暗
+                  finalColor = max (finalColor , maskMap);    //变亮
+                 // finalColor = saturate(finalColor * maskMap);   //正片叠底
+                 //  finalColor = saturate(finalColor + maskMap - 1);   
+                 // finalColor = finalColor / (1- maskMap);  
                
 
                 return finalColor;            
