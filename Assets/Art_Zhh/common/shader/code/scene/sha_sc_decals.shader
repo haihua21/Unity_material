@@ -1,4 +1,4 @@
-Shader "code/fx/decals"
+Shader "code/sc/decals"
 {
     Properties
     {
@@ -59,11 +59,11 @@ Shader "code/fx/decals"
             #pragma vertex vert
             #pragma fragment frag           
            //shadow
-           // #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-           // #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-           // #pragma multi_compile _ _ADDITIONAL_LIGHTS
-           // #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
-           // #pragma multi_compile _ _SHADOWS_SOFT    
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile _ _SHADOWS_SOFT    
             #pragma multi_compile _Red_OFF _Red_ON  
             #pragma multi_compile _MaskRed_OFF _MaskRed_ON     
            
