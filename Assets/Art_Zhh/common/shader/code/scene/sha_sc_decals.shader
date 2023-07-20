@@ -150,9 +150,7 @@ Shader "code/sc/decals"
 
                 #if defined(_MaskRed_ON)
                     maskMap = half4(maskMap.r, maskMap.r, maskMap.r, maskMap.r);
-                #endif   
-
-                maskMap *= _MaskColor;        
+                #endif                      
 
                 //
                 float4 mainShadowCoord = TransformWorldToShadowCoord(positionWS);
@@ -177,7 +175,8 @@ Shader "code/sc/decals"
                 float4 finalColor = (float4(baseMap.xyz * min(1, mainAtten + 0.5) + additionalAtten, baseMap.w * smoothMask) * UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor))* 1.5;
                 
                              
-                             
+                //maskMap = float4(maskMap.xyz, maskMap.w *smoothMask * saturate( 1 - positionOS.y))*_MaskColor*1.5;       
+                maskMap = (float4(maskMap.xyz * min(1, mainAtten + 0.5) + additionalAtten, maskMap.w * smoothMask) * UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _MaskColor))* 1.5;               
                 float finalColor_A = finalColor.w * saturate( 1 - positionOS.y );
                 finalColor = float4 (finalColor.xyz,finalColor_A);  
 

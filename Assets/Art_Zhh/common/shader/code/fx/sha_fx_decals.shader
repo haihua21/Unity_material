@@ -57,13 +57,7 @@ Shader "code/fx/decals"
             HLSLPROGRAM            
 
             #pragma vertex vert
-            #pragma fragment frag           
-           //shadow
-           // #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-           // #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-           // #pragma multi_compile _ _ADDITIONAL_LIGHTS
-           // #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
-           // #pragma multi_compile _ _SHADOWS_SOFT    
+            #pragma fragment frag      
             #pragma multi_compile _Red_OFF _Red_ON  
             #pragma multi_compile _MaskRed_OFF _MaskRed_ON     
            
@@ -150,48 +144,25 @@ Shader "code/fx/decals"
 
                 #if defined(_MaskRed_ON)
                     maskMap = half4(maskMap.r, maskMap.r, maskMap.r, maskMap.r);
-                #endif   
-
-                maskMap *= _MaskColor;        
-
-                //
-                float4 mainShadowCoord = TransformWorldToShadowCoord(positionWS);
-            	Light mainLight = GetMainLight(mainShadowCoord);
-            	float mainAtten = mainLight.shadowAttenuation * mainLight.distanceAttenuation;
-                //
-                float3 additionalAtten = 0;
-                #ifdef _ADDITIONAL_LIGHTS
-                int additionalLightCount = GetAdditionalLightsCount();
-                for(int i = 0; i < additionalLightCount; i++)
-                {
-                    Light additionalLight = GetAdditionalLight(0, positionWS, float4(1, 1, 1, 1));
-				    additionalAtten += additionalLight.shadowAttenuation * additionalLight.distanceAttenuation * additionalLight.color;
-                }
-                #endif
-             
+                #endif                  
                 //
                 positionOS += 0.5;
                 float sStart = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _smoothstepStart); float sEnd = _smoothstepStart + UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _smoothstepRange);
                 float smoothMask = smoothStepMaskRange(positionOS.x, sStart, sEnd) * smoothStepMaskRange(positionOS.y, sStart, sEnd) * smoothStepMaskRange(positionOS.z, sStart, sEnd);
-                //
-                float4 finalColor = (float4(baseMap.xyz * min(1, mainAtten + 0.5) + additionalAtten, baseMap.w * smoothMask) * UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor))* 1.5;
-                
-                             
-                             
-                float finalColor_A = finalColor.w * saturate( 1 - positionOS.y );
-                finalColor = float4 (finalColor.xyz,finalColor_A);  
+                //           
+
+                maskMap = float4(maskMap.xyz, maskMap.w *smoothMask * saturate( 1 - positionOS.y))*_MaskColor*1.5;             
+                float4 finalColor = float4 (baseMap.xyz,baseMap.w * saturate( 1 - positionOS.y) * smoothMask)*_BaseColor*1.5;  
 
 
 
                  // finalColor = min(finalColor , maskMap);    //变暗
-                  finalColor = max (finalColor , maskMap);    //变亮
+                 finalColor = max (finalColor , maskMap);    //变亮
                  // finalColor = saturate(finalColor * maskMap);   //正片叠底
                  //  finalColor = saturate(finalColor + maskMap - 1);   
                  // finalColor = finalColor / (1- maskMap);  
-               
-
-                return finalColor;            
-               
+              
+                return finalColor;           
             }
             ENDHLSL            
         }
