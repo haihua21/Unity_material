@@ -8,13 +8,14 @@ using UnityEngine.Rendering.Universal;
 public class Cus_DistortRendererFeature : ScriptableRendererFeature  //RenderFeature中显示名称
 {
     [System.Serializable]
-    public class Settings
+    public class Settings                                                 //初始设置
     {
-        public RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
-        public Shader shader;
+        public RenderPassEvent renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;         //设置渲染顺序
+        public Shader shader;                                    //设置后处理Shader
     }
     public Settings settings = new Settings();
-    Cus_DistortPass pass;
+
+    Cus_DistortPass pass;                                            //设置渲染Pass
     public override void Create()
     {
         this.name = "Cus_DistortPass"; 
@@ -22,9 +23,9 @@ public class Cus_DistortRendererFeature : ScriptableRendererFeature  //RenderFea
         pass.renderPassEvent = settings.renderPassEvent;
     }
 
-    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)     //Pass执行逻辑
     {
         pass.Setup(renderer.cameraColorTarget);
-        renderer.EnqueuePass(pass);
+        renderer.EnqueuePass(pass);                  //初始化Pass属性
     }
 }
