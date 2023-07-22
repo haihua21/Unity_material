@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dabaf6a9eabea4b9d58a3314759bf3, type: 3}
   m_Name: Cus_RadiusBlur
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   isShow:
     m_OverrideState: 1
@@ -125,6 +125,28 @@ MonoBehaviour:
     m_Value: 0.2
     min: 0
     max: 1
+--- !u!114 &-960443638635517074
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5abf0e39a00b248bce504f05008f91, type: 3}
+  m_Name: Cus_Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  isBloom:
+    m_OverrideState: 1
+    m_Value: 1
+  Threshold:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 3
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +165,7 @@ MonoBehaviour:
   - {fileID: -7011558710299706105}
   - {fileID: -5036183666229983624}
   - {fileID: 5837454709313016337}
+  - {fileID: -960443638635517074}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -172,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2563b721b5844ca49b81c143f6e89318, type: 3}
   m_Name: Cus_Distort
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   isShow:
     m_OverrideState: 1
