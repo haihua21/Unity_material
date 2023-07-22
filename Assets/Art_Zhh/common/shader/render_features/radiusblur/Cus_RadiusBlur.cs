@@ -11,7 +11,7 @@ public class Cus_RadiusBlur : VolumeComponent
    // public TextureParameter NoiseTex = new TextureParameter(null); 
    // [Tooltip("Dirtiness texture to add smudges or dust to the bloom effect.")]  
 
-    public ClampedFloatParameter Level = new ClampedFloatParameter(10f,0f,100f,true);       
+    public ClampedFloatParameter Level = new ClampedFloatParameter(10f,1f,30f,true);       
 
     public ClampedFloatParameter CenterX = new ClampedFloatParameter(0.5f,0f,1f,true);    
 
