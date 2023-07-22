@@ -69,11 +69,12 @@ public class Cus_RadiusBlurPass : ScriptableRenderPass
         RenderTargetIdentifier source = currentTarget;
         int destination = TempTargetId;
         
-        mat.SetFloat("_DistortScale", Cus_RadiusBlurVolume.DistortScale.value);
-        mat.SetFloat("_DistortSpeed", Cus_RadiusBlurVolume.DistortSpeed.value); 
-        mat.SetFloat("_DistortInt", Cus_RadiusBlurVolume.DistortInt.value);          
-        mat.SetColor("_baseColor", Cus_RadiusBlurVolume.baseColor.value);
-        mat.SetTexture("_NoiseTex",Cus_RadiusBlurVolume.NoiseTex.value);
+        mat.SetFloat("_Level", Cus_RadiusBlurVolume.Level.value);
+        mat.SetFloat("_CenterX", Cus_RadiusBlurVolume.CenterX.value); 
+        mat.SetFloat("_CenterY", Cus_RadiusBlurVolume.CenterY.value);  
+        mat.SetFloat("_BufferRadius", Cus_RadiusBlurVolume.BufferRadius.value);           
+        
+        
 
         cmd.SetGlobalTexture(MainTexId, source);
         cmd.GetTemporaryRT(destination, cameraData.camera.scaledPixelWidth, cameraData.camera.scaledPixelHeight, 0, FilterMode.Trilinear, RenderTextureFormat.Default);

@@ -8,16 +8,16 @@ public class Cus_RadiusBlur : VolumeComponent
     public BoolParameter isShow = new BoolParameter(false, true);  //当场景没有Volume时，停止执行 Volume 
     [Tooltip("Strength of the line.")]
 
-    public TextureParameter NoiseTex = new TextureParameter(null); 
-    [Tooltip("Dirtiness texture to add smudges or dust to the bloom effect.")]  
+   // public TextureParameter NoiseTex = new TextureParameter(null); 
+   // [Tooltip("Dirtiness texture to add smudges or dust to the bloom effect.")]  
 
-    public ClampedFloatParameter DistortInt = new ClampedFloatParameter(0.1f,0.1f,1f,true);       
+    public ClampedFloatParameter Level = new ClampedFloatParameter(10f,0f,100f,true);       
 
-    public MinFloatParameter DistortScale = new MinFloatParameter(1, 0,true);
-    [Tooltip("The color of the line.")]  
+    public ClampedFloatParameter CenterX = new ClampedFloatParameter(0.5f,0f,1f,true);    
 
-    public MinFloatParameter DistortSpeed = new MinFloatParameter(1, 0,true);
-    [Tooltip("The color of the line.")]  
+    public ClampedFloatParameter CenterY = new ClampedFloatParameter(0.5f,0f,1f,true);   
 
-    public ColorParameter baseColor = new ColorParameter(Color.white, true);
+    public ClampedFloatParameter BufferRadius = new ClampedFloatParameter(1f,0f,1f,true);    
+
+    // public ColorParameter baseColor = new ColorParameter(Color.white, true);
 }
