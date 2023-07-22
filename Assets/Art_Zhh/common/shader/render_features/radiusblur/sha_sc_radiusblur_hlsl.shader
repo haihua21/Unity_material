@@ -119,7 +119,7 @@ Shader "code/pp/test/RadiusBlur_hlsl"
                     //uvDir与center距离乘以0.01再乘以2的长度
                     //如此类推 这里将这些位置的颜色值叠加起来
                     //在结尾部分再进行求平均值
-                    tempColor += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex,uvDir * (1 - 0.01 * j * blurRatio) + center).rgb;
+                    tempColor += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex,uvDir * (1 - 0.015 * j * blurRatio) + center).rgb;
                 }
 
                 //将叠加的值进行求平均值
