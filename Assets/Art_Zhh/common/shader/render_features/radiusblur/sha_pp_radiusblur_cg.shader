@@ -1,4 +1,4 @@
-Shader "code/pp/test/RadiusBlur"
+Shader "code/pp/RadiusBlur_cg"
  {
     Properties {
         _MainTex("纹理",2D)="while"{}
