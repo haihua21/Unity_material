@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_sc_boxblur
-  m_Shader: {fileID: 4800000, guid: cf23ecf826d7c5342894c3b7c268700f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1be0285bb1d73bf4c80e9b0db9dc0947, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -35,11 +35,13 @@ Material:
     - _Float0: 1
     - _Foam: 1.522
     - _Height: 0.388
+    - _Intensity: 0.6
     - _ShadowInt: 1
     - _Speed: 0.225
     - _distortedInt: 0.716
     m_Colors:
     - _BaseColor: {r: 1, g: 0.2971698, b: 0.2971698, a: 1}
+    - _Color: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _MainColor: {r: 1, g: 1, b: 1, a: 0.5}
