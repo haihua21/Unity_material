@@ -13,7 +13,10 @@ Shader "ase/scene/sha_sc_urp"
 		_Metallic("Metallic", Range( 0 , 1)) = 0
 		_Smoothness("Smoothness", Range( 0 , 1)) = 0
 		[NoScaleOffset]_EmissionMap("EmissionMap", 2D) = "white" {}
-		[ASEEnd]_EmissionColor("Emission Color", Color) = (0,0,0,0)
+		_EmissionColor("Emission Color", Color) = (0,0,0,0)
+		[NoScaleOffset]_SSAOMap("SSAOMap", 2D) = "white" {}
+		[ASEEnd]_SSAO("SSAO", Range( 0 , 1)) = 0
+		[HideInInspector] _texcoord2( "", 2D ) = "white" {}
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 
@@ -261,6 +264,7 @@ Shader "ase/scene/sha_sc_urp"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
 			float4 _EmissionColor;
+			float _SSAO;
 			float _Metallic;
 			float _Smoothness;
 			float _AO;
@@ -296,6 +300,7 @@ Shader "ase/scene/sha_sc_urp"
 				int _PassValue;
 			#endif
 
+			sampler2D _SSAOMap;
 			sampler2D _BaseMap;
 			sampler2D _NormalMap;
 			sampler2D _EmissionMap;
@@ -310,10 +315,8 @@ Shader "ase/scene/sha_sc_urp"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				o.ase_texcoord7.xy = v.texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord7.zw = 0;
+				o.ase_texcoord7.xy = v.texcoord1.xyzw.xy;
+				o.ase_texcoord7.zw = v.texcoord.xy;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
@@ -513,19 +516,21 @@ Shader "ase/scene/sha_sc_urp"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float2 uv_BaseMap9 = IN.ase_texcoord7.xy;
+				float2 uv1_SSAOMap27 = IN.ase_texcoord7.xy;
+				float lerpResult30 = lerp( 1.0 , tex2D( _SSAOMap, uv1_SSAOMap27 ).r , _SSAO);
+				float2 uv_BaseMap9 = IN.ase_texcoord7.zw;
 				
-				float2 uv_NormalMap12 = IN.ase_texcoord7.xy;
+				float2 uv_NormalMap12 = IN.ase_texcoord7.zw;
 				
-				float2 uv_EmissionMap24 = IN.ase_texcoord7.xy;
+				float2 uv_EmissionMap24 = IN.ase_texcoord7.zw;
 				
-				float2 uv_SOMMap17 = IN.ase_texcoord7.xy;
+				float2 uv_SOMMap17 = IN.ase_texcoord7.zw;
 				float4 tex2DNode17 = tex2D( _SOMMap, uv_SOMMap17 );
 				
 				float lerpResult18 = lerp( 1.0 , tex2DNode17.g , _AO);
 				
 
-				float3 BaseColor = ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ).rgb;
+				float3 BaseColor = ( lerpResult30 * ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ) ).rgb;
 				float3 Normal = UnpackNormalScale( tex2D( _NormalMap, uv_NormalMap12 ), 1.0f );
 				float3 Emission = ( tex2D( _EmissionMap, uv_EmissionMap24 ) * _EmissionColor ).rgb;
 				float3 Specular = 0.5;
@@ -749,6 +754,7 @@ Shader "ase/scene/sha_sc_urp"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
 			float4 _EmissionColor;
+			float _SSAO;
 			float _Metallic;
 			float _Smoothness;
 			float _AO;
@@ -1058,6 +1064,7 @@ Shader "ase/scene/sha_sc_urp"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
 			float4 _EmissionColor;
+			float _SSAO;
 			float _Metallic;
 			float _Smoothness;
 			float _AO;
@@ -1333,6 +1340,7 @@ Shader "ase/scene/sha_sc_urp"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
 			float4 _EmissionColor;
+			float _SSAO;
 			float _Metallic;
 			float _Smoothness;
 			float _AO;
@@ -1368,6 +1376,7 @@ Shader "ase/scene/sha_sc_urp"
 				int _PassValue;
 			#endif
 
+			sampler2D _SSAOMap;
 			sampler2D _BaseMap;
 			sampler2D _EmissionMap;
 
@@ -1380,10 +1389,8 @@ Shader "ase/scene/sha_sc_urp"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				o.ase_texcoord2.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord2.zw = 0;
+				o.ase_texcoord2.xy = v.texcoord1.xy;
+				o.ase_texcoord2.zw = v.ase_texcoord.xy;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
@@ -1524,12 +1531,14 @@ Shader "ase/scene/sha_sc_urp"
 					#endif
 				#endif
 
-				float2 uv_BaseMap9 = IN.ase_texcoord2.xy;
+				float2 uv1_SSAOMap27 = IN.ase_texcoord2.xy;
+				float lerpResult30 = lerp( 1.0 , tex2D( _SSAOMap, uv1_SSAOMap27 ).r , _SSAO);
+				float2 uv_BaseMap9 = IN.ase_texcoord2.zw;
 				
-				float2 uv_EmissionMap24 = IN.ase_texcoord2.xy;
+				float2 uv_EmissionMap24 = IN.ase_texcoord2.zw;
 				
 
-				float3 BaseColor = ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ).rgb;
+				float3 BaseColor = ( lerpResult30 * ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ) ).rgb;
 				float3 Emission = ( tex2D( _EmissionMap, uv_EmissionMap24 ) * _EmissionColor ).rgb;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
@@ -1588,6 +1597,7 @@ Shader "ase/scene/sha_sc_urp"
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
+				float4 ase_texcoord1 : TEXCOORD1;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -1609,6 +1619,7 @@ Shader "ase/scene/sha_sc_urp"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
 			float4 _EmissionColor;
+			float _SSAO;
 			float _Metallic;
 			float _Smoothness;
 			float _AO;
@@ -1644,6 +1655,7 @@ Shader "ase/scene/sha_sc_urp"
 				int _PassValue;
 			#endif
 
+			sampler2D _SSAOMap;
 			sampler2D _BaseMap;
 
 
@@ -1655,10 +1667,8 @@ Shader "ase/scene/sha_sc_urp"
 				UNITY_TRANSFER_INSTANCE_ID( v, o );
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord2.xy = v.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord2.zw = 0;
+				o.ase_texcoord2.xy = v.ase_texcoord1.xy;
+				o.ase_texcoord2.zw = v.ase_texcoord.xy;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
@@ -1700,6 +1710,7 @@ Shader "ase/scene/sha_sc_urp"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
+				float4 ase_texcoord1 : TEXCOORD1;
 				float4 ase_texcoord : TEXCOORD0;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -1718,6 +1729,7 @@ Shader "ase/scene/sha_sc_urp"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
+				o.ase_texcoord1 = v.ase_texcoord1;
 				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
@@ -1757,6 +1769,7 @@ Shader "ase/scene/sha_sc_urp"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
+				o.ase_texcoord1 = patch[0].ase_texcoord1 * bary.x + patch[1].ase_texcoord1 * bary.y + patch[2].ase_texcoord1 * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
@@ -1794,10 +1807,12 @@ Shader "ase/scene/sha_sc_urp"
 					#endif
 				#endif
 
-				float2 uv_BaseMap9 = IN.ase_texcoord2.xy;
+				float2 uv1_SSAOMap27 = IN.ase_texcoord2.xy;
+				float lerpResult30 = lerp( 1.0 , tex2D( _SSAOMap, uv1_SSAOMap27 ).r , _SSAO);
+				float2 uv_BaseMap9 = IN.ase_texcoord2.zw;
 				
 
-				float3 BaseColor = ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ).rgb;
+				float3 BaseColor = ( lerpResult30 * ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ) ).rgb;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 
@@ -1874,6 +1889,7 @@ Shader "ase/scene/sha_sc_urp"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
 			float4 _EmissionColor;
+			float _SSAO;
 			float _Metallic;
 			float _Smoothness;
 			float _AO;
@@ -2191,6 +2207,7 @@ Shader "ase/scene/sha_sc_urp"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
 			float4 _EmissionColor;
+			float _SSAO;
 			float _Metallic;
 			float _Smoothness;
 			float _AO;
@@ -2226,6 +2243,7 @@ Shader "ase/scene/sha_sc_urp"
 				int _PassValue;
 			#endif
 
+			sampler2D _SSAOMap;
 			sampler2D _BaseMap;
 			sampler2D _NormalMap;
 			sampler2D _EmissionMap;
@@ -2242,10 +2260,8 @@ Shader "ase/scene/sha_sc_urp"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				o.ase_texcoord7.xy = v.texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord7.zw = 0;
+				o.ase_texcoord7.xy = v.texcoord1.xyzw.xy;
+				o.ase_texcoord7.zw = v.texcoord.xy;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = v.vertex.xyz;
 				#else
@@ -2445,19 +2461,21 @@ Shader "ase/scene/sha_sc_urp"
 
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float2 uv_BaseMap9 = IN.ase_texcoord7.xy;
+				float2 uv1_SSAOMap27 = IN.ase_texcoord7.xy;
+				float lerpResult30 = lerp( 1.0 , tex2D( _SSAOMap, uv1_SSAOMap27 ).r , _SSAO);
+				float2 uv_BaseMap9 = IN.ase_texcoord7.zw;
 				
-				float2 uv_NormalMap12 = IN.ase_texcoord7.xy;
+				float2 uv_NormalMap12 = IN.ase_texcoord7.zw;
 				
-				float2 uv_EmissionMap24 = IN.ase_texcoord7.xy;
+				float2 uv_EmissionMap24 = IN.ase_texcoord7.zw;
 				
-				float2 uv_SOMMap17 = IN.ase_texcoord7.xy;
+				float2 uv_SOMMap17 = IN.ase_texcoord7.zw;
 				float4 tex2DNode17 = tex2D( _SOMMap, uv_SOMMap17 );
 				
 				float lerpResult18 = lerp( 1.0 , tex2DNode17.g , _AO);
 				
 
-				float3 BaseColor = ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ).rgb;
+				float3 BaseColor = ( lerpResult30 * ( tex2D( _BaseMap, uv_BaseMap9 ) * _BaseColor ) ).rgb;
 				float3 Normal = UnpackNormalScale( tex2D( _NormalMap, uv_NormalMap12 ), 1.0f );
 				float3 Emission = ( tex2D( _EmissionMap, uv_EmissionMap24 ) * _EmissionColor ).rgb;
 				float3 Specular = 0.5;
@@ -2574,7 +2592,11 @@ Node;AmplifyShaderEditor.RangedFloatNode;21;-337.0066,160.8443;Inherit;False;Pro
 Node;AmplifyShaderEditor.RangedFloatNode;19;-565.8203,536.9043;Inherit;False;Property;_AO;AO;4;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.ColorNode;26;-484.2059,874.909;Inherit;False;Property;_EmissionColor;Emission Color;8;0;Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SamplerNode;24;-580.4579,663.7784;Inherit;True;Property;_EmissionMap;EmissionMap;7;1;[NoScaleOffset];Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-WireConnection;2;0;10;0
+Node;AmplifyShaderEditor.RangedFloatNode;29;-302.6287,-643.0032;Inherit;False;Property;_SSAO;SSAO;10;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.LerpOp;30;36.37134,-780.0032;Inherit;False;3;0;FLOAT;1;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;31;183.3713,-337.0032;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;27;-382.6028,-879.5895;Inherit;True;Property;_SSAOMap;SSAOMap;9;1;[NoScaleOffset];Create;True;0;0;0;False;0;False;-1;5947f2b4ea3b0924785ae448d784192a;5947f2b4ea3b0924785ae448d784192a;True;1;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+WireConnection;2;0;31;0
 WireConnection;2;1;12;0
 WireConnection;2;2;25;0
 WireConnection;2;3;20;0
@@ -2590,5 +2612,9 @@ WireConnection;25;0;24;0
 WireConnection;25;1;26;0
 WireConnection;18;1;17;2
 WireConnection;18;2;19;0
+WireConnection;30;1;27;1
+WireConnection;30;2;29;0
+WireConnection;31;0;30;0
+WireConnection;31;1;10;0
 ASEEND*/
-//CHKSM=6F737DCBB1AF53DCE443FD2A2F32E5920D46613D
+//CHKSM=21FA956466F005912B08E4893920170B6ED36CDA

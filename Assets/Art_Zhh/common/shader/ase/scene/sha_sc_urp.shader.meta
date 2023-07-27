@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 65d198a34d6a1d34fa714f87526a8837
 ShaderImporter:
   externalObjects: {}
-  defaultTextures: []
+  defaultTextures:
+  - _SSAOMap: {fileID: 2800000, guid: 5947f2b4ea3b0924785ae448d784192a, type: 3}
   nonModifiableTextures: []
   preprocessorOverride: 0
   userData: 
