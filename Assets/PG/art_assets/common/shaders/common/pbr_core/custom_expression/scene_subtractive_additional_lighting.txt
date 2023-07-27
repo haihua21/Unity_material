@@ -1,7 +1,0 @@
-half3 color = half3(0,0,0);
-
-#ifdef _SUBTRACTIVE_ADDITIONAL_LIGHTING
-    color += direct_specular_color;
-#endif
-
-return color;
