@@ -1,0 +1,32 @@
+#if defined(LIGHTMAP_ON) && defined(_MIXED_LIGHTING_SUBTRACTIVE)
+
+	float4 shadowCoord = float4(0,0,0,0);
+
+	#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
+		shadowCoord = TransformWorldToShadowCoord(positionWS);
+		//shadowCoord = float4(1,0,0,0);
+	#elif defined(MAIN_LIGHT_CALCULATE_SHADOWS)
+		shadowCoord = TransformWorldToShadowCoord( positionWS );
+		//shadowCoord = float4(0,0,1,0);
+	#endif
+
+
+	Light mainLight = GetMainLight(shadowCoord);
+	
+	
+    half shadowStrength = GetMainLightShadowStrength() * _ShadowIntensity;
+    half contributionTerm = saturate(dot(mainLight.direction, normalWS));
+    half3 lambert = mainLight.color * contributionTerm;
+    half3 estimatedLightContributionMaskedByInverseOfShadow = lambert * (1.0 - mainLight.shadowAttenuation);
+    half3 subtractedLightmap = bakedGI - estimatedLightContributionMaskedByInverseOfShadow;
+
+    // 2) Allows user to define overall ambient of the scene and control situation when realtime shadow becomes too dark.
+    half3 realtimeShadow = max(subtractedLightmap, _SubtractiveShadowColor.xyz);
+    realtimeShadow = lerp(bakedGI, realtimeShadow, shadowStrength);
+
+    // 3) Pick darkest color
+    return min(bakedGI, realtimeShadow);
+#else
+	
+	return bakedGI;
+#endif
