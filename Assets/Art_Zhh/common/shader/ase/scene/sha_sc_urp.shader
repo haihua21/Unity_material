@@ -13,7 +13,7 @@ Shader "ase/scene/sha_sc_urp"
 		_Metallic("Metallic", Range( 0 , 1)) = 0
 		_Smoothness("Smoothness", Range( 0 , 1)) = 0
 		[NoScaleOffset]_EmissionMap("EmissionMap", 2D) = "white" {}
-		_EmissionColor("Emission Color", Color) = (0,0,0,0)
+		[HDR]_EmissionColor("Emission Color", Color) = (0,0,0,0)
 		[NoScaleOffset]_SSAOMap("SSAOMap", 2D) = "white" {}
 		[ASEEnd]_SSAO("SSAO", Range( 0 , 1)) = 0
 		[HideInInspector] _texcoord2( "", 2D ) = "white" {}
@@ -2590,12 +2590,12 @@ Node;AmplifyShaderEditor.SamplerNode;17;-639.2705,200.7324;Inherit;True;Property
 Node;AmplifyShaderEditor.RangedFloatNode;23;-333.7,371.9129;Inherit;False;Property;_Smoothness;Smoothness;6;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;21;-337.0066,160.8443;Inherit;False;Property;_Metallic;Metallic;5;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;19;-565.8203,536.9043;Inherit;False;Property;_AO;AO;4;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;26;-484.2059,874.909;Inherit;False;Property;_EmissionColor;Emission Color;8;0;Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SamplerNode;24;-580.4579,663.7784;Inherit;True;Property;_EmissionMap;EmissionMap;7;1;[NoScaleOffset];Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;29;-302.6287,-643.0032;Inherit;False;Property;_SSAO;SSAO;10;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;30;36.37134,-780.0032;Inherit;False;3;0;FLOAT;1;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;31;183.3713,-337.0032;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SamplerNode;27;-382.6028,-879.5895;Inherit;True;Property;_SSAOMap;SSAOMap;9;1;[NoScaleOffset];Create;True;0;0;0;False;0;False;-1;5947f2b4ea3b0924785ae448d784192a;5947f2b4ea3b0924785ae448d784192a;True;1;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;26;-484.2059,874.909;Inherit;False;Property;_EmissionColor;Emission Color;8;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;2;0;31;0
 WireConnection;2;1;12;0
 WireConnection;2;2;25;0
@@ -2617,4 +2617,4 @@ WireConnection;30;2;29;0
 WireConnection;31;0;30;0
 WireConnection;31;1;10;0
 ASEEND*/
-//CHKSM=21FA956466F005912B08E4893920170B6ED36CDA
+//CHKSM=FD7FE131111D5137ADD976C6ED9C8BB41CD35928
