@@ -16,6 +16,7 @@ namespace UnityEngine.Rendering.Universal
         [SerializeField] private ScriptableRendererFeature m_ditherRenderFeature;
         [Tooltip("在反射中也以抖动状态绘制被浮雕遮挡的角色")]
         [SerializeField] private bool m_drawDithering = true;
+        [SerializeField] private Color m_skyboxColor = Color.black;
         
         [Serializable]
         public enum ResolutionMulltiplier
