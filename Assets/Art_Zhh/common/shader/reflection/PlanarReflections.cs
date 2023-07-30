@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Serialization;
-//no math pack for 2020 yet
 //using Unity.Mathematics; 
 // Copied from BoatAttack Water System
 
@@ -15,7 +14,7 @@ namespace UnityEngine.Rendering.Universal
         [Header("Dithering")]
         [Tooltip("URP Settings/ForwardRenderer/Dither")]
         [SerializeField] private ScriptableRendererFeature m_ditherRenderFeature;
-        [Tooltip("반사에서도 프랍에 가려진 캐릭터를 디더링 상태로 그립니다")]
+        [Tooltip("在反射中也以抖动状态绘制被浮雕遮挡的角色")]
         [SerializeField] private bool m_drawDithering = true;
         
         [Serializable]
@@ -34,6 +33,7 @@ namespace UnityEngine.Rendering.Universal
             public float m_ClipPlaneOffset = 0.07f;
             public LayerMask m_ReflectLayers = -1;
             public bool m_Shadows;
+           // public RenderSkybox m_RenderSkybox;
         }
 
         private bool _needToRefreshReflectionResolution;
@@ -203,7 +203,7 @@ namespace UnityEngine.Rendering.Universal
                 case ResolutionMulltiplier.Full:
                     return 1f;
                 case ResolutionMulltiplier.Half:
-                    return 0.5f;
+                    return 0.4f;
                 case ResolutionMulltiplier.Quarter:
                     return 0.25f;
                 case ResolutionMulltiplier.Octa:
@@ -289,7 +289,7 @@ namespace UnityEngine.Rendering.Universal
             var data = new PlanarReflectionSettingData(); // save quality settings and lower them for the planar reflections
             data.Set(); // set quality settings
 
-            // 디더링 끄고 RT에 그리고 다시 켜기
+            // 关闭抖动，在RT上重新打开            
             if (!m_drawDithering && m_ditherRenderFeature != null)
             {
                 m_ditherRenderFeature.SetActive(false);
@@ -307,13 +307,14 @@ namespace UnityEngine.Rendering.Universal
 
         private class PlanarReflectionSettingData
         {
-            private readonly bool _fog;
+           // fog 有问题禁用；
+           // private readonly bool _fog;
             private readonly int _maxLod;
             private readonly float _lodBias;
 
             public PlanarReflectionSettingData()
             {
-                _fog = RenderSettings.fog;
+             // _fog = RenderSettings.fog;
                 _maxLod = QualitySettings.maximumLODLevel;
                 _lodBias = QualitySettings.lodBias;
             }
@@ -321,7 +322,7 @@ namespace UnityEngine.Rendering.Universal
             public void Set()
             {
                 GL.invertCulling = true;
-                RenderSettings.fog = false; // disable fog for now as it's incorrect with projection
+              //  RenderSettings.fog = false; 
                 QualitySettings.maximumLODLevel = 1;
                 QualitySettings.lodBias = _lodBias * 0.5f;
             }
@@ -329,7 +330,7 @@ namespace UnityEngine.Rendering.Universal
             public void Restore()
             {
                 GL.invertCulling = false;
-                RenderSettings.fog = _fog;
+            //  RenderSettings.fog = _fog;
                 QualitySettings.maximumLODLevel = _maxLod;
                 QualitySettings.lodBias = _lodBias;
             }
