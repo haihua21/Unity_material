@@ -1,6 +1,6 @@
 // Made with Amplify Shader Editor v1.9.1.5
 // Available at the Unity Asset Store - http://u3d.as/y3X 
-Shader "ase/scene/sha_sc_planar_reflection_trans"
+Shader "ase/com/sha_com_planar_reflection_trans"
 {
 	Properties
 	{
@@ -674,10 +674,10 @@ Node;AmplifyShaderEditor.SimpleAddOpNode;46;392.6899,-360.0644;Inherit;False;3;3
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;56;541.2001,-366.96;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;256;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SaturateNode;57;690.7745,-361.8567;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;55;1044.665,-328.3075;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;48;914.9332,-457.2133;Inherit;False;Property;_Float0;Float 0;4;0;Create;True;0;0;0;False;0;False;0.4705879;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;39;1324.891,-302.8247;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;13;ase/scene/sha_sc_planar_reflection_trans;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;22;Surface;1;638263162457062567;  Blend;0;638263159183769693;Two Sided;1;0;Cast Shadows;0;638263162484065203;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;0;0;Built-in Fog;0;0;DOTS Instancing;0;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Vertex Position,InvertActionOnDeselection;1;0;0;5;False;True;False;True;False;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;39;1324.891,-302.8247;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;13;ase/com/sha_com_planar_reflection_trans;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;22;Surface;1;638263162457062567;  Blend;0;638263159183769693;Two Sided;1;0;Cast Shadows;0;638263162484065203;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;0;0;Built-in Fog;0;0;DOTS Instancing;0;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Vertex Position,InvertActionOnDeselection;1;0;0;5;False;True;False;True;False;False;;False;0
 Node;AmplifyShaderEditor.LerpOp;32;539.311,-112.9305;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.RangedFloatNode;23;248.7597,43.37595;Inherit;False;Property;_Smoothness;Smoothness;2;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;48;719.9957,-240.9545;Inherit;False;Property;_Float0;Float 0;4;0;Create;True;0;0;0;False;0;False;0.4705879;0;0;1;0;1;FLOAT;0
 WireConnection;36;0;35;0
 WireConnection;36;1;37;0
 WireConnection;10;0;9;0
@@ -699,4 +699,4 @@ WireConnection;32;0;10;0
 WireConnection;32;1;36;0
 WireConnection;32;2;23;0
 ASEEND*/
-//CHKSM=1A579FF9CBE095A1490AB606A42FA5FD2E3725A1
+//CHKSM=06325E2E59FF9177ACD00633D0600C4645594FD9
