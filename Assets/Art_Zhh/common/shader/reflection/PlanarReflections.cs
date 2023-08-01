@@ -16,8 +16,12 @@ namespace UnityEngine.Rendering.Universal
         [SerializeField] private ScriptableRendererFeature m_ditherRenderFeature;
         [Tooltip("在反射中也以抖动状态绘制被浮雕遮挡的角色")]
         [SerializeField] private bool m_drawDithering = true;
-        [SerializeField] private Color m_skyboxColor = Color.black;
         
+        [SerializeField]
+        private CameraClearFlags m_clearFlags = CameraClearFlags.SolidColor;
+        [SerializeField] private Color m_backgroundColor = Color.black;
+
+        public int RendererIndex;
         [Serializable]
         public enum ResolutionMulltiplier
         {
@@ -120,7 +124,11 @@ namespace UnityEngine.Rendering.Universal
             if (dest.gameObject.TryGetComponent(out UniversalAdditionalCameraData camData))
             {
                 camData.renderShadows = m_settings.m_Shadows; // turn off shadows for the reflection camera
+                camData.SetRenderer(RendererIndex);
             }
+
+            dest.backgroundColor = m_backgroundColor;
+            dest.clearFlags = m_clearFlags;
         }
 
         private void UpdateReflectionCamera(Camera realCamera)
@@ -284,6 +292,9 @@ namespace UnityEngine.Rendering.Universal
             if (camera.cameraType == CameraType.Reflection || camera.cameraType == CameraType.Preview)
                 return;
 
+            if(camera.cameraType == CameraType.Game && Camera.main != camera)
+                return;
+            
             UpdateReflectionCamera(camera); // create reflected camera
             PlanarReflectionTexture(camera); // create and assign RenderTexture
 
