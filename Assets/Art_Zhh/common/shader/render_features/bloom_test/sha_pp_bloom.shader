@@ -47,10 +47,19 @@ Shader "Unlit/sha_pp_bloom"
             return  0.2125 * color.r + 0.7154 * color.g + 0.0721 * color.b; 
             }
 
+            half Brightness(half3 c)
+            {
+            return max(max(c.r, c.g), c.b);
+            }
+
+
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+                col.rgb *= col.rgb;
+                col *= 2;
+
                 //
                 float br = max(max(col.r,col.g),col.b);
                 br = max (0.0f, (br - _Threshold)) / max(br,0.0001f);
