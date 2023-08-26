@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-[ExecuteInEditMode()] //不运行也能执行脚本
+[ExecuteInEditMode()] //不运行也能执行脚本,编辑器下运行实例化材质会报错
 [RequireComponent(typeof(MeshFilter),typeof(MeshRenderer))]
 public class Snow : MonoBehaviour
 {
