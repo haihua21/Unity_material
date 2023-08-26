@@ -7,8 +7,9 @@ using System.Collections;
 public class Snow : MonoBehaviour
 {
     //Unity可以支持多达64000个顶点，如果一个雪花有4个顶点组成，则最多有16000个雪花
-	const int SNOW_NUM = 1000;
-    //顶点
+	//const int SNOW_NUM = 1000;
+    public int SNOW_NUM = 1000; 
+	//顶点
 	private Vector3[] m_vertices;
     //顶点构成的三角面
 	private int[] triangles_;
@@ -19,7 +20,8 @@ public class Snow : MonoBehaviour
     //雪花范围的倒数，为了提高计算效率
 	private float rangeR_;
 	private Vector3 move_ = Vector3.zero;
-	private float movespeed = 0.5f;
+	public float MoveSpeed = 0.5f;
+	public float Size =0.1f;
 
 	void Start ()
 	{
@@ -70,16 +72,15 @@ public class Snow : MonoBehaviour
 		var mr = GetComponent<Renderer> ();
 		mr.material.SetFloat("_Range", range);     // 将range数值传递到材质参数。
 		mr.material.SetFloat("_RangeR", rangeR_);
-		mr.material.SetFloat("_Size", 0.1f);
+		mr.material.SetFloat("_Size", Size);
 		mr.material.SetVector("_MoveTotal", move_);
 		mr.material.SetVector("_CamUp", Camera.main.transform.up);
 		mr.material.SetVector("_TargetPosition", target_position);
-
 		//mr.material.SetVector("_TargetPosition", transform.position);  //设置成自身坐标
 		float x = (Mathf.PerlinNoise(0f, Time.time*0.1f)-0.5f) * 10f;
 		float y = -2f;
 		float z = (Mathf.PerlinNoise(Time.time*0.1f, 0f)-0.5f) * 10f;
-		move_ += new Vector3(x, y, z) * Time.deltaTime* movespeed;
+		move_ += new Vector3(x, y, z) * Time.deltaTime* MoveSpeed;
 		move_.x = Mathf.Repeat(move_.x, range * 2f);
 		move_.y = Mathf.Repeat(move_.y, range * 2f);
 		move_.z = Mathf.Repeat(move_.z, range * 2f);
