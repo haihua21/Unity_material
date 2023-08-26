@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[ExecuteInEditMode()] //不运行也能执行脚本
 [RequireComponent(typeof(MeshFilter),typeof(MeshRenderer))]
 public class Snow : MonoBehaviour
 {
@@ -64,7 +66,7 @@ public class Snow : MonoBehaviour
 	
 	void LateUpdate ()
 	{
-		var target_position = Camera.main.transform.TransformPoint(Vector3.forward * range);
+		var target_position = Camera.main.transform.TransformPoint(Vector3.forward * range);		
 		var mr = GetComponent<Renderer> ();
 		mr.material.SetFloat("_Range", range);     // 将range数值传递到材质参数。
 		mr.material.SetFloat("_RangeR", rangeR_);
@@ -72,6 +74,8 @@ public class Snow : MonoBehaviour
 		mr.material.SetVector("_MoveTotal", move_);
 		mr.material.SetVector("_CamUp", Camera.main.transform.up);
 		mr.material.SetVector("_TargetPosition", target_position);
+
+		//mr.material.SetVector("_TargetPosition", transform.position);  //设置成自身坐标
 		float x = (Mathf.PerlinNoise(0f, Time.time*0.1f)-0.5f) * 10f;
 		float y = -2f;
 		float z = (Mathf.PerlinNoise(Time.time*0.1f, 0f)-0.5f) * 10f;
