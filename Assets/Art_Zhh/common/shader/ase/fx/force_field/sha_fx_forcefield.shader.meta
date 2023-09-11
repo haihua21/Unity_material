@@ -3,6 +3,7 @@ guid: 4d57ee1e784076349b8c3a0da9f89abb
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
+  - _RampTex: {fileID: 2800000, guid: 57b8fdcdd92351c409af9aa48ecbf9f1, type: 3}
   - _Noise: {fileID: 2800000, guid: 97892a83f7cc7ec43ad0edfb8a610c54, type: 3}
   nonModifiableTextures: []
   preprocessorOverride: 0

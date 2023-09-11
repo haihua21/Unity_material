@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_com_outline
-  m_Shader: {fileID: 4800000, guid: 9884472615c9d2f44a15340bf3223913, type: 3}
+  m_Name: sha_fx_test
+  m_Shader: {fileID: 4800000, guid: d0742786d5f8a994895dbf2a7c3377cd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -18,13 +18,9 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Floats:
-    - _Outline: 0.081
+    - _AlphaCutoff: 0.5
     m_Colors:
-    - _OutlineColor: {r: 1, g: 0.36320752, b: 0.36320752, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
