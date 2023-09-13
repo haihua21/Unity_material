@@ -5868,7 +5868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 308623051}
   triggerTag: ForceField
-  clicksPerSecond: 1
+  clicksPerSecond: 0.3
   AffectorAmount: 20
 --- !u!4 &1902005266
 Transform:
