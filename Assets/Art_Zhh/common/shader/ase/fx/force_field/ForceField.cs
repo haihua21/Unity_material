@@ -62,7 +62,7 @@ public class ForceField : MonoBehaviour
             sizes[i] = particles[i].GetCurrentSize(ps);
         }
 
-          Shader.SetGlobalVectorArray("HitPosition",positions);  // 传送整段数组
+          Shader.SetGlobalVectorArray("HitPosition",positions);  // 传送positions 整段数组,到材质 HitPosition
           Shader.SetGlobalFloatArray("HitSize",sizes);           // 传送整段数组
           Shader.SetGlobalFloat("AffectorAmount",AffectorAmount);
           //Shader.SetGlobalVector("HitPosition",positions[0]);    // 传送第一个数组
