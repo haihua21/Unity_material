@@ -89,7 +89,7 @@ namespace S
             string path = AssetDatabase.GetAssetPath(target);
             if (string.IsNullOrEmpty(path)) return null;
             string guid = AssetDatabase.AssetPathToGUID(path);
-            string[] files = Directory.GetFiles(Application.dataPath, "*",
+            string[] files = Directory.GetFiles(Application.dataPath + "/Art_Zhh","*",
                 SearchOption.AllDirectories).Where(s => withoutExtensions.Contains(Path.GetExtension(s).ToLower())).ToArray();
             List<Object> objects= new List<Object>();
             foreach (var file in files)
