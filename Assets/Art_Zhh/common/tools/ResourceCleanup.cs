@@ -10,6 +10,7 @@ namespace S
 {
     public class DependAnalysis : EditorWindow
     {
+        private string PathCus = "/Art_Zhh";
         private static Object[] targetObjects;
         private bool[] foldoutArr;
         private Object[][] beDependArr;
@@ -40,6 +41,12 @@ namespace S
 
         private void OnGUI()
         {
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("查找路径:  Assets");
+            PathCus = EditorGUILayout.TextField(PathCus);  
+
+            EditorGUILayout.EndHorizontal();
+
             if (beDependArr.Length != targetCount) return;
             scrollPos=EditorGUILayout.BeginScrollView(scrollPos);
             Object[] objArr;
@@ -89,7 +96,8 @@ namespace S
             string path = AssetDatabase.GetAssetPath(target);
             if (string.IsNullOrEmpty(path)) return null;
             string guid = AssetDatabase.AssetPathToGUID(path);
-            string[] files = Directory.GetFiles(Application.dataPath + "/Art_Zhh","*",
+         // string[] files = Directory.GetFiles(Application.dataPath + "/Art_Zhh","*",
+            string[] files = Directory.GetFiles(Application.dataPath + PathCus,"*",
                 SearchOption.AllDirectories).Where(s => withoutExtensions.Contains(Path.GetExtension(s).ToLower())).ToArray();
             List<Object> objects= new List<Object>();
             foreach (var file in files)
