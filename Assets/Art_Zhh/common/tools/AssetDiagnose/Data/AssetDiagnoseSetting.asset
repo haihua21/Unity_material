@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da10df9ea1bf46c29a9e50cba67a4dc3, type: 3}
+  m_Name: AssetDiagnoseSetting
+  m_EditorClassIdentifier: 
+  m_settingDataList:
+  - _remark: "\u6B63\u5F0F\u8D44\u6E90\u662F\u5426\u5F15\u7528\u975E\u6B63\u5F0F\u8D44\u6E90"
+    _refPath: Assets/PG/art_assets
+    _resPath: Assets/PG/art_assets_test
+    m_setting: {fileID: 11400000}
+  - _remark: "\u6B63\u5F0F\u8D44\u6E90\u91CD\u590D\u6392\u67E5"
+    _refPath: Assets/PG/art_assets
+    _resPath: Assets/PG/art_assets
+    m_setting: {fileID: 11400000}
