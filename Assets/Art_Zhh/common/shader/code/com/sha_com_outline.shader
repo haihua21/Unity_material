@@ -1,4 +1,4 @@
-Shader "code/com/Outline"
+Shader "code/common/Outline"
 {
     Properties
     {
