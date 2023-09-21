@@ -26,7 +26,7 @@ namespace S
             targetObjects=Selection.GetFiltered<Object>(SelectionMode.Assets);
             targetCount=targetObjects == null ? 0 : targetObjects.Length;
             // if (targetCount == 0) return;     
-            DependAnalysis window = GetWindow<DependAnalysis>("依赖分析");
+            DependAnalysis window = GetWindow<DependAnalysis>("被引用依赖分析");
             window.Init();
             window.Show();
         }
@@ -74,10 +74,12 @@ namespace S
                         }
                     }
                     else
-                    {
+                    {                       
+                        Object objz = targetObjects[i];
                         EditorGUILayout.BeginHorizontal();
                         GUILayout.Space(15);
-                        EditorGUILayout.LabelField("【Null】");
+                        EditorGUILayout.ObjectField(objz,typeof(Object));
+                        EditorGUILayout.LabelField("【无引用、是否删除】");
                         EditorGUILayout.EndHorizontal();
                     }
                 }
