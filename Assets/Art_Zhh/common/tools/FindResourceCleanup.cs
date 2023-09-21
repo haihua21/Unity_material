@@ -58,8 +58,7 @@ namespace S
                 count = objArr == null ? 0 : objArr.Length;
                 objName = Path.GetFileName(AssetDatabase.GetAssetPath(targetObjects[i]));
                 string info = count == 0
-                    ? $"<color=yellow>{objName}【{count}】</color>"
-                    : $"{objName}【{count}】";
+                    ? $"<color=yellow>{objName}【{count}】</color>" : $"{objName}【{count}】";
                 foldoutArr[i] = EditorGUILayout.Foldout(foldoutArr[i], info);
                 if (foldoutArr[i])
                 {
@@ -74,13 +73,22 @@ namespace S
                         }
                     }
                     else
-                    {                       
-                        Object objz = targetObjects[i];
+                    {                                             
+                        Object objz = targetObjects[i];                        
                         EditorGUILayout.BeginHorizontal();
                         GUILayout.Space(15);
                         EditorGUILayout.ObjectField(objz,typeof(Object));
-                        EditorGUILayout.LabelField("【无引用、是否删除】");
                         EditorGUILayout.EndHorizontal();
+                        EditorGUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField("【无引用、是否删除】");                        
+                        GUI.color = Color.red;
+                        if (GUILayout.Button("删  除",GUILayout.Width(150),GUILayout.Height(20)))
+                        {
+                            DestroyImmediate(objz,true);
+                           // files.Delete(objz);
+                        }                      
+                        EditorGUILayout.EndHorizontal();
+                        GUI.color = Color.white;  
                     }
                 }
             }
