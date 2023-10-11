@@ -25,6 +25,8 @@ namespace S
         {               
             targetObjects=Selection.GetFiltered<Object>(SelectionMode.Assets);
             targetCount=targetObjects == null ? 0 : targetObjects.Length;
+
+            Debug.Log(targetObjects);
             // if (targetCount == 0) return;     
             DependAnalysis window = GetWindow<DependAnalysis>("被引用依赖分析");
             window.Init();
@@ -83,9 +85,14 @@ namespace S
                         EditorGUILayout.LabelField("【无引用、是否删除】");                        
                         GUI.color = Color.red;
                         if (GUILayout.Button("删  除",GUILayout.Width(150),GUILayout.Height(20)))
-                        {
-                            DestroyImmediate(objz,true);
-                           // files.Delete(objz);
+                        {      
+                            string assetPath =AssetDatabase.GetAssetPath(objz);                 
+                          //  DestroyImmediate(objz,true);
+                            File.Delete(assetPath);
+                            File.Delete(assetPath +".meta");
+                            Debug.Log(assetPath);
+                            
+                        
                         }                      
                         EditorGUILayout.EndHorizontal();
                         GUI.color = Color.white;  
