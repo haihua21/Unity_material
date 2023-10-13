@@ -6,8 +6,9 @@ Shader "ase/sample/sha_uv_sample_mosaic_01"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		[ASEBegin][IntRange]_Tile("Tile", Range( 1 , 10)) = 1
-		[ASEEnd][NoScaleOffset]_BaseMap("BaseMap", 2D) = "white" {}
+		[ASEBegin][IntRange]_Tile("Tile", Range( 0 , 10)) = 1
+		[NoScaleOffset]_BaseMap("BaseMap", 2D) = "white" {}
+		[ASEEnd][IntRange]_pixelRange("pixel Range", Range( -200 , -50)) = -50
 
 
 		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
@@ -201,6 +202,7 @@ Shader "ase/sample/sha_uv_sample_mosaic_01"
 
 			CBUFFER_START(UnityPerMaterial)
 			float _Tile;
+			float _pixelRange;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -365,7 +367,7 @@ Shader "ase/sample/sha_uv_sample_mosaic_01"
 					#endif
 				#endif
 
-				float temp_output_61_0 = abs( (-50.0 + (_Tile - 0.0) * (1.0 - -50.0) / (10.0 - 0.0)) );
+				float temp_output_61_0 = abs( (_pixelRange + (_Tile - 0.0) * (1.0 - _pixelRange) / (10.0 - 0.0)) );
 				float2 temp_output_21_0 = ( IN.ase_texcoord3.xy * temp_output_61_0 );
 				
 				float3 BakedAlbedo = 0;
@@ -448,6 +450,7 @@ Shader "ase/sample/sha_uv_sample_mosaic_01"
 
 			CBUFFER_START(UnityPerMaterial)
 			float _Tile;
+			float _pixelRange;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -706,6 +709,7 @@ Shader "ase/sample/sha_uv_sample_mosaic_01"
 
 			CBUFFER_START(UnityPerMaterial)
 			float _Tile;
+			float _pixelRange;
 			#ifdef ASE_TESSELLATION
 				float _TessPhongStrength;
 				float _TessValue;
@@ -898,9 +902,10 @@ Node;AmplifyShaderEditor.SamplerNode;14;-1857.701,-114.5671;Inherit;True;Propert
 Node;AmplifyShaderEditor.SimpleDivideOpNode;23;-2729.352,86.63396;Inherit;True;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.CeilOpNode;58;-3070.327,181.0945;Inherit;True;1;0;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.AbsOpNode;61;-3506.436,125.7495;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;13;-4143.226,-5.715382;Inherit;True;Property;_Tile;Tile;0;1;[IntRange];Create;True;0;0;0;False;0;False;1;0;1;10;0;1;FLOAT;0
-Node;AmplifyShaderEditor.TFHCRemapNode;59;-3797.278,117.7725;Inherit;True;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;10;False;3;FLOAT;-50;False;4;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TexCoordVertexDataNode;11;-3685.31,-179.9066;Inherit;False;0;2;0;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.TFHCRemapNode;59;-3797.278,117.7725;Inherit;True;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;10;False;3;FLOAT;-100;False;4;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;13;-4143.226,-5.715382;Inherit;True;Property;_Tile;Tile;0;1;[IntRange];Create;True;0;0;0;False;0;False;1;0;0;10;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;62;-4186.217,274.7639;Inherit;False;Property;_pixelRange;pixel Range;2;1;[IntRange];Create;True;0;0;0;False;0;False;-50;-50;-200;-50;0;1;FLOAT;0
 WireConnection;21;0;11;0
 WireConnection;21;1;61;0
 WireConnection;22;0;21;0
@@ -912,5 +917,6 @@ WireConnection;23;1;24;0
 WireConnection;58;0;21;0
 WireConnection;61;0;59;0
 WireConnection;59;0;13;0
+WireConnection;59;3;62;0
 ASEEND*/
-//CHKSM=45F3A74BCBD0E2921B497A072BE278B4F343BE6C
+//CHKSM=95422B32FB100283C56613EC2F4ACA3503B0C898
