@@ -17,6 +17,7 @@ public class TutorialBlurRenderFeature : ScriptableRendererFeature
         public RenderPassEvent passEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         public Shader shader;
         public BlurType blurType;
+        public int blurTimes = 1;    // 开放传入一个整数
     }
     private TutorialBlurRenderPass pass;
     [SerializeField]
