@@ -62,21 +62,21 @@ public class Cus_BloomPass : ScriptableRenderPass
     private void Render(CommandBuffer cmd,ref RenderingData renderingData)
     {
 
-        ref CameraData cameraData = ref renderingData.cameraData;
-        Camera camera = cameraData.camera;
-        RenderTargetIdentifier source = currentTarget;
-        int destination = TempTargetId;
+        ref CameraData cameraData = ref renderingData.cameraData;   //获取摄像机属性
+        Camera camera = cameraData.camera;                          //传入摄像机  
+        RenderTargetIdentifier source = currentTarget;           //获取渲染图片
+        int destination = TempTargetId;                         //渲染结果图片
         
-        mat.SetFloat("_Threshold", Cus_BloomVolume.Threshold.value);
+        mat.SetFloat("_Threshold", Cus_BloomVolume.Threshold.value);  //
         mat.SetFloat("_Scatter", Cus_BloomVolume.Scatter.value); 
         mat.SetFloat("_Intensity", Cus_BloomVolume.Intensity.value);  
         mat.SetFloat("_Radius", Cus_BloomVolume.Radius.value);          
         mat.SetColor("_baseColor", Cus_BloomVolume.baseColor.value);
        
 
-        cmd.SetGlobalTexture(MainTexId, source);
+        cmd.SetGlobalTexture(MainTexId, source);  // 获取当前摄像机渲染的图片
         cmd.GetTemporaryRT(destination, cameraData.camera.scaledPixelWidth, cameraData.camera.scaledPixelHeight, 0, FilterMode.Trilinear, RenderTextureFormat.Default);
-        cmd.Blit(source, destination);
-        cmd.Blit(destination, source, mat, 0);
+        cmd.Blit(source, destination);    //设置后处理
+        cmd.Blit(destination, source, mat, 0);  //传入夜色校正
     }
 }

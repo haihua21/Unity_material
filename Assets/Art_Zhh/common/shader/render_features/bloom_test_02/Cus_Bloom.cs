@@ -13,7 +13,7 @@ public class Cus_Bloom : VolumeComponent
     public MinFloatParameter Intensity = new MinFloatParameter(1, 0,true);
     [Tooltip("The color of the line.")]  
 
-    public ClampedFloatParameter Scatter = new ClampedFloatParameter(0.7f,0.1f,1f,true);
+    public ClampedFloatParameter Scatter = new ClampedFloatParameter(0.7f,0.1f,5f,true);
     [Tooltip("The color of the line.")]  
 
     public MinFloatParameter Radius = new MinFloatParameter(1, 0,true);

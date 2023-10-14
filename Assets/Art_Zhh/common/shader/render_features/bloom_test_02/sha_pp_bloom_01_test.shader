@@ -60,10 +60,17 @@ Shader "code/pp/bloom_test"
 
             half4 frag (v2f i) : SV_Target
             {
-                             
-                half2 uv = i.uv;
-                half4 col = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, uv)*_baseColor ;  // 采用屏幕                
-                return col;
+                half4 d = _MainTex_TexelSize.xyxy * half4(-1,-1,1,1) * _Scatter;               
+                half4 s = 0;
+                s += SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv + d.xy);
+                s += SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv + d.zy);
+                s += SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv + d.xw);
+                s += SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv + d.zw);
+                s *= 0.25 ;
+                s *= _baseColor ;
+
+              // half4 col = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex, i.uv)*_baseColor ;  // 采用屏幕                
+                return s;
             }
             ENDHLSL
         }
