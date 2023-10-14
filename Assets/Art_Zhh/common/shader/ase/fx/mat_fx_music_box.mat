@@ -38,11 +38,13 @@ Material:
     - _Speed: 0.2
     - _TileUV: 1
     - _VertexMapState: 0
+    - _VertexState: 1
     - _state: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BaseColor: {r: 2, g: 2, b: 2, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpeedAndTileUV: {r: -0.5, g: 0.3, b: 1, a: 1}
+    - _SpeedAndTileUV: {r: -0.5, g: 0.5, b: 1, a: 1}
+    - _SpeedAndTileUV11: {r: 1, g: 0, b: 1, a: 1}
     - _Vector: {r: 0, g: 3.68, b: 0, a: 0}
     - _Vector0: {r: -0.5, g: 0, b: 0, a: 0}
     - _VectorXYZ: {r: 0, g: 0.75, b: 0, a: 0}
