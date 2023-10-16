@@ -17,7 +17,9 @@ public class TutorialBlurRenderFeature : ScriptableRendererFeature
         public RenderPassEvent passEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         public Shader shader;
         public BlurType blurType;
-        public int blurRange = 1;    // 开放传入一个整数
+        public int blurTimes = 1;
+        public float blurRange = 1;    // 开放传入一个浮动数
+        
     }
     private TutorialBlurRenderPass pass;
     [SerializeField]
@@ -46,7 +48,8 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
 
     private RenderTargetHandle buffer01, buffer02;
     private TutorialBlurRenderFeature.BlurType blurType;
-    // private static int blurTimes;
+    private static float blurRange;
+    private static int blurTimes;
 
 
     public TutorialBlurRenderPass(TutorialBlurRenderFeature.Settings settings)
@@ -58,6 +61,8 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
             passMaterial = CoreUtils.CreateEngineMaterial(settings.shader);
         }
         blurType = settings.blurType;
+        blurRange = settings.blurRange;
+        blurTimes =settings.blurTimes;
     }
     /// <summary>
     /// 重写Configure，主要是拿一下【cameraTextureDescriptor】纹理参数
@@ -114,7 +119,7 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
         var width = dsp.width / blurProcess.donwSample.value; //降采样宽度
         var height = dsp.height / blurProcess.donwSample.value; //降采样高度
         // var blurRange = blurProcess.blurRange.value; //模糊采样距离
-        var blurRange =settings.blurRange;
+
 
         cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32); //获取临时RT
         cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);
@@ -123,7 +128,8 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
 
         cmd.Blit(source, buffer01.Identifier(), passMaterial, 0); //使用shader的第一个pass进行渲染
 
-        for (int i = 0; i < blurProcess.blurTimes.value; i++) //模糊循环
+        // for (int i = 0; i < blurProcess.blurTimes.value; i++) //模糊循环  ,传入 blurprocess.blurTimes;
+        for (int i = 0; i < blurTimes ; i++) //模糊循环
         {
             passMaterial.SetFloat("_BlurRange", (i + 1) * blurRange); //随着迭代次数，BlurRange逐渐扩大
             cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 0); //使用shader的第一个pass进行渲染
@@ -131,6 +137,7 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
             var temRT = buffer01; //交换RT
             buffer01 = buffer02;
             buffer02 = temRT;
+            
         }
         cmd.Blit(buffer01.Identifier(), source, passMaterial, 0); //把最后的结果写入摄像机
 
