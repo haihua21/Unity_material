@@ -17,7 +17,7 @@ public class TutorialBlurRenderFeature : ScriptableRendererFeature
         public RenderPassEvent passEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         public Shader shader;
         public BlurType blurType;
-        public int blurTimes = 1;    // 开放传入一个整数
+        public int blurRange = 1;    // 开放传入一个整数
     }
     private TutorialBlurRenderPass pass;
     [SerializeField]
@@ -46,6 +46,7 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
 
     private RenderTargetHandle buffer01, buffer02;
     private TutorialBlurRenderFeature.BlurType blurType;
+    // private static int blurTimes;
 
 
     public TutorialBlurRenderPass(TutorialBlurRenderFeature.Settings settings)
@@ -112,7 +113,8 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
         var dsp = renderTextureDescriptor; //获取纹理参数描述符
         var width = dsp.width / blurProcess.donwSample.value; //降采样宽度
         var height = dsp.height / blurProcess.donwSample.value; //降采样高度
-        var blurRange = blurProcess.blurRange.value; //模糊采样距离
+        // var blurRange = blurProcess.blurRange.value; //模糊采样距离
+        var blurRange =settings.blurRange;
 
         cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32); //获取临时RT
         cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);
