@@ -148,14 +148,15 @@ public class TutorialBlurRenderPass : ScriptableRenderPass
     private void DualBlur(CommandBuffer cmd)
     {
         int width = this.renderTextureDescriptor.width, height = this.renderTextureDescriptor.height;
-        var loopCount = blurProcess.blurTimes.value;
+        // var loopCount = blurProcess.blurTimes.value;
+        var loopCount = blurTimes;
         var downSampleRT = new int[loopCount];
         var upSampleRT = new int[loopCount];
 
         RenderTargetIdentifier tmpRT = renderTarget;
 
-        passMaterial.SetFloat("_BlurRange", blurProcess.blurRange.value);
-
+        // passMaterial.SetFloat("_BlurRange", blurProcess.blurRange.value);
+        passMaterial.SetFloat("_BlurRange", blurRange);
         //initial
         for (int i = 0; i < loopCount; i++)
         {
