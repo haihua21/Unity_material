@@ -58,14 +58,15 @@ Shader "code/com/sha_com_planar_reflection_trans"
 
 			CBUFFER_END
 
-			sampler2D _PlanarReflectionTexture;
+            TEXTURE2D(_PlanarReflectionTexture); 
+            SAMPLER(sampler_PlanarReflectionTexture);       
 			
 			v2f VertexFunction ( appdata v  )
 			{
 				v2f o = (v2f)0;
-				UNITY_SETUP_INSTANCE_ID(v);
-				UNITY_TRANSFER_INSTANCE_ID(v, o);
-				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+				// UNITY_SETUP_INSTANCE_ID(v);
+				// UNITY_TRANSFER_INSTANCE_ID(v, o);
+				// UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 				float4 clipPos = TransformObjectToHClip((v.vertex).xyz);
 				float4 screenPos = ComputeScreenPos(clipPos);
@@ -86,8 +87,8 @@ Shader "code/com/sha_com_planar_reflection_trans"
 			v2f vert ( appdata v )
 			{
 				v2f o;
-				UNITY_SETUP_INSTANCE_ID(v);
-				UNITY_TRANSFER_INSTANCE_ID(v, o);
+				// UNITY_SETUP_INSTANCE_ID(v);
+				// UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.NORMAL = v.NORMAL;				
 				return o;
@@ -99,15 +100,15 @@ Shader "code/com/sha_com_planar_reflection_trans"
 			}
 			#endif
 
-			half4 frag ( v2f IN  ) : SV_Target
+			half4 frag ( v2f i) : SV_Target
 			{
-				UNITY_SETUP_INSTANCE_ID( IN );
-				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );	
+				// UNITY_SETUP_INSTANCE_ID( IN );
+				// UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( IN );	
 
-				float4 screenPos = IN.texcoord3;
+				float4 screenPos = i.texcoord3;
 				float4 ScreenPosNorm = screenPos / screenPos.w;	ScreenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ScreenPosNorm.z : ScreenPosNorm.z * 0.5 + 0.5;
 				float2 appendUV = (float2(ScreenPosNorm.x , ScreenPosNorm.y));
-				float4 PlanarRefTex = tex2D( _PlanarReflectionTexture, appendUV ) * (_BaseColor +0.001) ;
+				half4 PlanarRefTex = SAMPLE_TEXTURE2D( _PlanarReflectionTexture,sampler_PlanarReflectionTexture, appendUV ) * (_BaseColor +0.001) ;
 				float4 lerpResult = lerp( _BaseColor , PlanarRefTex , saturate(( _Smoothness - 0.05 )));
 							
 				float Alpha = ( ( saturate( ( ( PlanarRefTex.r + PlanarRefTex.g + PlanarRefTex.b ) * 256.0 ) ) * _Alpha ) - 0.01 );
