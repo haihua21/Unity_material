@@ -12,6 +12,6 @@ public class Cus_Bloom : VolumeComponent //, IPostProcessComponent
     public IntParameter donwSample = new ClampedIntParameter(2, 1, 16);
 
     //public FloatParameter intensity = new ClampedFloatParameter(1, 0, 10);
-    public FloatParameter centerX = new ClampedFloatParameter(0.5f, 0, 1);
+    public FloatParameter Threshold = new ClampedFloatParameter(0.5f, 0, 3);
     public FloatParameter centerY = new ClampedFloatParameter(0.5f, 0, 1);
 }

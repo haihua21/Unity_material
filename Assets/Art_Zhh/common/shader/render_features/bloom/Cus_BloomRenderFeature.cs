@@ -19,6 +19,7 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
         public BloomType BloomType;
         public int BloomTimes = 1;
         public float BloomRange = 1;    // 开放传入一个浮动数
+        public float Threshold = 1;
         
     }
     private TutorialBloomRenderPass pass;
@@ -44,12 +45,13 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private Cus_Bloom BloomProcess;
 
     private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
-    private static readonly string tag = "TutorialBloom";
+    private static readonly string tag = "Cus_Bloom";
 
     private RenderTargetHandle buffer01, buffer02;
     private Cus_BloomRenderFeature.BloomType BloomType;
     private static float BloomRange;
     private static int BloomTimes;
+    private static float Threshold;
 
 
     public TutorialBloomRenderPass(Cus_BloomRenderFeature.Settings settings)
@@ -63,6 +65,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         BloomType = settings.BloomType;
         BloomRange = settings.BloomRange;
         BloomTimes =settings.BloomTimes;
+        Threshold =settings.Threshold;
     }
     /// <summary>
     /// 重写Configure，主要是拿一下【cameraTextureDescriptor】纹理参数
@@ -195,7 +198,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     {
         passMaterial.SetFloat("_BloomRange", BloomProcess.BloomRange.value);
         passMaterial.SetInt("_LoopCount", BloomProcess.BloomTimes.value);
-        passMaterial.SetFloat("_X", BloomProcess.centerX.value);
+        passMaterial.SetFloat("_Threshold", Threshold);
         passMaterial.SetFloat("_Y", BloomProcess.centerY.value);
 
         var dsp = this.renderTextureDescriptor;

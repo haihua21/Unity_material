@@ -39,6 +39,7 @@ Shader "code/pp/bloom"
         {
             //Radial Blur 径向模糊 passid = 3
             HLSLPROGRAM
+            // #include "RadialBlur_test.hlsl"
             #include "RadialBlur.hlsl"
             #pragma vertex vert
             #pragma fragment frag

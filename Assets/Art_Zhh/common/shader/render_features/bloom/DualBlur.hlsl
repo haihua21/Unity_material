@@ -24,6 +24,17 @@ SAMPLER(sampler_MainTex);
 
 float _BloomRange;
 float4 _MainTex_TexelSize;
+float _Threshold;
+
+float4 frag_PreFilter(v2f_DualBlurDown i):SV_TARGET
+{
+    float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv[0]) ;
+    float br = max(max(col.r,col.g),col.b);
+    br = max(0.0f,(br - _Threshold)) / br;
+    col.rgb *= br;
+    return col;
+}
+
 
 v2f_DualBlurDown DualBlurDownVert(appdata v)
 {
