@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_com_planar_reflection
-  m_Shader: {fileID: 4800000, guid: 436bdd25bc34bf54987d7d9bd7ed8a18, type: 3}
+  m_Shader: {fileID: 4800000, guid: 35f82dd78192231428a806f592d6c81c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -107,7 +107,7 @@ Material:
     - Vector1_AFF34EDF: 0.7
     - Vector1_E1E2BF85: 0.768
     - _AO: 0
-    - _Alpha: 0.8
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
     - _Blend: 0
@@ -119,6 +119,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeAlphaInt: 0
     - _EnvironmentReflections: 1
     - _Float0: 1
     - _Float1: 2.73
@@ -132,7 +133,8 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SSAO: 0
-    - _Smoothness: 0.893
+    - _Scatter: 1.61
+    - _Smoothness: 0.082
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -146,6 +148,7 @@ Material:
     - Color_B7C6B5A3: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeColor: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
