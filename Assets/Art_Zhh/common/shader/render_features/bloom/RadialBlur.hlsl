@@ -25,6 +25,7 @@ int _LoopCount;
 float _X;
 float _Y;
 float _Threshold;
+float _ThresholdKnee;
 
 
         // Brightness function
@@ -94,11 +95,15 @@ v2f vert(appdata i)
 // }
 half4 frag(v2f i) :SV_TARGET
 {
-    // float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-    float3 col = DecodeHDR(SAMPLE_TEXTURE2D_X(_MainTex, sampler_MainTex, i.uv));
-    float br = max(max(col.r,col.g),col.b);
-    br = max(0.0f,(br - _Threshold)) / max(br,0.00001f);
-    col.rgb *= br;
+    half3 col = SAMPLE_TEXTURE2D_X(_MainTex, sampler_MainTex, i.uv);
+    // half br = max(max(col.r,col.g),col.b);
+    half br = Max3(col.r,col.g,col.b);
+    // br = max(0.0f,(br - _Threshold)) / max(br,0.00001f);
+            half softness = clamp(br - _Threshold + _ThresholdKnee, 0.0, 2.0 * _ThresholdKnee);
+            softness = (softness * softness) / (4.0 * _ThresholdKnee + 1e-4);
+            half multiplier = max(br - _Threshold, softness) / max(br, 1e-4);
+            col *= multiplier;
+            col = max(col,0);
     
     return EncodeHDR(col) ;
 }
