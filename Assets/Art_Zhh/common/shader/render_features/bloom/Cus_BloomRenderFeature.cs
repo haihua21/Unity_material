@@ -206,7 +206,8 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         var height = dsp.height / downSample;
         var width = dsp.width / downSample;
 
-        cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);//用来存降采样的
+        // cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);//用来存降采样的，常用格式
+        cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);//用来存降采样的,Half高精度
         cmd.GetTemporaryRT(buffer02.id, dsp);//模糊图
 
         var source = this.renderTarget;
