@@ -17,10 +17,10 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
         public RenderPassEvent passEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         public Shader shader;
         public BloomType BloomType;
-        public int BloomTimes = 1;
-        public float BloomRange = 1;    // 开放传入一个浮动数
+        public int BloomTimes = 1;        
         public float Threshold = 1;
-        public float ThresholdKnee =1;
+        public float ThresholdKnee = 0.5f;
+        public float Scatter = 0.7f;    // 开放传入一个浮动数
         
     }
     private TutorialBloomRenderPass pass;
@@ -48,9 +48,9 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
     private static readonly string tag = "Cus_Bloom";
 
-    private RenderTargetHandle buffer01, buffer02;
+    private RenderTargetHandle buffer01, buffer02,buffer03;
     private Cus_BloomRenderFeature.BloomType BloomType;
-    private static float BloomRange;
+    private static float Scatter;
     private static int BloomTimes;
     private static float Threshold;
     private static float ThresholdKnee;
@@ -65,7 +65,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
             passMaterial = CoreUtils.CreateEngineMaterial(settings.shader);
         }
         BloomType = settings.BloomType;
-        BloomRange = settings.BloomRange;
+        Scatter = settings.Scatter;
         BloomTimes =settings.BloomTimes;
         Threshold =settings.Threshold;
         ThresholdKnee =settings.ThresholdKnee;
@@ -83,6 +83,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
 
         buffer01.Init("buffer01");
         buffer02.Init("buffer02");
+        buffer03.Init("buffer03");
     }
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -123,32 +124,37 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
 
         var dsp = renderTextureDescriptor; //获取纹理参数描述符
         var width = dsp.width / BloomProcess.donwSample.value; //降采样宽度
-        var height = dsp.height / BloomProcess.donwSample.value; //降采样高度
-        // var BloomRange = BloomProcess.BloomRange.value; //模糊采样距离
+        var height = dsp.height / BloomProcess.donwSample.value; //降采样高度       
 
 
-        cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32); //获取临时RT
-        cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);
+        cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf); //获取临时RT
+        cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+        cmd.GetTemporaryRT(buffer03.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
 
-        passMaterial.SetFloat("_BloomRange", 0); //初始化BloomRange
+        passMaterial.SetFloat("_Scatter", 0); //初始化Scatter
+        passMaterial.SetFloat("_Threshold", Threshold);
+        passMaterial.SetFloat("_ThresholdKnee",ThresholdKnee);
 
         cmd.Blit(source, buffer01.Identifier(), passMaterial, 0); //使用shader的第一个pass进行渲染
-
-        // for (int i = 0; i < BloomProcess.BloomTimes.value; i++) //模糊循环  ,传入 Bloomprocess.BloomTimes;
+        // cmd.Blit(source, buffer03.Identifier(), passMaterial, 2); //使用shader的第一个pass进行渲染
+        
         for (int i = 0; i < BloomTimes ; i++) //模糊循环
         {
-            passMaterial.SetFloat("_BloomRange", (i + 1) * BloomRange); //随着迭代次数，BloomRange逐渐扩大
-            cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 0); //使用shader的第一个pass进行渲染
+            passMaterial.SetFloat("_Scatter", (i + 1) * Scatter); //随着迭代次数，Scatter逐渐扩大
+            cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 1); //使用shader的第一个pass进行渲染
 
             var temRT = buffer01; //交换RT
             buffer01 = buffer02;
             buffer02 = temRT;
             
         }
-        cmd.Blit(buffer01.Identifier(), source, passMaterial, 0); //把最后的结果写入摄像机
+        // cmd.Blit(buffer01.Identifier(), source, passMaterial, 0); //把最后的结果写入摄像机
+        cmd.Blit(source, buffer01.Identifier(), passMaterial, 2); //把最后的结果写入摄像机
+       
 
         cmd.ReleaseTemporaryRT(buffer01.id); //释放临时RT
         cmd.ReleaseTemporaryRT(buffer02.id);
+        
     }
 
     private void DualBloom(CommandBuffer cmd)
@@ -162,7 +168,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         RenderTargetIdentifier tmpRT = renderTarget;
 
         // passMaterial.SetFloat("_BloomRange", BloomProcess.BloomRange.value);
-        passMaterial.SetFloat("_BloomRange", BloomRange);
+        passMaterial.SetFloat("_BloomRange", Scatter);
         //initial
         for (int i = 0; i < loopCount; i++)
         {
@@ -177,13 +183,13 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
             width = Mathf.Max(width / 2, 1);
             height = Mathf.Max(height / 2, 1);
 
-            cmd.Blit(tmpRT, downSampleRT[i], passMaterial, 1);
+            cmd.Blit(tmpRT, downSampleRT[i], passMaterial, 3);
             tmpRT = downSampleRT[i];
         }
         //UpSample
         for (int j = loopCount - 1; j >= 0; j--)
         {
-            cmd.Blit(tmpRT, upSampleRT[j], passMaterial, 2);
+            cmd.Blit(tmpRT, upSampleRT[j], passMaterial, 4);
             tmpRT = upSampleRT[j];
         }
         //release
@@ -199,7 +205,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
 
     private void RadialBloom(CommandBuffer cmd)
     {
-        passMaterial.SetFloat("_BloomRange", BloomProcess.BloomRange.value);
+        passMaterial.SetFloat("_BloomRange", Scatter);
         passMaterial.SetInt("_LoopCount", BloomProcess.BloomTimes.value);
         passMaterial.SetFloat("_Threshold", Threshold);
         passMaterial.SetFloat("_ThresholdKnee",ThresholdKnee);
@@ -217,7 +223,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         var source = this.renderTarget;
 
         cmd.Blit(source, buffer01.Identifier());
-        cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 3);
+        cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 5);
         cmd.Blit(buffer02.Identifier(), source);
 
         cmd.ReleaseTemporaryRT(buffer01.id);

@@ -14,12 +14,30 @@ Shader "code/pp/bloom"
             HLSLPROGRAM
             #include "KawaseBlur.hlsl"
             #pragma vertex vertex
-            #pragma fragment fragment
+            #pragma fragment drawhighlights
             ENDHLSL
         }
         Pass
         {
-            //Dual Blur 降采样 passid = 1
+            //Kawase Blur passid = 1
+            HLSLPROGRAM
+            #include "KawaseBlur.hlsl"
+            #pragma vertex vertex
+            #pragma fragment fragment
+            ENDHLSL
+        } 
+        Pass
+        {
+            //Kawase Blur passid = 2
+            HLSLPROGRAM
+            #include "KawaseBlur.hlsl"
+            #pragma vertex vertex
+            #pragma fragment fragmentmaintex
+            ENDHLSL
+        }         
+        Pass
+        {
+            //Dual Blur 降采样 passid = 3
             HLSLPROGRAM
             #include "DualBlur.hlsl"
             #pragma vertex DualBlurDownVert
@@ -28,7 +46,7 @@ Shader "code/pp/bloom"
         }
         Pass
         {
-            //Dual Blur 降采样 passid = 2
+            //Dual Blur 降采样 passid = 4
             HLSLPROGRAM
             #include "DualBlur.hlsl"
             #pragma vertex DualBlurUpVert
@@ -37,7 +55,7 @@ Shader "code/pp/bloom"
         }
         Pass
         {
-            //Radial Blur 径向模糊 passid = 3
+            //Radial Blur 径向模糊 passid = 5
             HLSLPROGRAM
             // #include "RadialBlur_test.hlsl"
             #include "RadialBlur.hlsl"
