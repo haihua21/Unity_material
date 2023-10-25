@@ -19,6 +19,7 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
         public BloomType BloomType;
         public int BloomTimes = 1;        
         public float Threshold = 1;
+        public float Intensity = 1;
         public float ThresholdKnee = 0.5f;
         public float Scatter = 0.7f;    // 开放传入一个浮动数
         
@@ -46,6 +47,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private Cus_Bloom BloomProcess;
 
     private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
+    private static readonly int BloomTexId = Shader.PropertyToID("_BloomTex");
     private static readonly string tag = "Cus_Bloom";
 
     private RenderTargetHandle buffer01, buffer02,buffer03;
@@ -53,6 +55,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private static float Scatter;
     private static int BloomTimes;
     private static float Threshold;
+    private static float Intensity;
     private static float ThresholdKnee;
 
 
@@ -68,6 +71,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         Scatter = settings.Scatter;
         BloomTimes =settings.BloomTimes;
         Threshold =settings.Threshold;
+        Intensity =settings.Intensity;
         ThresholdKnee =settings.ThresholdKnee;
     }
     /// <summary>
@@ -121,6 +125,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         var source = renderTarget; //摄像机图源
 
         cmd.SetGlobalTexture(MainTexId, source); //设置摄像机纹理到_MainTex
+        // cmd.SetGlobalTexture(BloomTexId, source); 
 
         var dsp = renderTextureDescriptor; //获取纹理参数描述符
         var width = dsp.width / BloomProcess.donwSample.value; //降采样宽度
@@ -133,6 +138,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
 
         passMaterial.SetFloat("_Scatter", 0); //初始化Scatter
         passMaterial.SetFloat("_Threshold", Threshold);
+        passMaterial.SetFloat("_Intensity",Intensity);
         passMaterial.SetFloat("_ThresholdKnee",ThresholdKnee);
 
         cmd.Blit(source, buffer01.Identifier(), passMaterial, 0); //使用shader的第一个pass进行渲染
@@ -141,15 +147,16 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         for (int i = 0; i < BloomTimes ; i++) //模糊循环
         {
             passMaterial.SetFloat("_Scatter", (i + 1) * Scatter); //随着迭代次数，Scatter逐渐扩大
-            cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 1); //使用shader的第一个pass进行渲染
+            cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 1); //使用shader的第二个pass进行渲染
 
             var temRT = buffer01; //交换RT
             buffer01 = buffer02;
             buffer02 = temRT;
             
         }
-        // cmd.Blit(buffer01.Identifier(), source, passMaterial, 0); //把最后的结果写入摄像机
-        cmd.Blit(source, buffer01.Identifier(), passMaterial, 2); //把最后的结果写入摄像机
+        // cmd.SetGlobalTexture(BloomTexId, buffer03.Identifier()); 
+        cmd.Blit(buffer01.Identifier(), source, passMaterial, 2); //把最后的结果写入摄像机
+        // cmd.Blit(source, buffer01.Identifier(), passMaterial, 2); //把最后的结果写入摄像机
        
 
         cmd.ReleaseTemporaryRT(buffer01.id); //释放临时RT

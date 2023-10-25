@@ -4,11 +4,14 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"//函数库：主要用于各种的空间变换
 
 TEXTURE2D(_MainTex);
+TEXTURE2D(_BloomTex);
 SAMPLER(sampler_MainTex);
+SAMPLER(sampler_BloomTex);
 
 float _Scatter;
 float4 _MainTex_TexelSize;
 float _Threshold;
+float _Intensity;
 float _ThresholdKnee;
 
        // Brightness function
@@ -101,8 +104,15 @@ half4 fragment(v2f i):SV_TARGET   //模糊
     return  EncodeHDR(tex/5.0);
 }
 half4 fragmentmaintex(v2f i):SV_TARGET   
-{              
-    half4 tex=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord); 
-    return tex;
+{   
+
+    half4 bloomtex=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord); 
+    half4 maintex=SAMPLE_TEXTURE2D(_BloomTex,sampler_BloomTex,i.texcoord); 
+    
+    // tex+=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord+float2(-1,-1)*_MainTex_TexelSize.xy*_Scatter); 
+    // tex+=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord+float2(1,-1)*_MainTex_TexelSize.xy*_Scatter);
+    // tex+=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord+float2(-1,1)*_MainTex_TexelSize.xy*_Scatter);
+    // tex+=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord+float2(1,1)*_MainTex_TexelSize.xy*_Scatter);
+    return maintex + bloomtex * _Intensity;
 }
 #endif

@@ -3,6 +3,7 @@ Shader "code/pp/bloom"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _BloomTex ("BloomTex", 2D) = "black" {}
     }
     SubShader
     {
