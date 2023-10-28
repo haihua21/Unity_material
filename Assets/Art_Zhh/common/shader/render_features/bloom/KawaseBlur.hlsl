@@ -4,9 +4,9 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"//函数库：主要用于各种的空间变换
 
 TEXTURE2D(_MainTex);
-TEXTURE2D(_BloomTex);
+TEXTURE2D(_MainTex1);
 SAMPLER(sampler_MainTex);
-SAMPLER(sampler_BloomTex);
+SAMPLER(sampler_MainTex1);
 
 float _Scatter;
 float4 _MainTex_TexelSize;
@@ -107,7 +107,7 @@ half4 fragmentmaintex(v2f i):SV_TARGET
 {   
 
     half4 bloomtex=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord); 
-    half4 maintex=SAMPLE_TEXTURE2D(_BloomTex,sampler_BloomTex,i.texcoord); 
+    half4 maintex=SAMPLE_TEXTURE2D(_MainTex1,sampler_MainTex1,i.texcoord); 
     
     // tex+=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord+float2(-1,-1)*_MainTex_TexelSize.xy*_Scatter); 
     // tex+=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.texcoord+float2(1,-1)*_MainTex_TexelSize.xy*_Scatter);

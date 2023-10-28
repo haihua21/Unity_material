@@ -17,7 +17,7 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
         public RenderPassEvent passEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         public Shader shader;
         public BloomType BloomType;
-        public int BloomTimes = 1;        
+        public int BloomTimes = 2;        
         public float Threshold = 1;
         public float Intensity = 1;
         public float ThresholdKnee = 0.5f;
@@ -46,8 +46,8 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
 
     private Cus_Bloom BloomProcess;
 
-    private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
-    private static readonly int BloomTexId = Shader.PropertyToID("_BloomTex");
+    // private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
+    private static int BloomBaseTex = Shader.PropertyToID("_MainTex1");
     private static readonly string tag = "Cus_Bloom";
 
     private RenderTargetHandle buffer01, buffer02,buffer03;
@@ -115,17 +115,19 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         {
             RadialBloom(cmd);
         }
-        context.ExecuteCommandBuffer(cmd);
-        CommandBufferPool.Release(cmd);
+        context.ExecuteCommandBuffer(cmd);   //提交图形
+        CommandBufferPool.Release(cmd);   //回收
     }
 
 
     private void KawaseBloom(CommandBuffer cmd)
     {
         var source = renderTarget; //摄像机图源
+        var MainTex = renderTextureDescriptor;
 
-        cmd.SetGlobalTexture(MainTexId, source); //设置摄像机纹理到_MainTex
-        // cmd.SetGlobalTexture(BloomTexId, source); 
+        // var basetex = ShaderConstants.BloomDownTex[j];
+
+         //设置摄像机纹理到_MainTex   
 
         var dsp = renderTextureDescriptor; //获取纹理参数描述符
         var width = dsp.width / BloomProcess.donwSample.value; //降采样宽度
@@ -153,14 +155,16 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
             buffer01 = buffer02;
             buffer02 = temRT;
             
+            
         }
-        // cmd.SetGlobalTexture(BloomTexId, buffer03.Identifier()); 
-        cmd.Blit(buffer01.Identifier(), source, passMaterial, 2); //把最后的结果写入摄像机
-        // cmd.Blit(source, buffer01.Identifier(), passMaterial, 2); //把最后的结果写入摄像机
-       
 
+        cmd.SetGlobalTexture(BloomBaseTex, buffer03.Identifier());
+        cmd.Blit(source,buffer03.Identifier(),passMaterial, 2);       // 需要优化，合并前处理
+        cmd.Blit(buffer01.Identifier(), source, passMaterial, 2); //把最后的结果写入摄像机       
+        
         cmd.ReleaseTemporaryRT(buffer01.id); //释放临时RT
         cmd.ReleaseTemporaryRT(buffer02.id);
+        cmd.ReleaseTemporaryRT(buffer03.id);
         
     }
 
