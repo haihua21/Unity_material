@@ -7,8 +7,8 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
     public enum BloomType
     {
         KawaseBloom,
-        DualBloom,
-        RadialBloom
+        DualBloom
+
     }
 
     [System.Serializable]
@@ -20,7 +20,7 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
         public int BloomTimes = 2;        
         public float Threshold = 1;
         public float Intensity = 1;
-        public float ThresholdKnee = 0.5f;
+        public float ThresholdKnee = 0.1f;
         public float Scatter = 0.7f;    // 开放传入一个浮动数
         
     }
@@ -47,7 +47,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private Cus_Bloom BloomProcess;
 
     // private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
-    private static int BloomBaseTex = Shader.PropertyToID("_MainTex1");
+    private static readonly int BloomBaseTex = Shader.PropertyToID("_SourceTex");
     private static readonly string tag = "Cus_Bloom";
 
     private RenderTargetHandle buffer01, buffer02,buffer03;
@@ -87,13 +87,12 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
 
         buffer01.Init("buffer01");
         buffer02.Init("buffer02");
-        buffer03.Init("buffer03");
     }
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
         if (passMaterial == null) return;
-        if (renderingData.cameraData.isSceneViewCamera) return; //Scene视图不予处理
+        // if (renderingData.cameraData.isSceneViewCamera) return; //Scene视图不予处理
         if (!renderingData.cameraData.postProcessEnabled) return; //摄像机未开启后处理 
 
         var stack = VolumeManager.instance.stack; //获取全局后处理实例栈
@@ -111,10 +110,6 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         {
             KawaseBloom(cmd);
         }
-        else if (BloomType == Cus_BloomRenderFeature.BloomType.RadialBloom)
-        {
-            RadialBloom(cmd);
-        }
         context.ExecuteCommandBuffer(cmd);   //提交图形
         CommandBufferPool.Release(cmd);   //回收
     }
@@ -122,29 +117,24 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
 
     private void KawaseBloom(CommandBuffer cmd)
     {
-        var source = renderTarget; //摄像机图源
-        var MainTex = renderTextureDescriptor;
-
-        // var basetex = ShaderConstants.BloomDownTex[j];
-
-         //设置摄像机纹理到_MainTex   
+        var source = renderTarget;   //摄像机图源
+        int BloomTex = BloomBaseTex;
 
         var dsp = renderTextureDescriptor; //获取纹理参数描述符
         var width = dsp.width / BloomProcess.donwSample.value; //降采样宽度
-        var height = dsp.height / BloomProcess.donwSample.value; //降采样高度       
-
+        var height = dsp.height / BloomProcess.donwSample.value; //降采样高度      
 
         cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf); //获取临时RT
         cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
-        cmd.GetTemporaryRT(buffer03.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+        cmd.GetTemporaryRT(BloomTex, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
 
         passMaterial.SetFloat("_Scatter", 0); //初始化Scatter
         passMaterial.SetFloat("_Threshold", Threshold);
         passMaterial.SetFloat("_Intensity",Intensity);
         passMaterial.SetFloat("_ThresholdKnee",ThresholdKnee);
-
-        cmd.Blit(source, buffer01.Identifier(), passMaterial, 0); //使用shader的第一个pass进行渲染
-        // cmd.Blit(source, buffer03.Identifier(), passMaterial, 2); //使用shader的第一个pass进行渲染
+       
+        cmd.Blit(source, BloomTex);  //图像存入_SourceTex，以备合并时调用
+        cmd.Blit(source,buffer01.Identifier(),passMaterial,0);  //使用shader的第一个pass进行渲染 ，把来源图source,存入 buffer01
         
         for (int i = 0; i < BloomTimes ; i++) //模糊循环
         {
@@ -154,17 +144,14 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
             var temRT = buffer01; //交换RT
             buffer01 = buffer02;
             buffer02 = temRT;
-            
-            
+ 
         }
+        // cmd.SetGlobalTexture("_SourceTex",BloomTex);  //获取当前摄像机
+        cmd.Blit(buffer01.Identifier(),source, passMaterial, 2);  //把最后结果写入摄像机
 
-        cmd.SetGlobalTexture(BloomBaseTex, buffer03.Identifier());
-        cmd.Blit(source,buffer03.Identifier(),passMaterial, 2);       // 需要优化，合并前处理
-        cmd.Blit(buffer01.Identifier(), source, passMaterial, 2); //把最后的结果写入摄像机       
-        
         cmd.ReleaseTemporaryRT(buffer01.id); //释放临时RT
         cmd.ReleaseTemporaryRT(buffer02.id);
-        cmd.ReleaseTemporaryRT(buffer03.id);
+        cmd.ReleaseTemporaryRT(BloomTex);
         
     }
 
@@ -212,34 +199,5 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
             cmd.ReleaseTemporaryRT(upSampleRT[i]);
         }
     }
-
-
-    private void RadialBloom(CommandBuffer cmd)
-    {
-        passMaterial.SetFloat("_BloomRange", Scatter);
-        passMaterial.SetInt("_LoopCount", BloomProcess.BloomTimes.value);
-        passMaterial.SetFloat("_Threshold", Threshold);
-        passMaterial.SetFloat("_ThresholdKnee",ThresholdKnee);
-        passMaterial.SetFloat("_Y", BloomProcess.centerY.value);
-
-        var dsp = this.renderTextureDescriptor;
-        var downSample = this.BloomProcess.donwSample.value;
-        var height = dsp.height / downSample;
-        var width = dsp.width / downSample;
-
-        // cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);//用来存降采样的，常用格式
-        cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);//用来存降采样的,Half高精度
-        cmd.GetTemporaryRT(buffer02.id, dsp);//模糊图
-
-        var source = this.renderTarget;
-
-        cmd.Blit(source, buffer01.Identifier());
-        cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 5);
-        cmd.Blit(buffer02.Identifier(), source);
-
-        cmd.ReleaseTemporaryRT(buffer01.id);
-        cmd.ReleaseTemporaryRT(buffer02.id);
-    }
-
 }
 
