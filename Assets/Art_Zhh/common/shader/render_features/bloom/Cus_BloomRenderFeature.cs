@@ -17,12 +17,12 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
         public RenderPassEvent passEvent = RenderPassEvent.BeforeRenderingPostProcessing;
         public Shader shader;
         public BloomType BloomType;
-        public int BloomTimes = 2;        
-        public float Threshold = 1;
-        public float Intensity = 1;
+        public int BloomTimes = 3;        
+        public float Threshold = 1.05f;
+        public float Intensity = 0.5f;
         public float ThresholdKnee = 0.1f;
-        public float Scatter = 0.7f;    // 开放传入一个浮动数
-        public int DownSample = 2;   //降采样
+        public float Scatter = 0.5f;    // 开放传入一个浮动数
+        public int DownSample = 1;   //降采样
         
     }
     private TutorialBloomRenderPass pass;
