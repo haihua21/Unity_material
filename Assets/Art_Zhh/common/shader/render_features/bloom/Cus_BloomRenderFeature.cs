@@ -127,9 +127,15 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         var width = dsp.width / DownSample; //降采样宽度
         var height = dsp.height / DownSample; //降采样高度      
 
-        cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf); //获取临时RT
-        cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
-        cmd.GetTemporaryRT(BloomTex, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+        cmd.GetTemporaryRT(BloomTex, renderTextureDescriptor.width, renderTextureDescriptor.height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+
+         for (int i = 0; i < BloomTimes; i++)
+         {
+             width = Mathf.Max(width / 3, 1);  //约束图像最小值
+             height =Mathf.Max(height / 3, 1);
+             cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf); //获取临时RT,降 sampleTex
+             cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+         }
 
         passMaterial.SetFloat("_Scatter", 0); //初始化Scatter
         passMaterial.SetFloat("_Threshold", Threshold);
@@ -142,6 +148,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         for (int i = 0; i < BloomTimes ; i++) //模糊循环
         {
             passMaterial.SetFloat("_Scatter", (i + 1) * Scatter); //随着迭代次数，Scatter逐渐扩大
+            
             cmd.Blit(buffer01.Identifier(), buffer02.Identifier(), passMaterial, 1); //使用shader的第二个pass进行渲染
 
             var temRT = buffer01; //交换RT
