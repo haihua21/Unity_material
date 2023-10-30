@@ -22,6 +22,7 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
         public float Intensity = 1;
         public float ThresholdKnee = 0.1f;
         public float Scatter = 0.7f;    // 开放传入一个浮动数
+        public int DownSample = 2;   //降采样
         
     }
     private TutorialBloomRenderPass pass;
@@ -44,7 +45,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     public RenderTargetIdentifier renderTarget;
     private RenderTextureDescriptor renderTextureDescriptor;
 
-    private Cus_Bloom BloomProcess;
+    // private Cus_Bloom BloomProcess;
 
     // private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
     private static readonly int BloomBaseTex = Shader.PropertyToID("_SourceTex");
@@ -57,6 +58,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private static float Threshold;
     private static float Intensity;
     private static float ThresholdKnee;
+    private static int DownSample;
 
 
     public TutorialBloomRenderPass(Cus_BloomRenderFeature.Settings settings)
@@ -73,6 +75,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         Threshold =settings.Threshold;
         Intensity =settings.Intensity;
         ThresholdKnee =settings.ThresholdKnee;
+        DownSample =settings.DownSample;
     }
     /// <summary>
     /// 重写Configure，主要是拿一下【cameraTextureDescriptor】纹理参数
@@ -96,8 +99,8 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         if (!renderingData.cameraData.postProcessEnabled) return; //摄像机未开启后处理 
 
         var stack = VolumeManager.instance.stack; //获取全局后处理实例栈
-        BloomProcess = stack.GetComponent<Cus_Bloom>(); //获取我们的扩展组件
-        if (BloomProcess == null) return;
+        // BloomProcess = stack.GetComponent<Cus_Bloom>(); //获取我们的扩展组件
+        // if (BloomProcess == null) return;
 
         //cmd执行
         var cmd = CommandBufferPool.Get(tag);
@@ -121,8 +124,8 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         int BloomTex = BloomBaseTex;
 
         var dsp = renderTextureDescriptor; //获取纹理参数描述符
-        var width = dsp.width / BloomProcess.donwSample.value; //降采样宽度
-        var height = dsp.height / BloomProcess.donwSample.value; //降采样高度      
+        var width = dsp.width / DownSample; //降采样宽度
+        var height = dsp.height / DownSample; //降采样高度      
 
         cmd.GetTemporaryRT(buffer01.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf); //获取临时RT
         cmd.GetTemporaryRT(buffer02.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
@@ -158,14 +161,12 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private void DualBloom(CommandBuffer cmd)
     {
         int width = this.renderTextureDescriptor.width, height = this.renderTextureDescriptor.height;
-        // var loopCount = BloomProcess.BloomTimes.value;
         var loopCount = BloomTimes;
         var downSampleRT = new int[loopCount];
         var upSampleRT = new int[loopCount];
 
         RenderTargetIdentifier tmpRT = renderTarget;
 
-        // passMaterial.SetFloat("_BloomRange", BloomProcess.BloomRange.value);
         passMaterial.SetFloat("_BloomRange", Scatter);
         //initial
         for (int i = 0; i < loopCount; i++)
