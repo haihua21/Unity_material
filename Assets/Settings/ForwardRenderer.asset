@@ -105,14 +105,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7d351190590c4419554d5130802733, type: 3}
   m_Name: BloomRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     passEvent: 550
     shader: {fileID: 4800000, guid: 69059b069150a6b4e806ed90cbed19ce, type: 3}
-    BloomType: 0
-    BloomTimes: 2
-    Threshold: 1
-    Intensity: 1
+    BloomType: 1
+    BloomTimes: 3
+    Threshold: 1.05
+    Intensity: 0.4
     ThresholdKnee: 0.1
-    Scatter: 0.7
+    Scatter: 0.4
     DownSample: 1
