@@ -20,20 +20,17 @@ struct v2f_DualBlurUp
 };
 
 TEXTURE2D(_MainTex);
+TEXTURE2D(_SourceTex);
 SAMPLER(sampler_MainTex);
+SAMPLER(sampler_SourceTex);
 
 float _BloomRange;
 float4 _MainTex_TexelSize;
 float _Threshold;
+float _Intensity;
+float _ThresholdKnee;
 
-float4 frag_PreFilter(v2f_DualBlurDown i):SV_TARGET
-{
-    float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv[0]) ;
-    float br = max(max(col.r,col.g),col.b);
-    br = max(0.0f,(br - _Threshold)) / br;
-    col.rgb *= br;
-    return col;
-}
+
 
 
 v2f_DualBlurDown DualBlurDownVert(appdata v)
@@ -55,6 +52,16 @@ v2f_DualBlurDown DualBlurDownVert(appdata v)
     return o;
     //5 samples，组成一个五筒
 }
+
+float4 frag_PreFilter(v2f_DualBlurDown i):SV_TARGET
+{
+    float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv[0]) ;
+    float br = max(max(col.r,col.g),col.b);
+    br = max(0.0f,(br - _Threshold)) / br;
+    col.rgb *= br;
+    return col;
+}
+
 float4 DualBlurDownFrag (v2f_DualBlurDown i):SV_TARGET
 {
     //降采样
@@ -100,6 +107,14 @@ float4 DualBlurUpFrag (v2f_DualBlurUp i):SV_TARGET
     col += SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv[7]) ;
 
     return col * 0.0833; //sum / 12.0f
+}
+half4 fragmentmerge(v2f_DualBlurDown i):SV_TARGET   //  合并bloom 与 原始贴图
+{   
+
+    half4 Bloom=SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,i.uv[0]); 
+    half4 Source =SAMPLE_TEXTURE2D(_SourceTex,sampler_SourceTex,i.uv[0]); 
+    Bloom *= _Intensity;
+    return Source + Bloom ;
 }
 
 #endif

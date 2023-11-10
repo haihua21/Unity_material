@@ -51,7 +51,7 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private static readonly int BloomBaseTex = Shader.PropertyToID("_SourceTex");
     private static readonly string tag = "Cus_Bloom";
 
-    private RenderTargetHandle buffer01, buffer02,buffer03;
+    private RenderTargetHandle buffer01, buffer02;
     private Cus_BloomRenderFeature.BloomType BloomType;
     private static float Scatter;
     private static int BloomTimes;
@@ -168,30 +168,41 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
     private void DualBloom(CommandBuffer cmd)
     {
         int width = this.renderTextureDescriptor.width, height = this.renderTextureDescriptor.height;
-        var loopCount = BloomTimes;
+        var loopCount = BloomTimes;        
         var downSampleRT = new int[loopCount];
         var upSampleRT = new int[loopCount];
+        int BloomTex = BloomBaseTex;
 
         RenderTargetIdentifier tmpRT = renderTarget;
 
         passMaterial.SetFloat("_BloomRange", Scatter);
+        passMaterial.SetFloat("_Threshold", Threshold);
+        passMaterial.SetFloat("_Intensity", Intensity);
         //initial
         for (int i = 0; i < loopCount; i++)
         {
             downSampleRT[i] = Shader.PropertyToID("DownSample" + i);//临时图像
             upSampleRT[i] = Shader.PropertyToID("UpSample" + i);//临时图像
         }
+
+        cmd.GetTemporaryRT(BloomTex, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.Default);
+        cmd.GetTemporaryRT(buffer01.id, width/2, height/2, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+
+        cmd.Blit(tmpRT, BloomTex);  //图像存入_SourceTex，以备合并时调用
+        cmd.Blit(tmpRT, buffer01.id, passMaterial, 5); 
+        
         //downSample
-        for (int i = 0; i < loopCount; i++)
+        for (int i = 0; i < loopCount ; i++)
         {
-            cmd.GetTemporaryRT(downSampleRT[i], width, height, 0, FilterMode.Bilinear, RenderTextureFormat.Default);
-            cmd.GetTemporaryRT(upSampleRT[i], width, height, 0, FilterMode.Bilinear, RenderTextureFormat.Default);//在down时，顺便把up也申请了
+            cmd.GetTemporaryRT(downSampleRT[i], width/2, height/2, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+            cmd.GetTemporaryRT(upSampleRT[i], width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);//在down时，顺便把up也申请了
             width = Mathf.Max(width / 2, 1);
             height = Mathf.Max(height / 2, 1);
 
-            cmd.Blit(tmpRT, downSampleRT[i], passMaterial, 3);
+            cmd.Blit(buffer01.id, downSampleRT[i], passMaterial, 3);
             tmpRT = downSampleRT[i];
         }
+        cmd.ReleaseTemporaryRT(buffer01.id);
         //UpSample
         for (int j = loopCount - 1; j >= 0; j--)
         {
@@ -199,7 +210,9 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
             tmpRT = upSampleRT[j];
         }
         //release
-        cmd.Blit(tmpRT, renderTarget);
+        // cmd.Blit(tmpRT, renderTarget);
+        cmd.Blit(tmpRT,renderTarget, passMaterial, 6);  //把最后结果写入摄像机
+        cmd.ReleaseTemporaryRT(BloomTex);
 
         for (int i = 0; i < loopCount; i++)
         {

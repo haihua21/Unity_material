@@ -47,11 +47,29 @@ Shader "code/pp/bloom"
         }
         Pass
         {
-            //Dual Blur 降采样 passid = 4
+            //Dual Blur 升采样 passid = 4
             HLSLPROGRAM
             #include "DualBlur.hlsl"
             #pragma vertex DualBlurUpVert
             #pragma fragment DualBlurUpFrag
+            ENDHLSL
+        }
+        Pass
+        {
+            //Dual Blur 取高光 passid = 5
+            HLSLPROGRAM
+            #include "DualBlur.hlsl"
+            #pragma vertex DualBlurDownVert
+            #pragma fragment frag_PreFilter
+            ENDHLSL
+        }
+        Pass
+        {
+            //Dual Blur 合并 passid = 6
+            HLSLPROGRAM
+            #include "DualBlur.hlsl"
+            #pragma vertex DualBlurDownVert
+            #pragma fragment fragmentmerge
             ENDHLSL
         }
     }
