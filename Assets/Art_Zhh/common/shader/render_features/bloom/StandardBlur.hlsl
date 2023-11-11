@@ -23,9 +23,11 @@ struct v2f_DualBlurUp
 };
 
 TEXTURE2D(_MainTex);
-TEXTURE2D(_SourceTex);
 SAMPLER(sampler_MainTex);
+float4 _MainTex_TexelSize;
+TEXTURE2D(_SourceTex);
 SAMPLER(sampler_SourceTex);
+float4 _SourceTex_TexelSize;
 
 // float _BloomRange;
 // float4 _MainTex_TexelSize;
@@ -34,7 +36,7 @@ SAMPLER(sampler_SourceTex);
 // float _ThresholdKnee;
 
 
-        float4 _Params; // x: scatter, y: clamp, z: threshold (linear), w: threshold knee
+float4 _Params; // x: scatter, y: clamp, z: threshold (linear), w: threshold knee
 
         #define Scatter             _Params.x
         #define ClampMax            _Params.y

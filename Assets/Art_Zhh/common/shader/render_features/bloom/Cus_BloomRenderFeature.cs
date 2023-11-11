@@ -7,7 +7,8 @@ public class Cus_BloomRenderFeature : ScriptableRendererFeature
     public enum BloomType
     {
         KawaseBloom,
-        DualBloom
+        DualBloom,
+        StandardBloom_test
 
     }
 
@@ -113,6 +114,10 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         {
             KawaseBloom(cmd);
         }
+        else if (BloomType == Cus_BloomRenderFeature.BloomType.StandardBloom_test)
+        {
+            StandardBloom(cmd);
+        }
         context.ExecuteCommandBuffer(cmd);   //提交图形
         CommandBufferPool.Release(cmd);   //回收
     }
@@ -212,6 +217,40 @@ public class TutorialBloomRenderPass : ScriptableRenderPass
         //release
         // cmd.Blit(tmpRT, renderTarget);
         cmd.Blit(tmpRT,renderTarget, passMaterial, 6);  //把最后结果写入摄像机
+        cmd.ReleaseTemporaryRT(BloomTex);
+
+        for (int i = 0; i < loopCount; i++)
+        {
+            cmd.ReleaseTemporaryRT(downSampleRT[i]);
+            cmd.ReleaseTemporaryRT(upSampleRT[i]);
+        }
+    }
+    private void StandardBloom(CommandBuffer cmd)
+    {
+        int width = this.renderTextureDescriptor.width, height = this.renderTextureDescriptor.height;
+        var loopCount = BloomTimes;        
+        var downSampleRT = new int[loopCount];
+        var upSampleRT = new int[loopCount];
+        int BloomTex = BloomBaseTex;
+
+        RenderTargetIdentifier tmpRT = renderTarget;
+        
+
+        passMaterial.SetFloat("_BloomRange", Scatter);
+        passMaterial.SetFloat("_Threshold", Threshold);
+        passMaterial.SetFloat("_Intensity", Intensity);
+        //initial
+
+
+        cmd.GetTemporaryRT(BloomTex, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.Default);
+        cmd.GetTemporaryRT(buffer01.id, width/2, height/2, 0, FilterMode.Bilinear, RenderTextureFormat.ARGBHalf);
+
+
+        cmd.Blit(tmpRT, BloomTex);  //图像存入_SourceTex，以备合并时调用
+        cmd.Blit(tmpRT, buffer01.id, passMaterial, 5); 
+
+
+        cmd.ReleaseTemporaryRT(buffer01.id);
         cmd.ReleaseTemporaryRT(BloomTex);
 
         for (int i = 0; i < loopCount; i++)

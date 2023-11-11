@@ -72,5 +72,14 @@ Shader "code/pp/bloom"
             #pragma fragment fragmentmerge
             ENDHLSL
         }
+        // Pass
+        // {
+        //     //Dual Blur 取高光 passid = 7
+        //     HLSLPROGRAM
+        //     #include "StandardBlur.hlsl"
+        //     #pragma vertex FragBlurV
+        //     #pragma fragment FragBlurV
+        //     ENDHLSL
+        // }
     }
 }
