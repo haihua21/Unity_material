@@ -16,7 +16,7 @@ Shader "code/scene/sha_sc_cloth"
   
     SubShader
     {        
-        Tags { "RenderType"="Opaque" "Queue" = "Geometry" }
+        Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue" = "Geometry" }
         // LOD 400
         LOD 100
         Cull Back
@@ -35,14 +35,16 @@ Shader "code/scene/sha_sc_cloth"
         struct appdata 
         {
             float4 vertex : POSITION;
-            float2 uv: TEXCOORD0;       
+            float2 uv: TEXCOORD0; 
+            float4 color: COLOR;      
         };
         struct v2f
         {
             float2 uv:TEXCOORD0;
             float4 vertex: SV_POSITION;
+            float4 color: COLOR;
+            
         };
-
           
        CBUFFER_START(UnityPerMaterial)    
         float4 _MainTex_ST;
@@ -52,13 +54,12 @@ Shader "code/scene/sha_sc_cloth"
         half _WaveHeight; 
         half _WaveScale;   
        CBUFFER_END  
+
         sampler2D _MainTex, _DetailAlbedo; 
-
-
 
         half3 windanim (half3 vertex_xyz, half2 color, half _WaveFreq, half _WaveHeight, half _WaveScale)
         {
-			half phase_slow = _Time * _WaveFreq;
+			half phase_slow = _Time * _WaveFreq; 
 	        half phase_med = _Time * 4 * _WaveFreq;
 	           
 	        half offset = (vertex_xyz.x + (vertex_xyz.z * _WaveScale)) * _WaveScale;
@@ -79,10 +80,14 @@ Shader "code/scene/sha_sc_cloth"
 
 
         v2f vert (appdata v)
+        // void vert (inout appdata_full v)     
         {                                                                      
             // o.vertex.xyz = o.vertex.xyz + windanim(o.vertex.xyz, o.color, _WaveFreq, _WaveHeight, _WaveScale); 
-            v2f o;
+            v2f o;  
             o.vertex = TransformObjectToHClip(v.vertex.xyz);
+            half3 aa = v.color;
+            o.vertex.xyz = o.vertex.xyz + windanim(o.vertex.xyz, aa, _WaveFreq, _WaveHeight, _WaveScale);      
+            
             o.uv = TRANSFORM_TEX(v.uv, _MainTex);
             return o;
                        
