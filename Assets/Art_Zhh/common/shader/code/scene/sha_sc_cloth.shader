@@ -17,9 +17,11 @@ Shader "code/scene/sha_sc_cloth"
     SubShader
     {        
         Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue" = "Geometry" }
-        // LOD 400
-        LOD 100
+        // LOD 400        
         Cull Back
+        AlphaToMask Off
+        LOD 400
+
     Pass
     {    
         HLSLPROGRAM
@@ -88,7 +90,8 @@ Shader "code/scene/sha_sc_cloth"
             half3 aa = v.color;
             o.vertex.xyz = o.vertex.xyz + windanim(o.vertex.xyz, aa, _WaveFreq, _WaveHeight, _WaveScale);      
             
-            o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+            // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+            o.uv = v.uv;
             return o;
                        
         }
