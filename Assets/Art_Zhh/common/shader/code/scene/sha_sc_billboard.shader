@@ -2,7 +2,7 @@ Shader "code/sc/sha_sc_billboard"
 {
     Properties
     {
-        [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _BaseMap ("Base Map", 2D) = "white" {}
         _AlphaClip("AlphaClip" ,Range(0,1)) = 0.1
     }
     SubShader
@@ -36,10 +36,10 @@ Shader "code/sc/sha_sc_billboard"
                 float4 vertex : SV_POSITION;
             };
 
-             TEXTURE2D(_MainTex);
+             TEXTURE2D(_BaseMap);
 
              CBUFFER_START(UnityPerMaterial) 
-             SAMPLER(sampler_MainTex);
+             SAMPLER(sampler_BaseMap);
              half _AlphaClip;
              CBUFFER_END
 
@@ -77,7 +77,7 @@ Shader "code/sc/sha_sc_billboard"
 
             half4 frag (v2f i) : SV_Target
             {
-                half4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                half4 col = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.uv);
                 clip(col.a - _AlphaClip); 
                 // apply fog
                 // UNITY_APPLY_FOG(i.fogCoord, col);
