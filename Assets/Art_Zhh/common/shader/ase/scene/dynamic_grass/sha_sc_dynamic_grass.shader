@@ -9,7 +9,6 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 		[ASEBegin][NoScaleOffset]_BaseMap("BaseMap", 2D) = "white" {}
 		_BaseColor("BaseColor", Color) = (1,1,1,1)
 		_AlphaClip("AlphaClip", Range( 0 , 1)) = 0.3
-		_trackerPosition("trackerPosition", Vector) = (0,0,0,0)
 		[ASEEnd]_DynamicRadius("DynamicRadius", Range( 0 , 1)) = 0.5
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
@@ -209,7 +208,6 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
-			float3 _trackerPosition;
 			float _DynamicRadius;
 			float _AlphaClip;
 			#ifdef ASE_TESSELLATION
@@ -222,6 +220,7 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 			#endif
 			CBUFFER_END
 
+			float4 trackerPosition[10];
 			sampler2D _BaseMap;
 
 
@@ -235,7 +234,8 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 
 				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
 				float3 temp_output_69_0 = ( ase_worldPos - v.vertex.xyz );
-				float3 break18 = ( ( ase_worldPos - _trackerPosition ) * ( 1.0 - saturate( ( distance( _trackerPosition , ase_worldPos ) / _DynamicRadius ) ) ) );
+				float3 temp_output_82_0 = (trackerPosition[0]).xyz;
+				float3 break18 = ( ( ase_worldPos - temp_output_82_0 ) * ( 1.0 - saturate( ( distance( temp_output_82_0 , ase_worldPos ) / _DynamicRadius ) ) ) );
 				float3 break78 = temp_output_69_0;
 				float3 appendResult23 = (float3(( break18.x + break78.x ) , break78.y , ( break18.z + break78.z )));
 				float3 lerpResult48 = lerp( temp_output_69_0 , appendResult23 , v.ase_color.rgb);
@@ -472,7 +472,6 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseColor;
-			float3 _trackerPosition;
 			float _DynamicRadius;
 			float _AlphaClip;
 			#ifdef ASE_TESSELLATION
@@ -485,6 +484,7 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 			#endif
 			CBUFFER_END
 
+			float4 trackerPosition[10];
 			sampler2D _BaseMap;
 
 
@@ -498,7 +498,8 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 
 				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
 				float3 temp_output_69_0 = ( ase_worldPos - v.vertex.xyz );
-				float3 break18 = ( ( ase_worldPos - _trackerPosition ) * ( 1.0 - saturate( ( distance( _trackerPosition , ase_worldPos ) / _DynamicRadius ) ) ) );
+				float3 temp_output_82_0 = (trackerPosition[0]).xyz;
+				float3 break18 = ( ( ase_worldPos - temp_output_82_0 ) * ( 1.0 - saturate( ( distance( temp_output_82_0 , ase_worldPos ) / _DynamicRadius ) ) ) );
 				float3 break78 = temp_output_69_0;
 				float3 appendResult23 = (float3(( break18.x + break78.x ) , break78.y , ( break18.z + break78.z )));
 				float3 lerpResult48 = lerp( temp_output_69_0 , appendResult23 , v.ase_color.rgb);
@@ -676,12 +677,11 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 Version=19105
 Node;AmplifyShaderEditor.CommentaryNode;79;-2502.115,333.2362;Inherit;False;737.7839;488.496;Position transform;5;72;73;74;75;76;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.CommentaryNode;53;-3036.889,-1144.122;Inherit;False;1341.504;448.4034;Base Map;6;49;50;39;38;54;55;;1,1,1,1;0;0
-Node;AmplifyShaderEditor.CommentaryNode;25;-4361.973,-521.0062;Inherit;False;2729.435;818.3673;Comment;22;14;12;10;69;62;61;78;18;11;6;24;26;47;22;21;48;23;15;46;8;1;13;;1,1,1,1;0;0
+Node;AmplifyShaderEditor.CommentaryNode;25;-4361.973,-521.0062;Inherit;False;2729.435;818.3673;Comment;22;14;12;10;69;62;61;78;18;11;6;24;26;47;22;21;48;23;15;46;1;13;82;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;13;-4024.238,-452.6923;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;-2938.243,-124.6733;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;13;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.SamplerNode;38;-2986.89,-1081.731;Inherit;True;Property;_BaseMap;BaseMap;0;1;[NoScaleOffset];Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ColorNode;54;-2932.709,-882.4144;Inherit;False;Property;_BaseColor;BaseColor;1;0;Create;True;0;0;0;False;0;False;1,1,1,1;1,1,1,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.Vector3Node;8;-4333.373,-439.3996;Inherit;False;Property;_trackerPosition;trackerPosition;3;0;Create;True;0;0;0;False;0;False;0,0,0;0,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.WorldPosInputsNode;46;-4327.571,-235.7709;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;360.5999,-125.1;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;13;ase/scene/sha_sc_dynamic_grass;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;2;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;3;True;12;all;0;False;True;1;5;False;;10;False;;1;1;False;;10;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;2;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;22;Surface;1;638401318632200366;  Blend;0;638401318646830616;Two Sided;0;638401339240027209;Cast Shadows;0;638401318675832358;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;0;0;Built-in Fog;0;0;DOTS Instancing;0;0;Meta Pass;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Vertex Position,InvertActionOnDeselection;1;0;0;5;False;True;False;True;False;False;;False;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;15;-3326.029,-462.5733;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
@@ -713,14 +713,17 @@ Node;AmplifyShaderEditor.GetLocalVarNode;40;128.8518,-232.1972;Inherit;False;39;
 Node;AmplifyShaderEditor.GetLocalVarNode;51;133.96,-148.2776;Inherit;False;49;Alpha;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;52;79.0619,-45.71643;Inherit;False;Property;_AlphaClip;AlphaClip;2;0;Create;True;0;0;0;False;0;False;0.3;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;27;189.8428,53.86118;Inherit;False;26;Position;1;0;OBJECT;;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.RangedFloatNode;11;-4144.873,-135.7996;Inherit;False;Property;_DynamicRadius;DynamicRadius;4;0;Create;True;0;0;0;False;0;False;0.5;0;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;11;-4144.873,-135.7996;Inherit;False;Property;_DynamicRadius;DynamicRadius;3;0;Create;True;0;0;0;False;0;False;0.5;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.PosVertexDataNode;61;-3503.41,-161.6731;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.WorldPosInputsNode;62;-3502.375,4.666901;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;69;-3268.398,-103.475;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.WireNode;80;-2806.51,-84.30692;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.VertexColorNode;47;-2710.443,-67.86757;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.GlobalArrayNode;81;-4594.498,-427.4183;Inherit;False;trackerPosition;0;10;2;False;False;0;1;True;Object;-1;4;0;INT;0;False;2;INT;0;False;1;INT;0;False;3;INT;0;False;1;FLOAT4;0
+Node;AmplifyShaderEditor.Vector3Node;8;-4580.373,-606.3996;Inherit;False;Global;trackerPosition;trackerPosition;3;0;Create;True;0;0;0;False;0;False;0,0,0;0,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.ComponentMaskNode;82;-4329.498,-427.4183;Inherit;False;True;True;True;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0
 WireConnection;13;0;46;0
-WireConnection;13;1;8;0
+WireConnection;13;1;82;0
 WireConnection;2;2;40;0
 WireConnection;2;3;51;0
 WireConnection;2;4;52;0
@@ -745,7 +748,7 @@ WireConnection;22;0;18;2
 WireConnection;22;1;78;2
 WireConnection;26;0;24;0
 WireConnection;24;0;48;0
-WireConnection;6;0;8;0
+WireConnection;6;0;82;0
 WireConnection;6;1;46;0
 WireConnection;18;0;15;0
 WireConnection;78;0;69;0
@@ -761,5 +764,6 @@ WireConnection;49;0;50;0
 WireConnection;69;0;62;0
 WireConnection;69;1;61;0
 WireConnection;80;0;69;0
+WireConnection;82;0;81;0
 ASEEND*/
-//CHKSM=87B89A65973E05C8CDE25BB0EC5E92BBAE5CE245
+//CHKSM=75D15BB51160F4E80E1B29B050C9146921114EAC
