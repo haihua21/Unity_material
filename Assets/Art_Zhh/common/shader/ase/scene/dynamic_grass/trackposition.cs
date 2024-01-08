@@ -29,8 +29,9 @@ public class trackposition : MonoBehaviour
 
         // Vector4 trackerPos = tracker[i].GetComponent<Transform>().position;   
         positions[i] = tracker[i].GetComponent<Transform>().position;             
-
+        Debug.Log($"i:{i} x:{positions[i].x},y:{positions[i].y},z:{positions[i].z}");
         }
+        
         // grassMat.SetVector("_trackerPosition",trackerPos);   
         Shader.SetGlobalVectorArray("trackerPosition",positions);
 

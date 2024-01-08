@@ -234,7 +234,7 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 
 				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
 				float3 temp_output_69_0 = ( ase_worldPos - v.vertex.xyz );
-				float3 temp_output_82_0 = (trackerPosition[0]).xyz;
+				float3 temp_output_82_0 = (trackerPosition[1]).xyz;
 				float3 break18 = ( ( ase_worldPos - temp_output_82_0 ) * ( 1.0 - saturate( ( distance( temp_output_82_0 , ase_worldPos ) / _DynamicRadius ) ) ) );
 				float3 break78 = temp_output_69_0;
 				float3 appendResult23 = (float3(( break18.x + break78.x ) , break78.y , ( break18.z + break78.z )));
@@ -498,7 +498,7 @@ Shader "ase/scene/sha_sc_dynamic_grass"
 
 				float3 ase_worldPos = TransformObjectToWorld( (v.vertex).xyz );
 				float3 temp_output_69_0 = ( ase_worldPos - v.vertex.xyz );
-				float3 temp_output_82_0 = (trackerPosition[0]).xyz;
+				float3 temp_output_82_0 = (trackerPosition[1]).xyz;
 				float3 break18 = ( ( ase_worldPos - temp_output_82_0 ) * ( 1.0 - saturate( ( distance( temp_output_82_0 , ase_worldPos ) / _DynamicRadius ) ) ) );
 				float3 break78 = temp_output_69_0;
 				float3 appendResult23 = (float3(( break18.x + break78.x ) , break78.y , ( break18.z + break78.z )));
@@ -719,9 +719,9 @@ Node;AmplifyShaderEditor.WorldPosInputsNode;62;-3502.375,4.666901;Inherit;False;
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;69;-3268.398,-103.475;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.WireNode;80;-2806.51,-84.30692;Inherit;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.VertexColorNode;47;-2710.443,-67.86757;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.GlobalArrayNode;81;-4594.498,-427.4183;Inherit;False;trackerPosition;0;10;2;False;False;0;1;True;Object;-1;4;0;INT;0;False;2;INT;0;False;1;INT;0;False;3;INT;0;False;1;FLOAT4;0
-Node;AmplifyShaderEditor.Vector3Node;8;-4580.373,-606.3996;Inherit;False;Global;trackerPosition;trackerPosition;3;0;Create;True;0;0;0;False;0;False;0,0,0;0,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.ComponentMaskNode;82;-4329.498,-427.4183;Inherit;False;True;True;True;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.Vector3Node;8;-4595.373,-605.3996;Inherit;False;Global;trackerPosition;trackerPosition;3;0;Create;True;0;0;0;False;0;False;0,0,0;15.406,0.09798706,-0.816;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.GlobalArrayNode;81;-4594.498,-427.4183;Inherit;False;trackerPosition;1;10;2;False;False;0;1;True;Object;-1;4;0;INT;0;False;2;INT;0;False;1;INT;0;False;3;INT;0;False;1;FLOAT4;0
 WireConnection;13;0;46;0
 WireConnection;13;1;82;0
 WireConnection;2;2;40;0
@@ -766,4 +766,4 @@ WireConnection;69;1;61;0
 WireConnection;80;0;69;0
 WireConnection;82;0;81;0
 ASEEND*/
-//CHKSM=75D15BB51160F4E80E1B29B050C9146921114EAC
+//CHKSM=E9BDC2B1D970DC2FDD2822975B864C700474CCF4
