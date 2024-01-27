@@ -8,7 +8,7 @@ namespace Assets.Editor.Dependency
 {
     public class AssetsReferenceMapData : SerializedScriptableObject
     {
-        private const string AssetPath = "Assets/Tools/Editor/Dependency/AssetsReferenceMapData.asset";
+        private const string AssetPath = "Assets/Art_Zhh/common/tools/Dependency/AssetsReferenceMapData.asset";
 
         private static AssetsReferenceMapData _instance;
 

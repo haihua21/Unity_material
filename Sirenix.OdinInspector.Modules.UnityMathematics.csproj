@@ -287,23 +287,11 @@
  <Reference Include="Unity.Plastic.Newtonsoft.Json">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.collab-proxy@1.17.6/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Plastic.Antlr3.Runtime">
- <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.collab-proxy@1.17.6/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="unityplastic">
- <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.collab-proxy@1.17.6/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
- </Reference>
- <Reference Include="log4netPlastic">
- <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.collab-proxy@1.17.6/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
- </Reference>
- <Reference Include="ICSharpCode.NRefactory">
- <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
- </Reference>
- <Reference Include="Sirenix.OdinInspector.Modules.UnityMathematics">
- <HintPath>C:/work_project/Zhh_Unity_Materials/Assets/Art_Zhh/common/tools/Dependency/Sirenix.OdinInspector.Modules.UnityMathematics.dll</HintPath>
- </Reference>
  <Reference Include="Sirenix.Serialization.AOTGenerated">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Assets/Art_Zhh/common/tools/Dependency/Sirenix/Assemblies/AOT/Sirenix.Serialization.AOTGenerated.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Plastic.Antlr3.Runtime">
+ <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.collab-proxy@1.17.6/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.OdinInspector.Editor">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Assets/Art_Zhh/common/tools/Dependency/Sirenix/Assemblies/Sirenix.OdinInspector.Editor.dll</HintPath>
@@ -311,11 +299,20 @@
  <Reference Include="Sirenix.OdinInspector.Attributes">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Assets/Art_Zhh/common/tools/Dependency/Sirenix/Assemblies/Sirenix.OdinInspector.Attributes.dll</HintPath>
  </Reference>
+ <Reference Include="unityplastic">
+ <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.collab-proxy@1.17.6/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
+ </Reference>
+ <Reference Include="log4netPlastic">
+ <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.collab-proxy@1.17.6/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+ </Reference>
  <Reference Include="Sirenix.Serialization.Config">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Assets/Art_Zhh/common/tools/Dependency/Sirenix/Assemblies/Sirenix.Serialization.Config.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.Utilities">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Assets/Art_Zhh/common/tools/Dependency/Sirenix/Assemblies/Sirenix.Utilities.dll</HintPath>
+ </Reference>
+ <Reference Include="ICSharpCode.NRefactory">
+ <HintPath>C:/work_project/Zhh_Unity_Materials/Library/PackageCache/com.unity.render-pipelines.core@10.10.1/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
  </Reference>
  <Reference Include="Sirenix.Serialization">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Assets/Art_Zhh/common/tools/Dependency/Sirenix/Assemblies/Sirenix.Serialization.dll</HintPath>
