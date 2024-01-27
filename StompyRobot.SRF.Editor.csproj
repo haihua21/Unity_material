@@ -11,10 +11,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9EADDC1D-B2DD-77A7-018E-294058743A81}</ProjectGuid>
+    <ProjectGuid>{DB6A3A2C-3C10-9D98-A571-7139EE0E23CA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Sirenix.OdinInspector.Modules.UnityMathematics</AssemblyName>
+    <AssemblyName>StompyRobot.SRF.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -28,7 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,7 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -47,9 +47,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\Sirenix\Odin Inspector\Modules\Unity.Mathematics\MathematicsDrawers.cs" />
-     <None Include="Assets\Plugins\Sirenix\Odin Inspector\Modules\Unity.Mathematics\manifest.txt" />
-     <None Include="Assets\Plugins\Sirenix\Odin Inspector\Modules\Unity.Mathematics\Sirenix.OdinInspector.Modules.UnityMathematics.asmdef" />
+     <Compile Include="Assets\Art_Zhh\common\tools\Lod\SRF\Scripts\UI\Editor\CopyLayoutElementEditor.cs" />
+     <Compile Include="Assets\Art_Zhh\common\tools\Lod\SRF\Scripts\UI\Editor\StyleComponentEditor.cs" />
+     <Compile Include="Assets\Art_Zhh\common\tools\Lod\SRF\Scripts\UI\Editor\LongPressButtonEditor.cs" />
+     <Compile Include="Assets\Art_Zhh\common\tools\Lod\SRF\Scripts\UI\Editor\SRNumberButtonEditor.cs" />
+     <Compile Include="Assets\Art_Zhh\common\tools\Lod\SRF\Scripts\UI\Editor\CopyPreferredSizeEditor.cs" />
+     <Compile Include="Assets\Art_Zhh\common\tools\Lod\SRF\Scripts\UI\Editor\StyleSheetEditor.cs" />
+     <None Include="Assets\Art_Zhh\common\tools\Lod\SRF\Scripts\UI\Editor\StompyRobot.SRF.Editor.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Unity 2020.3.42f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -671,9 +675,6 @@
  <Reference Include="System.Xml.XPath.XDocument">
  <HintPath>C:/Program Files/Unity/Unity 2020.3.42f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XPath.XDocument.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Mathematics">
- <HintPath>C:/work_project/Zhh_Unity_Materials/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/work_project/Zhh_Unity_Materials/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
@@ -688,6 +689,11 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="StompyRobot.SRF.csproj">
+      <Project>{DA066D47-6008-FD5B-D07A-92A29554A2DC}</Project>
+      <Name>StompyRobot.SRF</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

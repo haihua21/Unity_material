@@ -1,19 +1,48 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{f96d4a98-0144-3680-34eb-7100afe45341}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StompyRobot.SRF", "StompyRobot.SRF.csproj", "{DA066D47-6008-FD5B-D07A-92A29554A2DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{72669c42-2b23-13dd-f758-5716a1eaf179}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{984A6DF9-4401-8036-34EB-7100AFE45341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmplifyShaderEditor", "AmplifyShaderEditor.csproj", "{2DE83F65-973C-FF3A-678F-4BDB3B77DA8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StompyRobot.SRF.Editor", "StompyRobot.SRF.Editor.csproj", "{DB6A3A2C-3C10-9D98-A571-7139EE0E23CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{429C6672-232B-DD13-F758-5716A1EAF179}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.Modules.UnityMathematics", "Sirenix.OdinInspector.Modules.UnityMathematics.csproj", "{9EADDC1D-B2DD-77A7-018E-294058743A81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{f96d4a98-0144-3680-34eb-7100afe45341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{f96d4a98-0144-3680-34eb-7100afe45341}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72669c42-2b23-13dd-f758-5716a1eaf179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72669c42-2b23-13dd-f758-5716a1eaf179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA066D47-6008-FD5B-D07A-92A29554A2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA066D47-6008-FD5B-D07A-92A29554A2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA066D47-6008-FD5B-D07A-92A29554A2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA066D47-6008-FD5B-D07A-92A29554A2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{984A6DF9-4401-8036-34EB-7100AFE45341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984A6DF9-4401-8036-34EB-7100AFE45341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984A6DF9-4401-8036-34EB-7100AFE45341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984A6DF9-4401-8036-34EB-7100AFE45341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE83F65-973C-FF3A-678F-4BDB3B77DA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE83F65-973C-FF3A-678F-4BDB3B77DA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE83F65-973C-FF3A-678F-4BDB3B77DA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE83F65-973C-FF3A-678F-4BDB3B77DA8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6A3A2C-3C10-9D98-A571-7139EE0E23CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6A3A2C-3C10-9D98-A571-7139EE0E23CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6A3A2C-3C10-9D98-A571-7139EE0E23CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6A3A2C-3C10-9D98-A571-7139EE0E23CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{429C6672-232B-DD13-F758-5716A1EAF179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429C6672-232B-DD13-F758-5716A1EAF179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429C6672-232B-DD13-F758-5716A1EAF179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429C6672-232B-DD13-F758-5716A1EAF179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EADDC1D-B2DD-77A7-018E-294058743A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EADDC1D-B2DD-77A7-018E-294058743A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EADDC1D-B2DD-77A7-018E-294058743A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EADDC1D-B2DD-77A7-018E-294058743A81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
