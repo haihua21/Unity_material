@@ -5,8 +5,8 @@ Shader "code/scene/sha_sc_cloth"
         _MainTex ("Layer_A Albedo (RGB)", 2D) = "white" {} 
         _SelfIllum("Self Illumination", range(0, 1)) = 0
 
-        [NoScaleOffset] _DetailAlbedo ("DETAIL_Albedo", 2D) = "grey" {}
-        _DetailTiling("DETAIL_Tiling", float) = 2  
+        //[NoScaleOffset] _DetailAlbedo ("DETAIL_Albedo", 2D) = "grey" {}
+        //_DetailTiling("DETAIL_Tiling", float) = 2  
 
         _WaveFreq("Wave Frequency", float) = 20
         _WaveHeight("Wave Height", float) = 0.1  
@@ -45,19 +45,19 @@ Shader "code/scene/sha_sc_cloth"
             float2 uv:TEXCOORD0;
             float4 vertex: SV_POSITION;
             float4 color: COLOR;
-            
         };
           
        CBUFFER_START(UnityPerMaterial)    
         float4 _MainTex_ST;
-        half _DetailTiling;
+        //half _DetailTiling;
         half _SelfIllum;
         half _WaveFreq;
         half _WaveHeight; 
         half _WaveScale;   
        CBUFFER_END  
 
-        sampler2D _MainTex, _DetailAlbedo; 
+        sampler2D _MainTex;
+        //sampler2D _DetailAlbedo;
 
         half3 windanim (half3 vertex_xyz, half2 color, half _WaveFreq, half _WaveHeight, half _WaveScale)
         {
@@ -79,36 +79,28 @@ Shader "code/scene/sha_sc_cloth"
 			return wind_xyz;
 		}
 
-
-
         v2f vert (appdata v)
-        // void vert (inout appdata_full v)     
         {                                                                      
-            // o.vertex.xyz = o.vertex.xyz + windanim(o.vertex.xyz, o.color, _WaveFreq, _WaveHeight, _WaveScale); 
             v2f o;  
-            o.vertex = TransformObjectToHClip(v.vertex.xyz);
-            half3 aa = v.color;
-            o.vertex.xyz = o.vertex.xyz + windanim(o.vertex.xyz, aa, _WaveFreq, _WaveHeight, _WaveScale);      
             
-            // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+            half3 aa = v.color;
+            o.vertex.xyz = v.vertex.xyz + windanim(v.vertex.xyz, aa, _WaveFreq, _WaveHeight, _WaveScale);      
+            o.vertex = TransformObjectToHClip(o.vertex.xyz);
             o.uv = v.uv;
+        	o.color = v.color;
             return o;
-                       
         }
-
-
+        
         half4 frag (v2f i) :SV_Target
-        {              
-           
+        {
+        	half4 color = half4(0,0,0,1);
             half4 albedo = tex2D (_MainTex, i.uv );  
-            // half detailAlbedo = tex2D(_DetailAlbedo, i.uv * _DetailTiling).r * unity_ColorSpaceDouble.rgb; 
-            half detailAlbedo = tex2D(_DetailAlbedo, i.uv * _DetailTiling).r ; 
-
-            albedo.rgb = albedo.rgb * LerpWhiteTo(detailAlbedo, 1);
-
-            // o.Emission = albedo.rgb * _SelfIllum; 
-            return albedo;
-
+            //// half detailAlbedo = tex2D(_DetailAlbedo, i.uv * _DetailTiling).r * unity_ColorSpaceDouble.rgb; 
+            //half detailAlbedo = tex2D(_DetailAlbedo, i.uv * _DetailTiling).r ; 
+            //albedo.rgb = albedo.rgb * LerpWhiteTo(detailAlbedo, 1);
+            half3 emission = albedo.rgb * _SelfIllum;
+        	color.rgb = albedo.rgb + emission;
+            return half4(color.rgb, 1.h);
         }
         ENDHLSL
     }
