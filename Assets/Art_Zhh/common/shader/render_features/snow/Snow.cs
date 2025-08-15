@@ -70,12 +70,12 @@ public class Snow : MonoBehaviour
 	{
 		var target_position = Camera.main.transform.TransformPoint(Vector3.forward * range);		
 		var mr = GetComponent<Renderer> ();
-		mr.material.SetFloat("_Range", range);     // 将range数值传递到材质参数。
-		mr.material.SetFloat("_RangeR", rangeR_);
-		mr.material.SetFloat("_Size", Size);
-		mr.material.SetVector("_MoveTotal", move_);
-		mr.material.SetVector("_CamUp", Camera.main.transform.up);
-		mr.material.SetVector("_TargetPosition", target_position);
+		mr.sharedMaterial.SetFloat("_Range", range);     // 将range数值传递到材质参数。
+		mr.sharedMaterial.SetFloat("_RangeR", rangeR_);
+		mr.sharedMaterial.SetFloat("_Size", Size);
+		mr.sharedMaterial.SetVector("_MoveTotal", move_);
+		mr.sharedMaterial.SetVector("_CamUp", Camera.main.transform.up);
+		mr.sharedMaterial.SetVector("_TargetPosition", target_position);
 		//mr.material.SetVector("_TargetPosition", transform.position);  //设置成自身坐标
 		float x = (Mathf.PerlinNoise(0f, Time.time*0.1f)-0.5f) * 10f;
 		float y = -2f;
