@@ -21,7 +21,7 @@ Material:
     m_TexEnvs:
     - _Noise:
         m_Texture: {fileID: 2800000, guid: fac9b703bd98bda47a0c9c24785198f4, type: 3}
-        m_Scale: {x: 0.6, y: 0.8}
+        m_Scale: {x: 0.6, y: 0.6}
         m_Offset: {x: 0, y: 0}
     - _RampTex:
         m_Texture: {fileID: 2800000, guid: 57b8fdcdd92351c409af9aa48ecbf9f1, type: 3}
