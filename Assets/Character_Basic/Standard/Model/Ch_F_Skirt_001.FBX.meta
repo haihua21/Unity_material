@@ -1,0 +1,1847 @@
+fileFormatVersion: 2
+guid: 6eda08d6f94007047ac9cd1493d9d9f7
+ModelImporter:
+  serializedVersion: 20300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: 0_1_Allbody_kj_010
+  - first:
+      1: 100002
+    second: 0_2_Hair_zcf02_004
+  - first:
+      1: 100004
+    second: //RootNode
+  - first:
+      1: 100006
+    second: Adjust_Head_Down
+  - first:
+      1: 100008
+    second: Adjust_Head_Low
+  - first:
+      1: 100010
+    second: Adjust_Head_Min
+  - first:
+      1: 100012
+    second: Adjust_Head_root
+  - first:
+      1: 100014
+    second: Adjust_Head_Up
+  - first:
+      1: 100016
+    second: Afterbrain
+  - first:
+      1: 100018
+    second: Bip001
+  - first:
+      1: 100020
+    second: Bip001  B skirt a
+  - first:
+      1: 100022
+    second: Bip001  B skirt b
+  - first:
+      1: 100024
+    second: Bip001  B skirt c
+  - first:
+      1: 100026
+    second: Bip001  B skirt d
+  - first:
+      1: 100028
+    second: Bip001  B skirt e
+  - first:
+      1: 100030
+    second: Bip001  F skirt a
+  - first:
+      1: 100032
+    second: Bip001  F skirt b
+  - first:
+      1: 100034
+    second: Bip001  F skirt c
+  - first:
+      1: 100036
+    second: Bip001  F skirt d
+  - first:
+      1: 100038
+    second: Bip001  F skirt e
+  - first:
+      1: 100040
+    second: Bip001 Head
+  - first:
+      1: 100042
+    second: Bip001 HeadNub
+  - first:
+      1: 100044
+    second: Bip001 L B skirt a
+  - first:
+      1: 100046
+    second: Bip001 L B skirt b
+  - first:
+      1: 100048
+    second: Bip001 L B skirt c
+  - first:
+      1: 100050
+    second: Bip001 L B skirt d
+  - first:
+      1: 100052
+    second: Bip001 L B skirt e
+  - first:
+      1: 100054
+    second: Bip001 L Calf
+  - first:
+      1: 100056
+    second: Bip001 L Clavicle
+  - first:
+      1: 100058
+    second: Bip001 L F skirt a
+  - first:
+      1: 100060
+    second: Bip001 L F skirt b
+  - first:
+      1: 100062
+    second: Bip001 L F skirt c
+  - first:
+      1: 100064
+    second: Bip001 L F skirt d
+  - first:
+      1: 100066
+    second: Bip001 L F skirt e
+  - first:
+      1: 100068
+    second: Bip001 L Finger0
+  - first:
+      1: 100070
+    second: Bip001 L Finger01
+  - first:
+      1: 100072
+    second: Bip001 L Finger02
+  - first:
+      1: 100074
+    second: Bip001 L Finger0Nub
+  - first:
+      1: 100076
+    second: Bip001 L Finger1
+  - first:
+      1: 100078
+    second: Bip001 L Finger11
+  - first:
+      1: 100080
+    second: Bip001 L Finger12
+  - first:
+      1: 100082
+    second: Bip001 L Finger1Nub
+  - first:
+      1: 100084
+    second: Bip001 L Finger2
+  - first:
+      1: 100086
+    second: Bip001 L Finger21
+  - first:
+      1: 100088
+    second: Bip001 L Finger22
+  - first:
+      1: 100090
+    second: Bip001 L Finger2Nub
+  - first:
+      1: 100092
+    second: Bip001 L Finger3
+  - first:
+      1: 100094
+    second: Bip001 L Finger31
+  - first:
+      1: 100096
+    second: Bip001 L Finger32
+  - first:
+      1: 100098
+    second: Bip001 L Finger3Nub
+  - first:
+      1: 100100
+    second: Bip001 L Finger4
+  - first:
+      1: 100102
+    second: Bip001 L Finger41
+  - first:
+      1: 100104
+    second: Bip001 L Finger42
+  - first:
+      1: 100106
+    second: Bip001 L Finger4Nub
+  - first:
+      1: 100108
+    second: Bip001 L Foot
+  - first:
+      1: 100110
+    second: Bip001 L Forearm
+  - first:
+      1: 100112
+    second: Bip001 L ForearmTwisController
+  - first:
+      1: 100114
+    second: Bip001 L Hand
+  - first:
+      1: 100116
+    second: Bip001 L N skirt a
+  - first:
+      1: 100118
+    second: Bip001 L N skirt b
+  - first:
+      1: 100120
+    second: Bip001 L N skirt c
+  - first:
+      1: 100122
+    second: Bip001 L N skirt d
+  - first:
+      1: 100124
+    second: Bip001 L N skirt e
+  - first:
+      1: 100126
+    second: Bip001 L poncho a
+  - first:
+      1: 100128
+    second: Bip001 L poncho b
+  - first:
+      1: 100130
+    second: Bip001 L poncho c
+  - first:
+      1: 100132
+    second: Bip001 L poncho d
+  - first:
+      1: 100134
+    second: Bip001 L poncho e
+  - first:
+      1: 100136
+    second: Bip001 L poncho f
+  - first:
+      1: 100138
+    second: Bip001 L poncho g
+  - first:
+      1: 100140
+    second: Bip001 L Sleeve A01
+  - first:
+      1: 100142
+    second: Bip001 L Sleeve A02
+  - first:
+      1: 100144
+    second: Bip001 L Sleeve A03
+  - first:
+      1: 100146
+    second: Bip001 L Sleeve A04
+  - first:
+      1: 100148
+    second: Bip001 L Sleeve B01
+  - first:
+      1: 100150
+    second: Bip001 L Sleeve B02
+  - first:
+      1: 100152
+    second: Bip001 L Sleeve B03
+  - first:
+      1: 100154
+    second: Bip001 L Sleeve C01
+  - first:
+      1: 100156
+    second: Bip001 L Thigh
+  - first:
+      1: 100158
+    second: Bip001 L Toe0
+  - first:
+      1: 100160
+    second: Bip001 L Toe0Nub
+  - first:
+      1: 100162
+    second: Bip001 L UpperArm
+  - first:
+      1: 100164
+    second: Bip001 L UpperArmController
+  - first:
+      1: 100166
+    second: Bip001 M poncho a
+  - first:
+      1: 100168
+    second: Bip001 M poncho b
+  - first:
+      1: 100170
+    second: Bip001 M poncho c
+  - first:
+      1: 100172
+    second: Bip001 M poncho d
+  - first:
+      1: 100174
+    second: Bip001 M poncho e
+  - first:
+      1: 100176
+    second: Bip001 M poncho f
+  - first:
+      1: 100178
+    second: Bip001 M poncho g
+  - first:
+      1: 100180
+    second: Bip001 Neck
+  - first:
+      1: 100182
+    second: Bip001 Pelvis
+  - first:
+      1: 100184
+    second: Bip001 R B skirt a
+  - first:
+      1: 100186
+    second: Bip001 R B skirt b
+  - first:
+      1: 100188
+    second: Bip001 R B skirt c
+  - first:
+      1: 100190
+    second: Bip001 R B skirt d
+  - first:
+      1: 100192
+    second: Bip001 R B skirt e
+  - first:
+      1: 100194
+    second: Bip001 R Calf
+  - first:
+      1: 100196
+    second: Bip001 R Clavicle
+  - first:
+      1: 100198
+    second: Bip001 R F skirt a
+  - first:
+      1: 100200
+    second: Bip001 R F skirt b
+  - first:
+      1: 100202
+    second: Bip001 R F skirt c
+  - first:
+      1: 100204
+    second: Bip001 R F skirt d
+  - first:
+      1: 100206
+    second: Bip001 R F skirt e
+  - first:
+      1: 100208
+    second: Bip001 R Finger0
+  - first:
+      1: 100210
+    second: Bip001 R Finger01
+  - first:
+      1: 100212
+    second: Bip001 R Finger02
+  - first:
+      1: 100214
+    second: Bip001 R Finger0Nub
+  - first:
+      1: 100216
+    second: Bip001 R Finger1
+  - first:
+      1: 100218
+    second: Bip001 R Finger11
+  - first:
+      1: 100220
+    second: Bip001 R Finger12
+  - first:
+      1: 100222
+    second: Bip001 R Finger1Nub
+  - first:
+      1: 100224
+    second: Bip001 R Finger2
+  - first:
+      1: 100226
+    second: Bip001 R Finger21
+  - first:
+      1: 100228
+    second: Bip001 R Finger22
+  - first:
+      1: 100230
+    second: Bip001 R Finger2Nub
+  - first:
+      1: 100232
+    second: Bip001 R Finger3
+  - first:
+      1: 100234
+    second: Bip001 R Finger31
+  - first:
+      1: 100236
+    second: Bip001 R Finger32
+  - first:
+      1: 100238
+    second: Bip001 R Finger3Nub
+  - first:
+      1: 100240
+    second: Bip001 R Finger4
+  - first:
+      1: 100242
+    second: Bip001 R Finger41
+  - first:
+      1: 100244
+    second: Bip001 R Finger42
+  - first:
+      1: 100246
+    second: Bip001 R Finger4Nub
+  - first:
+      1: 100248
+    second: Bip001 R Foot
+  - first:
+      1: 100250
+    second: Bip001 R Forearm
+  - first:
+      1: 100252
+    second: Bip001 R ForearmTwisController
+  - first:
+      1: 100254
+    second: Bip001 R Hand
+  - first:
+      1: 100256
+    second: Bip001 R N skirt a
+  - first:
+      1: 100258
+    second: Bip001 R N skirt b
+  - first:
+      1: 100260
+    second: Bip001 R N skirt c
+  - first:
+      1: 100262
+    second: Bip001 R N skirt d
+  - first:
+      1: 100264
+    second: Bip001 R N skirt e
+  - first:
+      1: 100266
+    second: Bip001 R poncho a
+  - first:
+      1: 100268
+    second: Bip001 R poncho b
+  - first:
+      1: 100270
+    second: Bip001 R poncho c
+  - first:
+      1: 100272
+    second: Bip001 R poncho d
+  - first:
+      1: 100274
+    second: Bip001 R poncho e
+  - first:
+      1: 100276
+    second: Bip001 R poncho f
+  - first:
+      1: 100278
+    second: Bip001 R poncho g
+  - first:
+      1: 100280
+    second: Bip001 R Sleeve A01
+  - first:
+      1: 100282
+    second: Bip001 R Sleeve A02
+  - first:
+      1: 100284
+    second: Bip001 R Sleeve A03
+  - first:
+      1: 100286
+    second: Bip001 R Sleeve A04
+  - first:
+      1: 100288
+    second: Bip001 R Sleeve B01
+  - first:
+      1: 100290
+    second: Bip001 R Sleeve B02
+  - first:
+      1: 100292
+    second: Bip001 R Sleeve B03
+  - first:
+      1: 100294
+    second: Bip001 R Sleeve C01
+  - first:
+      1: 100296
+    second: Bip001 R Thigh
+  - first:
+      1: 100298
+    second: Bip001 R Toe0
+  - first:
+      1: 100300
+    second: Bip001 R Toe0Nub
+  - first:
+      1: 100302
+    second: Bip001 R UpperArm
+  - first:
+      1: 100304
+    second: Bip001 R UpperArmController
+  - first:
+      1: 100306
+    second: Bip001 Spine
+  - first:
+      1: 100308
+    second: Bip001 Spine1
+  - first:
+      1: 100310
+    second: Bip001 W B skirt a
+  - first:
+      1: 100312
+    second: Bip001 W B skirt b
+  - first:
+      1: 100314
+    second: Bip001 W B skirt c
+  - first:
+      1: 100316
+    second: Bip001 W B skirt d
+  - first:
+      1: 100318
+    second: Bip001 W B skirt e
+  - first:
+      1: 100320
+    second: Bip001 W B skirt f
+  - first:
+      1: 100322
+    second: Bip001 W B skirt g
+  - first:
+      1: 100324
+    second: Bip001 W B skirt h
+  - first:
+      1: 100326
+    second: Bip001 W B skirt i
+  - first:
+      1: 100328
+    second: Bip001 W F skirt a
+  - first:
+      1: 100330
+    second: Bip001 W F skirt b
+  - first:
+      1: 100332
+    second: Bip001 W F skirt c
+  - first:
+      1: 100334
+    second: Bip001 W F skirt d
+  - first:
+      1: 100336
+    second: Bip001 W L skirt a
+  - first:
+      1: 100338
+    second: Bip001 W L skirt b
+  - first:
+      1: 100340
+    second: Bip001 W L skirt c
+  - first:
+      1: 100342
+    second: Bip001 W L skirt d
+  - first:
+      1: 100344
+    second: Bip001 W R skirt a
+  - first:
+      1: 100346
+    second: Bip001 W R skirt b
+  - first:
+      1: 100348
+    second: Bip001 W R skirt c
+  - first:
+      1: 100350
+    second: Bip001 W R skirt d
+  - first:
+      1: 100352
+    second: Bip_root
+  - first:
+      1: 100354
+    second: Bone_hair_01
+  - first:
+      1: 100356
+    second: Bone_hair_02
+  - first:
+      1: 100358
+    second: Bone_hair_03
+  - first:
+      1: 100360
+    second: Bone_hair_04
+  - first:
+      1: 100362
+    second: Bone_hair_05
+  - first:
+      1: 100364
+    second: Bone_hair_06
+  - first:
+      1: 100366
+    second: Bone_hair_07
+  - first:
+      1: 100368
+    second: Bone_hair_08
+  - first:
+      1: 100370
+    second: Bone_hair_09
+  - first:
+      1: 100372
+    second: Bone_hair_10
+  - first:
+      1: 100374
+    second: Bone_hair_11
+  - first:
+      1: 100376
+    second: Bone_hair_12
+  - first:
+      1: 100378
+    second: Bone_hair_13
+  - first:
+      1: 100380
+    second: Bone_hair_14
+  - first:
+      1: 100382
+    second: Bone_hair_15
+  - first:
+      1: 100384
+    second: Bone_hair_16
+  - first:
+      1: 100386
+    second: Bone_hair_17
+  - first:
+      1: 100388
+    second: Bone_hair_18
+  - first:
+      1: 100390
+    second: Bone_hair_19
+  - first:
+      1: 100392
+    second: Forehead
+  - first:
+      1: 100394
+    second: head
+  - first:
+      1: 100396
+    second: Jaw
+  - first:
+      1: 100398
+    second: Jaw_L
+  - first:
+      1: 100400
+    second: Jaw_R
+  - first:
+      1: 100402
+    second: L_AppleZone
+  - first:
+      1: 100404
+    second: L_Cheek
+  - first:
+      1: 100406
+    second: L_cheekbone
+  - first:
+      1: 100408
+    second: L_EarBase
+  - first:
+      1: 100410
+    second: L_EarLow
+  - first:
+      1: 100412
+    second: L_EarMid
+  - first:
+      1: 100414
+    second: L_EarTragus
+  - first:
+      1: 100416
+    second: L_EarUp
+  - first:
+      1: 100418
+    second: L_Eye_InCorner
+  - first:
+      1: 100420
+    second: L_Eye_OutCorner
+  - first:
+      1: 100422
+    second: L_Eyeball
+  - first:
+      1: 100424
+    second: L_EyeBase
+  - first:
+      1: 100426
+    second: L_Eyebrow
+  - first:
+      1: 100428
+    second: L_Eyebrow_Between
+  - first:
+      1: 100430
+    second: L_Eyebrow_Tip
+  - first:
+      1: 100432
+    second: L_Face
+  - first:
+      1: 100434
+    second: L_FaceIn
+  - first:
+      1: 100436
+    second: LeftGluteusAdjust
+  - first:
+      1: 100438
+    second: LeftGluteusControlle
+  - first:
+      1: 100440
+    second: LeftOuterBreastAdjust
+  - first:
+      1: 100442
+    second: LeftOuterBreastController
+  - first:
+      1: 100444
+    second: Lips_Down
+  - first:
+      1: 100446
+    second: Lips_L01
+  - first:
+      1: 100448
+    second: Lips_L02
+  - first:
+      1: 100450
+    second: Lips_R01
+  - first:
+      1: 100452
+    second: Lips_R02
+  - first:
+      1: 100454
+    second: Lips_Up
+  - first:
+      1: 100456
+    second: moduan01
+  - first:
+      1: 100458
+    second: moduan02
+  - first:
+      1: 100460
+    second: moduan03
+  - first:
+      1: 100462
+    second: moduan04
+  - first:
+      1: 100464
+    second: moduan05
+  - first:
+      1: 100466
+    second: moduan06
+  - first:
+      1: 100468
+    second: MouthBase
+  - first:
+      1: 100470
+    second: Nose_Bridge
+  - first:
+      1: 100472
+    second: Nose_LWing
+  - first:
+      1: 100474
+    second: Nose_RWing
+  - first:
+      1: 100476
+    second: Nose_Tip
+  - first:
+      1: 100478
+    second: Nose_Up
+  - first:
+      1: 100480
+    second: NoseBase
+  - first:
+      1: 100482
+    second: R_AppleZone
+  - first:
+      1: 100484
+    second: R_Cheek
+  - first:
+      1: 100486
+    second: R_cheekbone
+  - first:
+      1: 100488
+    second: R_EarBase
+  - first:
+      1: 100490
+    second: R_EarLow
+  - first:
+      1: 100492
+    second: R_EarMid
+  - first:
+      1: 100494
+    second: R_EarTragus
+  - first:
+      1: 100496
+    second: R_EarUp
+  - first:
+      1: 100498
+    second: R_Eye_InCorner
+  - first:
+      1: 100500
+    second: R_Eye_OutCorner
+  - first:
+      1: 100502
+    second: R_Eyeball
+  - first:
+      1: 100504
+    second: R_EyeBase
+  - first:
+      1: 100506
+    second: R_Eyebrow
+  - first:
+      1: 100508
+    second: R_Eyebrow_Between
+  - first:
+      1: 100510
+    second: R_Eyebrow_Tip
+  - first:
+      1: 100512
+    second: R_Face
+  - first:
+      1: 100514
+    second: R_FaceIn
+  - first:
+      1: 100516
+    second: RightGluteusAdjust
+  - first:
+      1: 100518
+    second: RightGluteusController
+  - first:
+      1: 100520
+    second: RightOuterBreastAdjust
+  - first:
+      1: 100522
+    second: RightOuterBreastController
+  - first:
+      1: 100524
+    second: Tongue01
+  - first:
+      1: 100526
+    second: Tongue02
+  - first:
+      1: 100528
+    second: Tongue03
+  - first:
+      1: 100530
+    second: ToothDown
+  - first:
+      1: 100532
+    second: ToothUp
+  - first:
+      1: 100534
+    second: v_armet
+  - first:
+      1: 100536
+    second: v_back
+  - first:
+      1: 100538
+    second: v_hit
+  - first:
+      1: 100540
+    second: v_l_shoe
+  - first:
+      1: 100542
+    second: v_l_weapon
+  - first:
+      1: 100544
+    second: v_r_shoe
+  - first:
+      1: 100546
+    second: v_r_weapon
+  - first:
+      1: 100548
+    second: Woman_Eye
+  - first:
+      4: 400000
+    second: 0_1_Allbody_kj_010
+  - first:
+      4: 400002
+    second: 0_2_Hair_zcf02_004
+  - first:
+      4: 400004
+    second: //RootNode
+  - first:
+      4: 400006
+    second: Adjust_Head_Down
+  - first:
+      4: 400008
+    second: Adjust_Head_Low
+  - first:
+      4: 400010
+    second: Adjust_Head_Min
+  - first:
+      4: 400012
+    second: Adjust_Head_root
+  - first:
+      4: 400014
+    second: Adjust_Head_Up
+  - first:
+      4: 400016
+    second: Afterbrain
+  - first:
+      4: 400018
+    second: Bip001
+  - first:
+      4: 400020
+    second: Bip001  B skirt a
+  - first:
+      4: 400022
+    second: Bip001  B skirt b
+  - first:
+      4: 400024
+    second: Bip001  B skirt c
+  - first:
+      4: 400026
+    second: Bip001  B skirt d
+  - first:
+      4: 400028
+    second: Bip001  B skirt e
+  - first:
+      4: 400030
+    second: Bip001  F skirt a
+  - first:
+      4: 400032
+    second: Bip001  F skirt b
+  - first:
+      4: 400034
+    second: Bip001  F skirt c
+  - first:
+      4: 400036
+    second: Bip001  F skirt d
+  - first:
+      4: 400038
+    second: Bip001  F skirt e
+  - first:
+      4: 400040
+    second: Bip001 Head
+  - first:
+      4: 400042
+    second: Bip001 HeadNub
+  - first:
+      4: 400044
+    second: Bip001 L B skirt a
+  - first:
+      4: 400046
+    second: Bip001 L B skirt b
+  - first:
+      4: 400048
+    second: Bip001 L B skirt c
+  - first:
+      4: 400050
+    second: Bip001 L B skirt d
+  - first:
+      4: 400052
+    second: Bip001 L B skirt e
+  - first:
+      4: 400054
+    second: Bip001 L Calf
+  - first:
+      4: 400056
+    second: Bip001 L Clavicle
+  - first:
+      4: 400058
+    second: Bip001 L F skirt a
+  - first:
+      4: 400060
+    second: Bip001 L F skirt b
+  - first:
+      4: 400062
+    second: Bip001 L F skirt c
+  - first:
+      4: 400064
+    second: Bip001 L F skirt d
+  - first:
+      4: 400066
+    second: Bip001 L F skirt e
+  - first:
+      4: 400068
+    second: Bip001 L Finger0
+  - first:
+      4: 400070
+    second: Bip001 L Finger01
+  - first:
+      4: 400072
+    second: Bip001 L Finger02
+  - first:
+      4: 400074
+    second: Bip001 L Finger0Nub
+  - first:
+      4: 400076
+    second: Bip001 L Finger1
+  - first:
+      4: 400078
+    second: Bip001 L Finger11
+  - first:
+      4: 400080
+    second: Bip001 L Finger12
+  - first:
+      4: 400082
+    second: Bip001 L Finger1Nub
+  - first:
+      4: 400084
+    second: Bip001 L Finger2
+  - first:
+      4: 400086
+    second: Bip001 L Finger21
+  - first:
+      4: 400088
+    second: Bip001 L Finger22
+  - first:
+      4: 400090
+    second: Bip001 L Finger2Nub
+  - first:
+      4: 400092
+    second: Bip001 L Finger3
+  - first:
+      4: 400094
+    second: Bip001 L Finger31
+  - first:
+      4: 400096
+    second: Bip001 L Finger32
+  - first:
+      4: 400098
+    second: Bip001 L Finger3Nub
+  - first:
+      4: 400100
+    second: Bip001 L Finger4
+  - first:
+      4: 400102
+    second: Bip001 L Finger41
+  - first:
+      4: 400104
+    second: Bip001 L Finger42
+  - first:
+      4: 400106
+    second: Bip001 L Finger4Nub
+  - first:
+      4: 400108
+    second: Bip001 L Foot
+  - first:
+      4: 400110
+    second: Bip001 L Forearm
+  - first:
+      4: 400112
+    second: Bip001 L ForearmTwisController
+  - first:
+      4: 400114
+    second: Bip001 L Hand
+  - first:
+      4: 400116
+    second: Bip001 L N skirt a
+  - first:
+      4: 400118
+    second: Bip001 L N skirt b
+  - first:
+      4: 400120
+    second: Bip001 L N skirt c
+  - first:
+      4: 400122
+    second: Bip001 L N skirt d
+  - first:
+      4: 400124
+    second: Bip001 L N skirt e
+  - first:
+      4: 400126
+    second: Bip001 L poncho a
+  - first:
+      4: 400128
+    second: Bip001 L poncho b
+  - first:
+      4: 400130
+    second: Bip001 L poncho c
+  - first:
+      4: 400132
+    second: Bip001 L poncho d
+  - first:
+      4: 400134
+    second: Bip001 L poncho e
+  - first:
+      4: 400136
+    second: Bip001 L poncho f
+  - first:
+      4: 400138
+    second: Bip001 L poncho g
+  - first:
+      4: 400140
+    second: Bip001 L Sleeve A01
+  - first:
+      4: 400142
+    second: Bip001 L Sleeve A02
+  - first:
+      4: 400144
+    second: Bip001 L Sleeve A03
+  - first:
+      4: 400146
+    second: Bip001 L Sleeve A04
+  - first:
+      4: 400148
+    second: Bip001 L Sleeve B01
+  - first:
+      4: 400150
+    second: Bip001 L Sleeve B02
+  - first:
+      4: 400152
+    second: Bip001 L Sleeve B03
+  - first:
+      4: 400154
+    second: Bip001 L Sleeve C01
+  - first:
+      4: 400156
+    second: Bip001 L Thigh
+  - first:
+      4: 400158
+    second: Bip001 L Toe0
+  - first:
+      4: 400160
+    second: Bip001 L Toe0Nub
+  - first:
+      4: 400162
+    second: Bip001 L UpperArm
+  - first:
+      4: 400164
+    second: Bip001 L UpperArmController
+  - first:
+      4: 400166
+    second: Bip001 M poncho a
+  - first:
+      4: 400168
+    second: Bip001 M poncho b
+  - first:
+      4: 400170
+    second: Bip001 M poncho c
+  - first:
+      4: 400172
+    second: Bip001 M poncho d
+  - first:
+      4: 400174
+    second: Bip001 M poncho e
+  - first:
+      4: 400176
+    second: Bip001 M poncho f
+  - first:
+      4: 400178
+    second: Bip001 M poncho g
+  - first:
+      4: 400180
+    second: Bip001 Neck
+  - first:
+      4: 400182
+    second: Bip001 Pelvis
+  - first:
+      4: 400184
+    second: Bip001 R B skirt a
+  - first:
+      4: 400186
+    second: Bip001 R B skirt b
+  - first:
+      4: 400188
+    second: Bip001 R B skirt c
+  - first:
+      4: 400190
+    second: Bip001 R B skirt d
+  - first:
+      4: 400192
+    second: Bip001 R B skirt e
+  - first:
+      4: 400194
+    second: Bip001 R Calf
+  - first:
+      4: 400196
+    second: Bip001 R Clavicle
+  - first:
+      4: 400198
+    second: Bip001 R F skirt a
+  - first:
+      4: 400200
+    second: Bip001 R F skirt b
+  - first:
+      4: 400202
+    second: Bip001 R F skirt c
+  - first:
+      4: 400204
+    second: Bip001 R F skirt d
+  - first:
+      4: 400206
+    second: Bip001 R F skirt e
+  - first:
+      4: 400208
+    second: Bip001 R Finger0
+  - first:
+      4: 400210
+    second: Bip001 R Finger01
+  - first:
+      4: 400212
+    second: Bip001 R Finger02
+  - first:
+      4: 400214
+    second: Bip001 R Finger0Nub
+  - first:
+      4: 400216
+    second: Bip001 R Finger1
+  - first:
+      4: 400218
+    second: Bip001 R Finger11
+  - first:
+      4: 400220
+    second: Bip001 R Finger12
+  - first:
+      4: 400222
+    second: Bip001 R Finger1Nub
+  - first:
+      4: 400224
+    second: Bip001 R Finger2
+  - first:
+      4: 400226
+    second: Bip001 R Finger21
+  - first:
+      4: 400228
+    second: Bip001 R Finger22
+  - first:
+      4: 400230
+    second: Bip001 R Finger2Nub
+  - first:
+      4: 400232
+    second: Bip001 R Finger3
+  - first:
+      4: 400234
+    second: Bip001 R Finger31
+  - first:
+      4: 400236
+    second: Bip001 R Finger32
+  - first:
+      4: 400238
+    second: Bip001 R Finger3Nub
+  - first:
+      4: 400240
+    second: Bip001 R Finger4
+  - first:
+      4: 400242
+    second: Bip001 R Finger41
+  - first:
+      4: 400244
+    second: Bip001 R Finger42
+  - first:
+      4: 400246
+    second: Bip001 R Finger4Nub
+  - first:
+      4: 400248
+    second: Bip001 R Foot
+  - first:
+      4: 400250
+    second: Bip001 R Forearm
+  - first:
+      4: 400252
+    second: Bip001 R ForearmTwisController
+  - first:
+      4: 400254
+    second: Bip001 R Hand
+  - first:
+      4: 400256
+    second: Bip001 R N skirt a
+  - first:
+      4: 400258
+    second: Bip001 R N skirt b
+  - first:
+      4: 400260
+    second: Bip001 R N skirt c
+  - first:
+      4: 400262
+    second: Bip001 R N skirt d
+  - first:
+      4: 400264
+    second: Bip001 R N skirt e
+  - first:
+      4: 400266
+    second: Bip001 R poncho a
+  - first:
+      4: 400268
+    second: Bip001 R poncho b
+  - first:
+      4: 400270
+    second: Bip001 R poncho c
+  - first:
+      4: 400272
+    second: Bip001 R poncho d
+  - first:
+      4: 400274
+    second: Bip001 R poncho e
+  - first:
+      4: 400276
+    second: Bip001 R poncho f
+  - first:
+      4: 400278
+    second: Bip001 R poncho g
+  - first:
+      4: 400280
+    second: Bip001 R Sleeve A01
+  - first:
+      4: 400282
+    second: Bip001 R Sleeve A02
+  - first:
+      4: 400284
+    second: Bip001 R Sleeve A03
+  - first:
+      4: 400286
+    second: Bip001 R Sleeve A04
+  - first:
+      4: 400288
+    second: Bip001 R Sleeve B01
+  - first:
+      4: 400290
+    second: Bip001 R Sleeve B02
+  - first:
+      4: 400292
+    second: Bip001 R Sleeve B03
+  - first:
+      4: 400294
+    second: Bip001 R Sleeve C01
+  - first:
+      4: 400296
+    second: Bip001 R Thigh
+  - first:
+      4: 400298
+    second: Bip001 R Toe0
+  - first:
+      4: 400300
+    second: Bip001 R Toe0Nub
+  - first:
+      4: 400302
+    second: Bip001 R UpperArm
+  - first:
+      4: 400304
+    second: Bip001 R UpperArmController
+  - first:
+      4: 400306
+    second: Bip001 Spine
+  - first:
+      4: 400308
+    second: Bip001 Spine1
+  - first:
+      4: 400310
+    second: Bip001 W B skirt a
+  - first:
+      4: 400312
+    second: Bip001 W B skirt b
+  - first:
+      4: 400314
+    second: Bip001 W B skirt c
+  - first:
+      4: 400316
+    second: Bip001 W B skirt d
+  - first:
+      4: 400318
+    second: Bip001 W B skirt e
+  - first:
+      4: 400320
+    second: Bip001 W B skirt f
+  - first:
+      4: 400322
+    second: Bip001 W B skirt g
+  - first:
+      4: 400324
+    second: Bip001 W B skirt h
+  - first:
+      4: 400326
+    second: Bip001 W B skirt i
+  - first:
+      4: 400328
+    second: Bip001 W F skirt a
+  - first:
+      4: 400330
+    second: Bip001 W F skirt b
+  - first:
+      4: 400332
+    second: Bip001 W F skirt c
+  - first:
+      4: 400334
+    second: Bip001 W F skirt d
+  - first:
+      4: 400336
+    second: Bip001 W L skirt a
+  - first:
+      4: 400338
+    second: Bip001 W L skirt b
+  - first:
+      4: 400340
+    second: Bip001 W L skirt c
+  - first:
+      4: 400342
+    second: Bip001 W L skirt d
+  - first:
+      4: 400344
+    second: Bip001 W R skirt a
+  - first:
+      4: 400346
+    second: Bip001 W R skirt b
+  - first:
+      4: 400348
+    second: Bip001 W R skirt c
+  - first:
+      4: 400350
+    second: Bip001 W R skirt d
+  - first:
+      4: 400352
+    second: Bip_root
+  - first:
+      4: 400354
+    second: Bone_hair_01
+  - first:
+      4: 400356
+    second: Bone_hair_02
+  - first:
+      4: 400358
+    second: Bone_hair_03
+  - first:
+      4: 400360
+    second: Bone_hair_04
+  - first:
+      4: 400362
+    second: Bone_hair_05
+  - first:
+      4: 400364
+    second: Bone_hair_06
+  - first:
+      4: 400366
+    second: Bone_hair_07
+  - first:
+      4: 400368
+    second: Bone_hair_08
+  - first:
+      4: 400370
+    second: Bone_hair_09
+  - first:
+      4: 400372
+    second: Bone_hair_10
+  - first:
+      4: 400374
+    second: Bone_hair_11
+  - first:
+      4: 400376
+    second: Bone_hair_12
+  - first:
+      4: 400378
+    second: Bone_hair_13
+  - first:
+      4: 400380
+    second: Bone_hair_14
+  - first:
+      4: 400382
+    second: Bone_hair_15
+  - first:
+      4: 400384
+    second: Bone_hair_16
+  - first:
+      4: 400386
+    second: Bone_hair_17
+  - first:
+      4: 400388
+    second: Bone_hair_18
+  - first:
+      4: 400390
+    second: Bone_hair_19
+  - first:
+      4: 400392
+    second: Forehead
+  - first:
+      4: 400394
+    second: head
+  - first:
+      4: 400396
+    second: Jaw
+  - first:
+      4: 400398
+    second: Jaw_L
+  - first:
+      4: 400400
+    second: Jaw_R
+  - first:
+      4: 400402
+    second: L_AppleZone
+  - first:
+      4: 400404
+    second: L_Cheek
+  - first:
+      4: 400406
+    second: L_cheekbone
+  - first:
+      4: 400408
+    second: L_EarBase
+  - first:
+      4: 400410
+    second: L_EarLow
+  - first:
+      4: 400412
+    second: L_EarMid
+  - first:
+      4: 400414
+    second: L_EarTragus
+  - first:
+      4: 400416
+    second: L_EarUp
+  - first:
+      4: 400418
+    second: L_Eye_InCorner
+  - first:
+      4: 400420
+    second: L_Eye_OutCorner
+  - first:
+      4: 400422
+    second: L_Eyeball
+  - first:
+      4: 400424
+    second: L_EyeBase
+  - first:
+      4: 400426
+    second: L_Eyebrow
+  - first:
+      4: 400428
+    second: L_Eyebrow_Between
+  - first:
+      4: 400430
+    second: L_Eyebrow_Tip
+  - first:
+      4: 400432
+    second: L_Face
+  - first:
+      4: 400434
+    second: L_FaceIn
+  - first:
+      4: 400436
+    second: LeftGluteusAdjust
+  - first:
+      4: 400438
+    second: LeftGluteusControlle
+  - first:
+      4: 400440
+    second: LeftOuterBreastAdjust
+  - first:
+      4: 400442
+    second: LeftOuterBreastController
+  - first:
+      4: 400444
+    second: Lips_Down
+  - first:
+      4: 400446
+    second: Lips_L01
+  - first:
+      4: 400448
+    second: Lips_L02
+  - first:
+      4: 400450
+    second: Lips_R01
+  - first:
+      4: 400452
+    second: Lips_R02
+  - first:
+      4: 400454
+    second: Lips_Up
+  - first:
+      4: 400456
+    second: moduan01
+  - first:
+      4: 400458
+    second: moduan02
+  - first:
+      4: 400460
+    second: moduan03
+  - first:
+      4: 400462
+    second: moduan04
+  - first:
+      4: 400464
+    second: moduan05
+  - first:
+      4: 400466
+    second: moduan06
+  - first:
+      4: 400468
+    second: MouthBase
+  - first:
+      4: 400470
+    second: Nose_Bridge
+  - first:
+      4: 400472
+    second: Nose_LWing
+  - first:
+      4: 400474
+    second: Nose_RWing
+  - first:
+      4: 400476
+    second: Nose_Tip
+  - first:
+      4: 400478
+    second: Nose_Up
+  - first:
+      4: 400480
+    second: NoseBase
+  - first:
+      4: 400482
+    second: R_AppleZone
+  - first:
+      4: 400484
+    second: R_Cheek
+  - first:
+      4: 400486
+    second: R_cheekbone
+  - first:
+      4: 400488
+    second: R_EarBase
+  - first:
+      4: 400490
+    second: R_EarLow
+  - first:
+      4: 400492
+    second: R_EarMid
+  - first:
+      4: 400494
+    second: R_EarTragus
+  - first:
+      4: 400496
+    second: R_EarUp
+  - first:
+      4: 400498
+    second: R_Eye_InCorner
+  - first:
+      4: 400500
+    second: R_Eye_OutCorner
+  - first:
+      4: 400502
+    second: R_Eyeball
+  - first:
+      4: 400504
+    second: R_EyeBase
+  - first:
+      4: 400506
+    second: R_Eyebrow
+  - first:
+      4: 400508
+    second: R_Eyebrow_Between
+  - first:
+      4: 400510
+    second: R_Eyebrow_Tip
+  - first:
+      4: 400512
+    second: R_Face
+  - first:
+      4: 400514
+    second: R_FaceIn
+  - first:
+      4: 400516
+    second: RightGluteusAdjust
+  - first:
+      4: 400518
+    second: RightGluteusController
+  - first:
+      4: 400520
+    second: RightOuterBreastAdjust
+  - first:
+      4: 400522
+    second: RightOuterBreastController
+  - first:
+      4: 400524
+    second: Tongue01
+  - first:
+      4: 400526
+    second: Tongue02
+  - first:
+      4: 400528
+    second: Tongue03
+  - first:
+      4: 400530
+    second: ToothDown
+  - first:
+      4: 400532
+    second: ToothUp
+  - first:
+      4: 400534
+    second: v_armet
+  - first:
+      4: 400536
+    second: v_back
+  - first:
+      4: 400538
+    second: v_hit
+  - first:
+      4: 400540
+    second: v_l_shoe
+  - first:
+      4: 400542
+    second: v_l_weapon
+  - first:
+      4: 400544
+    second: v_r_shoe
+  - first:
+      4: 400546
+    second: v_r_weapon
+  - first:
+      4: 400548
+    second: Woman_Eye
+  - first:
+      21: 2100000
+    second: eyedw
+  - first:
+      21: 2100002
+    second: eye
+  - first:
+      21: 2100004
+    second: eyelash
+  - first:
+      21: 2100006
+    second: env
+  - first:
+      21: 2100008
+    second: head
+  - first:
+      21: 2100010
+    second: body
+  - first:
+      21: 2100012
+    second: Material #6008
+  - first:
+      21: 2100014
+    second: 0_1_Fullbody_kj_010
+  - first:
+      21: 2100016
+    second: 08 - Default
+  - first:
+      43: 4300000
+    second: Woman_Eye
+  - first:
+      43: 4300002
+    second: head
+  - first:
+      43: 4300004
+    second: 0_1_Allbody_kj_010
+  - first:
+      43: 4300006
+    second: 0_2_Hair_zcf02_004
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: 0_1_Allbody_kj_010
+  - first:
+      137: 13700002
+    second: 0_2_Hair_zcf02_004
+  - first:
+      137: 13700004
+    second: head
+  - first:
+      137: 13700006
+    second: Woman_Eye
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 08 - Default
+    second: {fileID: 2100000, guid: 86de164efe6143e46bdd60a5990ec04c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0_1_Fullbody_kj_010
+    second: {fileID: 2100000, guid: acf72d97d912237478c70bef8ad22ba5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #6008
+    second: {fileID: 2100000, guid: 1554fb7e7dddced40826448e9d66847c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: 1554fb7e7dddced40826448e9d66847c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye
+    second: {fileID: 2100000, guid: 3ffe71c9dbdd76746968de9db90b2a8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyedw
+    second: {fileID: 2100000, guid: f42cbdb44455f734284e6191ee65f11d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyelash
+    second: {fileID: 2100000, guid: f42cbdb44455f734284e6191ee65f11d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: head
+    second: {fileID: 2100000, guid: 74d1c652b8920c14d81491306781befb, type: 2}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
