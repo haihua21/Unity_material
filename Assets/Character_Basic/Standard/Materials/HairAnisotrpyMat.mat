@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HairAnisotrpyMat
+  m_Shader: {fileID: 4800000, guid: 7b07422b6d706e54e96554cdbf544ffa, type: 3}
+  m_ShaderKeywords: _AnisotrpyDirection_CHANNEL_A _CustomMap1 _METALLICSPECGLOSSMAP
+    _NORMALMAP _SPECULAR_SETUP
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: d7c74e00ac859d74fbcb2ce50f11c584, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 996c443da3f7cb44dbb01cf8d830cbaa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CustomMap1:
+        m_Texture: {fileID: 2800000, guid: 51928f037d5c511418e81ed2b54ad7b5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: d7c74e00ac859d74fbcb2ce50f11c584, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 2800000, guid: 492df1375b0458d48a3cbb98d1bc37d9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AlphaClip: 0
+    - _AnisotrpyDirction: 0
+    - _AnisotrpyDirection: 1
+    - _Blend: 0
+    - _BumpScale: 0.3
+    - _Cull: 2
+    - _CustomMapIntensity: 0.378
+    - _Cutoff: 0.5
+    - _DstBlend: 0
+    - _EnvironmentReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _Metallic: 0
+    - _OcclusionStrength: 1
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _Sharpness: 10
+    - _Smoothness: 0.776
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _V1: 351
+    - _V2: 48.8
+    - _V3: -0.515
+    - _V4: -0.343
+    - _V5: 4.24
+    - _WorkflowMode: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
+    - _C1: {r: 0.6313726, g: 0.4666667, b: 0.46666667, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CustomColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CustomColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _CustomTilling: {r: 20, g: 1, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.83, g: 0.45318, b: 0.26477, a: 1}
+  m_BuildTextureStacks: []

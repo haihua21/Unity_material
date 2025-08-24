@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dabaf6a9eabea4b9d58a3314759bf3, type: 3}
   m_Name: Cus_RadiusBlur
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   isShow:
     m_OverrideState: 1
@@ -169,7 +169,6 @@ MonoBehaviour:
   - {fileID: -7893295128165547882}
   - {fileID: -5036183666229983624}
   - {fileID: 5837454709313016337}
-  - {fileID: 4879483092583083865}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -182,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -228,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2563b721b5844ca49b81c143f6e89318, type: 3}
   m_Name: Cus_Distort
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   isShow:
     m_OverrideState: 1
