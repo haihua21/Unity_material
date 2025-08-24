@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SkinLUT:
-        m_Texture: {fileID: 2800000, guid: 6ad59822fd812db4d96be0891766588e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7c074690366590a4092f2f26aa962a50, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
