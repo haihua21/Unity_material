@@ -96,12 +96,13 @@ Material:
     - Vector1_FAAF2867: 0.33
     - _AO: 0
     - _AlphaCutoff: 0.5
-    - _EdgeGradient: 0.1
+    - _CullMode: 0
+    - _EdgeGradient: 0.77
     - _EnableAO: 0
     - _EnvironmentReflections: 1
-    - _GeneralShift: 0.35
-    - _Highlight1Power: 32
-    - _Highlight1Strength: 1
+    - _GeneralShift: 0.24
+    - _Highlight1Power: 48
+    - _Highlight1Strength: 0.661
     - _Highlight2Power: 262
     - _Highlight2Strength: 0.6
     - _Jitter: 0.781
@@ -120,7 +121,7 @@ Material:
     - Vector2_2F175FF: {r: 5, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 0.16862746, g: 0.13725491, b: 0.13725491, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Highlight1Color: {r: 0.22745094, g: 0.20392153, b: 0.20392153, a: 1}
+    - _Highlight1Color: {r: 0.1981132, g: 0.11307404, b: 0.11307404, a: 1}
     - _Highlight2Color: {r: 0.40392157, g: 0.36078432, b: 0.36078432, a: 1}
     - _RimColor: {r: 0.5490196, g: 0.6313726, b: 0.8, a: 0}
   m_BuildTextureStacks: []

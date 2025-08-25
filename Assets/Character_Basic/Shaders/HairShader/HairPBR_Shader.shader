@@ -28,7 +28,8 @@ Shader "ASE/HairPBR"
 		_RimEdge("Rim Edge", Range( 2 , 10)) = 5
 		_RimStrength("Rim Strength", Range( 0 , 1)) = 1
 		_EdgeGradient("Edge Gradient", Range( 0.1 , 5)) = 1
-		[ASEEnd]_DitherThreshold("Dither Threshold", Range( 0 , 1)) = 0.6
+		_DitherThreshold("Dither Threshold", Range( 0 , 1)) = 0.6
+		[ASEEnd][Enum(UnityEngine.Rendering.CullMode)]_CullMode("Cull Mode", Float) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 
@@ -59,7 +60,7 @@ Shader "ASE/HairPBR"
 
 		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Geometry" }
 
-		Cull Off
+		Cull [_CullMode]
 		ZWrite On
 		ZTest LEqual
 		Offset 0 , 0
@@ -280,27 +281,28 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Highlight2Color;
 			float4 _BaseMap_ST;
+			float4 _BaseColor;
 			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _RimColor;
 			float4 _Highlight1Color;
-			float4 _Highlight2Color;
-			float4 _BaseColor;
-			float _Highlight1Strength;
-			float _GeneralShift;
-			float _Highlight2Power;
-			float _Highlight2Strength;
-			float _DitherThreshold;
-			float _EdgeGradient;
-			float _RimEdge;
-			float _ShiftMapTilingU;
-			float _RimStrength;
-			float _Jitter;
-			float _NormalStrength;
-			float _Smoothness;
+			float4 _RimColor;
 			float _AO;
+			float _Smoothness;
+			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _CullMode;
+			float _DitherThreshold;
+			float _Highlight2Strength;
+			float _Highlight2Power;
+			float _Highlight1Strength;
 			float _Highlight1Power;
+			float _GeneralShift;
+			float _ShiftMapTilingU;
+			float _Jitter;
+			float _EdgeGradient;
 			float _AlphaCutoff;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -838,27 +840,28 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Highlight2Color;
 			float4 _BaseMap_ST;
+			float4 _BaseColor;
 			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _RimColor;
 			float4 _Highlight1Color;
-			float4 _Highlight2Color;
-			float4 _BaseColor;
-			float _Highlight1Strength;
-			float _GeneralShift;
-			float _Highlight2Power;
-			float _Highlight2Strength;
-			float _DitherThreshold;
-			float _EdgeGradient;
-			float _RimEdge;
-			float _ShiftMapTilingU;
-			float _RimStrength;
-			float _Jitter;
-			float _NormalStrength;
-			float _Smoothness;
+			float4 _RimColor;
 			float _AO;
+			float _Smoothness;
+			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _CullMode;
+			float _DitherThreshold;
+			float _Highlight2Strength;
+			float _Highlight2Power;
+			float _Highlight1Strength;
 			float _Highlight1Power;
+			float _GeneralShift;
+			float _ShiftMapTilingU;
+			float _Jitter;
+			float _EdgeGradient;
 			float _AlphaCutoff;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -1195,27 +1198,28 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Highlight2Color;
 			float4 _BaseMap_ST;
+			float4 _BaseColor;
 			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _RimColor;
 			float4 _Highlight1Color;
-			float4 _Highlight2Color;
-			float4 _BaseColor;
-			float _Highlight1Strength;
-			float _GeneralShift;
-			float _Highlight2Power;
-			float _Highlight2Strength;
-			float _DitherThreshold;
-			float _EdgeGradient;
-			float _RimEdge;
-			float _ShiftMapTilingU;
-			float _RimStrength;
-			float _Jitter;
-			float _NormalStrength;
-			float _Smoothness;
+			float4 _RimColor;
 			float _AO;
+			float _Smoothness;
+			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _CullMode;
+			float _DitherThreshold;
+			float _Highlight2Strength;
+			float _Highlight2Power;
+			float _Highlight1Strength;
 			float _Highlight1Power;
+			float _GeneralShift;
+			float _ShiftMapTilingU;
+			float _Jitter;
+			float _EdgeGradient;
 			float _AlphaCutoff;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -1524,27 +1528,28 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Highlight2Color;
 			float4 _BaseMap_ST;
+			float4 _BaseColor;
 			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _RimColor;
 			float4 _Highlight1Color;
-			float4 _Highlight2Color;
-			float4 _BaseColor;
-			float _Highlight1Strength;
-			float _GeneralShift;
-			float _Highlight2Power;
-			float _Highlight2Strength;
-			float _DitherThreshold;
-			float _EdgeGradient;
-			float _RimEdge;
-			float _ShiftMapTilingU;
-			float _RimStrength;
-			float _Jitter;
-			float _NormalStrength;
-			float _Smoothness;
+			float4 _RimColor;
 			float _AO;
+			float _Smoothness;
+			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _CullMode;
+			float _DitherThreshold;
+			float _Highlight2Strength;
+			float _Highlight2Power;
+			float _Highlight1Strength;
 			float _Highlight1Power;
+			float _GeneralShift;
+			float _ShiftMapTilingU;
+			float _Jitter;
+			float _EdgeGradient;
 			float _AlphaCutoff;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -1889,27 +1894,28 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Highlight2Color;
 			float4 _BaseMap_ST;
+			float4 _BaseColor;
 			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _RimColor;
 			float4 _Highlight1Color;
-			float4 _Highlight2Color;
-			float4 _BaseColor;
-			float _Highlight1Strength;
-			float _GeneralShift;
-			float _Highlight2Power;
-			float _Highlight2Strength;
-			float _DitherThreshold;
-			float _EdgeGradient;
-			float _RimEdge;
-			float _ShiftMapTilingU;
-			float _RimStrength;
-			float _Jitter;
-			float _NormalStrength;
-			float _Smoothness;
+			float4 _RimColor;
 			float _AO;
+			float _Smoothness;
+			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _CullMode;
+			float _DitherThreshold;
+			float _Highlight2Strength;
+			float _Highlight2Power;
+			float _Highlight1Strength;
 			float _Highlight1Power;
+			float _GeneralShift;
+			float _ShiftMapTilingU;
+			float _Jitter;
+			float _EdgeGradient;
 			float _AlphaCutoff;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -2240,27 +2246,28 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Highlight2Color;
 			float4 _BaseMap_ST;
+			float4 _BaseColor;
 			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _RimColor;
 			float4 _Highlight1Color;
-			float4 _Highlight2Color;
-			float4 _BaseColor;
-			float _Highlight1Strength;
-			float _GeneralShift;
-			float _Highlight2Power;
-			float _Highlight2Strength;
-			float _DitherThreshold;
-			float _EdgeGradient;
-			float _RimEdge;
-			float _ShiftMapTilingU;
-			float _RimStrength;
-			float _Jitter;
-			float _NormalStrength;
-			float _Smoothness;
+			float4 _RimColor;
 			float _AO;
+			float _Smoothness;
+			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _CullMode;
+			float _DitherThreshold;
+			float _Highlight2Strength;
+			float _Highlight2Power;
+			float _Highlight1Strength;
 			float _Highlight1Power;
+			float _GeneralShift;
+			float _ShiftMapTilingU;
+			float _Jitter;
+			float _EdgeGradient;
 			float _AlphaCutoff;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -2610,27 +2617,28 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
+			float4 _Highlight2Color;
 			float4 _BaseMap_ST;
+			float4 _BaseColor;
 			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _RimColor;
 			float4 _Highlight1Color;
-			float4 _Highlight2Color;
-			float4 _BaseColor;
-			float _Highlight1Strength;
-			float _GeneralShift;
-			float _Highlight2Power;
-			float _Highlight2Strength;
-			float _DitherThreshold;
-			float _EdgeGradient;
-			float _RimEdge;
-			float _ShiftMapTilingU;
-			float _RimStrength;
-			float _Jitter;
-			float _NormalStrength;
-			float _Smoothness;
+			float4 _RimColor;
 			float _AO;
+			float _Smoothness;
+			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _CullMode;
+			float _DitherThreshold;
+			float _Highlight2Strength;
+			float _Highlight2Power;
+			float _Highlight1Strength;
 			float _Highlight1Power;
+			float _GeneralShift;
+			float _ShiftMapTilingU;
+			float _Jitter;
+			float _EdgeGradient;
 			float _AlphaCutoff;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
@@ -3171,7 +3179,7 @@ Node;AmplifyShaderEditor.RangedFloatNode;140;-9297.324,-2653.022;Inherit;False;P
 Node;AmplifyShaderEditor.RangedFloatNode;145;-8882.816,-2435.723;Inherit;False;Constant;_Float1;Float 1;24;0;Create;True;0;0;0;False;0;False;-0.5;-0.5;-2;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;14;-10620.55,-758.3129;Inherit;False;Property;_ShiftMapTilingU;Shift Map Tiling U;10;0;Create;True;0;0;0;False;0;False;3;3;0.1;5;0;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;126;-2699.798,-1312.405;Inherit;False;124;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;-2385.949,-1335.076;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;12;ASE/HairPBR;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;18;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;2;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;255;False;;255;False;;255;False;;7;False;;1;False;;1;False;;1;False;;7;False;;1;False;;1;False;;1;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;38;Workflow;1;0;Surface;0;0;  Refraction Model;0;0;  Blend;0;0;Two Sided;0;638915440933530892;Fragment Normal Space,InvertActionOnDeselection;0;0;Transmission;0;0;  Transmission Shadow;0.5,False,;0;Translucency;0;0;  Translucency Strength;1,False,;0;  Normal Distortion;0.5,False,;0;  Scattering;2,False,;0;  Direct;0.9,False,;0;  Ambient;0.1,False,;0;  Shadow;0.5,False,;0;Cast Shadows;1;0;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;_FinalColorxAlpha;0;0;Meta Pass;1;0;Override Baked GI;0;0;Extra Pre Pass;0;0;DOTS Instancing;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position,InvertActionOnDeselection;1;0;0;8;False;True;True;True;True;True;True;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;-2385.949,-1335.076;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;12;ASE/HairPBR;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;18;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;True;True;2;True;_Cull;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;3;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;255;False;;255;False;;255;False;;7;False;;1;False;;1;False;;1;False;;7;False;;1;False;;1;False;;1;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;Hidden/InternalErrorShader;0;0;Standard;38;Workflow;1;0;Surface;0;0;  Refraction Model;0;0;  Blend;0;0;Two Sided;0;638915440933530892;Fragment Normal Space,InvertActionOnDeselection;0;0;Transmission;0;0;  Transmission Shadow;0.5,False,;0;Translucency;0;0;  Translucency Strength;1,False,;0;  Normal Distortion;0.5,False,;0;  Scattering;2,False,;0;  Direct;0.9,False,;0;  Ambient;0.1,False,;0;  Shadow;0.5,False,;0;Cast Shadows;1;0;  Use Shadow Threshold;0;0;Receive Shadows;1;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;_FinalColorxAlpha;0;0;Meta Pass;1;0;Override Baked GI;0;0;Extra Pre Pass;0;0;DOTS Instancing;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position,InvertActionOnDeselection;1;0;0;8;False;True;True;True;True;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.GetLocalVarNode;132;-2700.882,-1444.87;Inherit;False;128;Albedo;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.GetLocalVarNode;118;-2686.302,-891.0328;Inherit;False;117;Alpha;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;138;-2699.174,-978.4644;Inherit;False;136;AO;1;0;OBJECT;;False;1;FLOAT;0
@@ -3179,6 +3187,7 @@ Node;AmplifyShaderEditor.RangedFloatNode;147;-2757.612,-799.7073;Inherit;False;P
 Node;AmplifyShaderEditor.RangedFloatNode;119;-3002.185,-1205.22;Inherit;False;Property;_Smoothness;Smoothness;2;0;Create;True;0;0;0;False;0;False;0.5;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.FaceVariableNode;155;-2853.298,-1116.798;Inherit;False;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;152;-2639.555,-1207.518;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;156;-3497.061,-928.098;Inherit;False;Property;_CullMode;Cull Mode;24;1;[Enum];Create;True;0;0;1;UnityEngine.Rendering.CullMode;True;0;False;1;0;0;0;0;1;FLOAT;0
 WireConnection;13;0;14;0
 WireConnection;10;0;13;0
 WireConnection;9;1;10;0
@@ -3296,4 +3305,4 @@ WireConnection;2;7;147;0
 WireConnection;152;1;119;0
 WireConnection;152;2;155;0
 ASEEND*/
-//CHKSM=57264BF2C2F85C877D2E3E2B6A7E571F08BFD5E3
+//CHKSM=4C02624884C0BBD611D2BB7E886921B8114B9E0A
