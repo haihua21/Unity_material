@@ -28,8 +28,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 		_RimEdge("Rim Edge", Range( 2 , 10)) = 5
 		_RimStrength("Rim Strength", Range( 0 , 1)) = 1
 		_EdgeGradient("Edge Gradient", Range( 0.1 , 5)) = 1
-		[Enum(UnityEngine.Rendering.CullMode)]_CullMode("Cull Mode", Float) = 0
-		[ASEEnd]_Float1("Float 1", Range( 0 , 2)) = 0
+		[ASEEnd][Enum(UnityEngine.Rendering.CullMode)]_CullMode("Cull Mode", Float) = 0
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 
@@ -202,7 +201,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
-			#define _ALPHATEST_ON 1
 			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 101001
 
@@ -283,10 +281,10 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
-			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _Highlight1Color;
 			float4 _RimColor;
+			float4 _Highlight1Color;
+			float4 _OcclusionMap_ST;
 			float4 _Highlight2Color;
 			float _CullMode;
 			float _Smoothness;
@@ -294,7 +292,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _RimStrength;
 			float _RimEdge;
 			float _Highlight2Strength;
-			float _AO;
 			float _Highlight2Power;
 			float _Highlight1Strength;
 			float _Highlight1Power;
@@ -302,7 +299,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _ShiftMapTilingU;
 			float _Jitter;
 			float _EdgeGradient;
-			float _Float1;
+			float _AO;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -609,7 +606,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 				float Smoothness = lerpResult142;
 				float Occlusion = AO136;
 				float Alpha = Alpha117;
-				float AlphaClipThreshold = _Float1;
+				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 				float3 BakedGI = 0;
 				float3 RefractionColor = 1;
@@ -783,7 +780,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
-			#define _ALPHATEST_ON 1
 			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 101001
 
@@ -825,10 +821,10 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
-			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _Highlight1Color;
 			float4 _RimColor;
+			float4 _Highlight1Color;
+			float4 _OcclusionMap_ST;
 			float4 _Highlight2Color;
 			float _CullMode;
 			float _Smoothness;
@@ -836,7 +832,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _RimStrength;
 			float _RimEdge;
 			float _Highlight2Strength;
-			float _AO;
 			float _Highlight2Power;
 			float _Highlight1Strength;
 			float _Highlight1Power;
@@ -844,7 +839,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _ShiftMapTilingU;
 			float _Jitter;
 			float _EdgeGradient;
-			float _Float1;
+			float _AO;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -1042,7 +1037,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 				
 
 				float Alpha = Alpha117;
-				float AlphaClipThreshold = _Float1;
+				float AlphaClipThreshold = 0.5;
 				#ifdef ASE_DEPTH_WRITE_ON
 					float DepthValue = 0;
 				#endif
@@ -1081,7 +1076,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
-			#define _ALPHATEST_ON 1
 			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 101001
 
@@ -1132,10 +1126,10 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
-			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _Highlight1Color;
 			float4 _RimColor;
+			float4 _Highlight1Color;
+			float4 _OcclusionMap_ST;
 			float4 _Highlight2Color;
 			float _CullMode;
 			float _Smoothness;
@@ -1143,7 +1137,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _RimStrength;
 			float _RimEdge;
 			float _Highlight2Strength;
-			float _AO;
 			float _Highlight2Power;
 			float _Highlight1Strength;
 			float _Highlight1Power;
@@ -1151,7 +1144,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _ShiftMapTilingU;
 			float _Jitter;
 			float _EdgeGradient;
-			float _Float1;
+			float _AO;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -1393,7 +1386,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 				float3 BaseColor = Albedo128;
 				float3 Emission = 0;
 				float Alpha = Alpha117;
-				float AlphaClipThreshold = _Float1;
+				float AlphaClipThreshold = 0.5;
 
 				#ifdef _ALPHATEST_ON
 					clip(Alpha - AlphaClipThreshold);
@@ -1429,7 +1422,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
-			#define _ALPHATEST_ON 1
 			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 101001
 
@@ -1477,10 +1469,10 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
-			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _Highlight1Color;
 			float4 _RimColor;
+			float4 _Highlight1Color;
+			float4 _OcclusionMap_ST;
 			float4 _Highlight2Color;
 			float _CullMode;
 			float _Smoothness;
@@ -1488,7 +1480,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _RimStrength;
 			float _RimEdge;
 			float _Highlight2Strength;
-			float _AO;
 			float _Highlight2Power;
 			float _Highlight1Strength;
 			float _Highlight1Power;
@@ -1496,7 +1487,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _ShiftMapTilingU;
 			float _Jitter;
 			float _EdgeGradient;
-			float _Float1;
+			float _AO;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -1732,7 +1723,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 
 				float3 BaseColor = Albedo128;
 				float Alpha = Alpha117;
-				float AlphaClipThreshold = _Float1;
+				float AlphaClipThreshold = 0.5;
 
 				half4 color = half4(BaseColor, Alpha );
 
@@ -1765,7 +1756,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
-			#define _ALPHATEST_ON 1
 			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 101001
 
@@ -1808,10 +1798,10 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
-			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _Highlight1Color;
 			float4 _RimColor;
+			float4 _Highlight1Color;
+			float4 _OcclusionMap_ST;
 			float4 _Highlight2Color;
 			float _CullMode;
 			float _Smoothness;
@@ -1819,7 +1809,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _RimStrength;
 			float _RimEdge;
 			float _Highlight2Strength;
-			float _AO;
 			float _Highlight2Power;
 			float _Highlight1Strength;
 			float _Highlight1Power;
@@ -1827,7 +1816,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _ShiftMapTilingU;
 			float _Jitter;
 			float _EdgeGradient;
-			float _Float1;
+			float _AO;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -2027,7 +2016,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 				
 
 				float Alpha = Alpha117;
-				float AlphaClipThreshold = _Float1;
+				float AlphaClipThreshold = 0.5;
 				#ifdef ASE_DEPTH_WRITE_ON
 					float DepthValue = 0;
 				#endif
@@ -2077,7 +2066,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
-			#define _ALPHATEST_ON 1
 			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 101001
 
@@ -2156,10 +2144,10 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
-			float4 _OcclusionMap_ST;
 			float4 _NormalMap_ST;
-			float4 _Highlight1Color;
 			float4 _RimColor;
+			float4 _Highlight1Color;
+			float4 _OcclusionMap_ST;
 			float4 _Highlight2Color;
 			float _CullMode;
 			float _Smoothness;
@@ -2167,7 +2155,6 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _RimStrength;
 			float _RimEdge;
 			float _Highlight2Strength;
-			float _AO;
 			float _Highlight2Power;
 			float _Highlight1Strength;
 			float _Highlight1Power;
@@ -2175,7 +2162,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 			float _ShiftMapTilingU;
 			float _Jitter;
 			float _EdgeGradient;
-			float _Float1;
+			float _AO;
 			#ifdef ASE_TRANSMISSION
 				float _TransmissionShadow;
 			#endif
@@ -2484,7 +2471,7 @@ Shader "ASE/HairBlend_Alpha_Specular"
 				float Smoothness = lerpResult142;
 				float Occlusion = AO136;
 				float Alpha = Alpha117;
-				float AlphaClipThreshold = _Float1;
+				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 				float3 BakedGI = 0;
 				float3 RefractionColor = 1;
@@ -2704,7 +2691,6 @@ Node;AmplifyShaderEditor.GetLocalVarNode;112;-3829.431,-1303.864;Inherit;False;1
 Node;AmplifyShaderEditor.GetLocalVarNode;138;-2433.526,-1090.451;Inherit;False;136;AO;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;118;-2433.997,-981.4509;Inherit;False;117;Alpha;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;123;-6489.036,-2320.636;Inherit;False;Property;_NormalStrength;NormalStrength;4;0;Create;True;0;0;0;False;0;False;1;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;148;-2420.592,-859.5731;Inherit;False;Property;_Float1;Float 1;23;0;Create;True;0;0;0;False;0;False;0;0;0;2;0;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;132;-2393.677,-1553.474;Inherit;False;128;Albedo;1;0;OBJECT;;False;1;FLOAT3;0
 WireConnection;13;0;14;0
 WireConnection;10;0;13;0
@@ -2801,7 +2787,6 @@ WireConnection;2;1;126;0
 WireConnection;2;4;142;0
 WireConnection;2;5;138;0
 WireConnection;2;6;118;0
-WireConnection;2;7;148;0
 WireConnection;142;1;119;0
 WireConnection;142;2;141;0
 WireConnection;97;0;96;0
@@ -2820,4 +2805,4 @@ WireConnection;146;1;130;0
 WireConnection;146;2;147;0
 WireConnection;90;0;146;0
 ASEEND*/
-//CHKSM=3987016793FF7DB65ED0A079154CC0CD51F31693
+//CHKSM=D28461241E12260FE07D819BD23D1A75F1E10C1B

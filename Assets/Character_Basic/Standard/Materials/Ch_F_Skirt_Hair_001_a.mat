@@ -103,11 +103,11 @@ Material:
     - _EnableAO: 0
     - _EnvironmentReflections: 1
     - _Float1: -0.5
-    - _GeneralShift: 0.35
+    - _GeneralShift: 0.5
     - _Highlight1Power: 248
-    - _Highlight1Strength: 1
-    - _Highlight2Power: 385
-    - _Highlight2Strength: 0.546
+    - _Highlight1Strength: 0.727
+    - _Highlight2Power: 401
+    - _Highlight2Strength: 0.322
     - _Jitter: 1
     - _NormalStrength: 1
     - _ReceiveShadows: 1
@@ -127,5 +127,5 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight1Color: {r: 0.37647057, g: 0.30196077, b: 0.30196077, a: 1}
     - _Highlight2Color: {r: 0.6320754, g: 0.58139014, b: 0.58139014, a: 1}
-    - _RimColor: {r: 0.61089355, g: 0.70761395, b: 0.9056604, a: 0}
+    - _RimColor: {r: 0.44313726, g: 0.29803923, b: 0.29803923, a: 1}
   m_BuildTextureStacks: []
