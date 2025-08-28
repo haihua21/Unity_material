@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.15
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.13296545, g: 0.19145328, b: 0.33962262, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 0ffaa0b7117ba8c47a9d05ae701d4b4d, type: 2}
   m_HaloStrength: 0.5
@@ -822,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
       propertyPath: m_LocalPosition.y
@@ -865,6 +865,10 @@ PrefabInstance:
       value: SK_Ch_F_Clothing_001
       objectReference: {fileID: 0}
     - target: {fileID: 7158002324246686245, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158002324246686245, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d24d9890f5e953445960f6ced541ffe1, type: 2}
@@ -876,6 +880,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 0d258e75f7e1cbb4396fc44da5be1504, type: 2}
+    - target: {fileID: 7158002324246686245, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62a84c1124e957f45ab08aaf9e12919b, type: 2}
+    - target: {fileID: 7158002324246686245, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17145ea9bfe116c4b890f723b4dae07d, type: 2}
+    - target: {fileID: 7158002324246686245, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17145ea9bfe116c4b890f723b4dae07d, type: 2}
+    - target: {fileID: 7158002324246686245, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 17145ea9bfe116c4b890f723b4dae07d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8247e7e19ff9c14e8ab320502eac671, type: 3}
 --- !u!1 &1687258581
@@ -1095,13 +1115,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch_F_Girl_Hair_001
       objectReference: {fileID: 0}
+    - target: {fileID: 6127840979809530286, guid: cda0bd94e1badee48a3e4ff745509f34, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6791892554424036116, guid: cda0bd94e1badee48a3e4ff745509f34, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6791892554424036116, guid: cda0bd94e1badee48a3e4ff745509f34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6791892554424036116, guid: cda0bd94e1badee48a3e4ff745509f34, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1148,6 +1172,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8547513366293896489, guid: eaeee3bd52bba0344a6f47e8e0980977, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8547513366293896495, guid: eaeee3bd52bba0344a6f47e8e0980977, type: 3}
       propertyPath: m_Name
       value: Ch_F_Head_001
@@ -1158,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8547513366294184207, guid: eaeee3bd52bba0344a6f47e8e0980977, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.288
       objectReference: {fileID: 0}
     - target: {fileID: 8547513366294184207, guid: eaeee3bd52bba0344a6f47e8e0980977, type: 3}
       propertyPath: m_LocalPosition.y

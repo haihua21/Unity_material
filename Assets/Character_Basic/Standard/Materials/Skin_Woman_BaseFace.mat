@@ -94,7 +94,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Culling: 0
-    - _Curvature: 0.322
+    - _Curvature: 0.333
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -106,7 +106,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _OcclusionStrength: 0.929
+    - _OcclusionStrength: 0.323
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReadMask: 255
@@ -116,10 +116,10 @@ Material:
     - _RimMinPower: 1
     - _RimPerPositionFrequency: 1
     - _RimPower: 2
-    - _ShadowStrength: 0.203
+    - _ShadowStrength: 0.181
     - _SkinShadowBias: 0.1
     - _SkinShadowSamplingBias: 0.0037
-    - _Smoothness: 0.643
+    - _Smoothness: 0.68
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -129,7 +129,7 @@ Material:
     - _StencilOp: 0
     - _StencilZFail: 0
     - _Surface: 0
-    - _TranslucencyPower: 4.82
+    - _TranslucencyPower: 3.51
     - _TranslucencyStrength: 0.1
     - _WorkflowMode: 1
     - _WriteMask: 255
