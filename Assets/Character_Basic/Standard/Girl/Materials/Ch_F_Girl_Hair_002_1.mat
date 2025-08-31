@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ch_F_Girl_Hair_002_a
-  m_Shader: {fileID: 4800000, guid: c9d748b1ec84fbc49b0b12217b116d24, type: 3}
+  m_Name: Ch_F_Girl_Hair_002_1
+  m_Shader: {fileID: -6465566751694194690, guid: 5692df479c9e00249abda06339812be0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_1893AB0E:
-        m_Texture: {fileID: 2800000, guid: ebf0b0faa08dd46498c9bee0af210c82, type: 3}
+        m_Texture: {fileID: 2800000, guid: 80ceb017363e2a146a6582ffe40ceaca, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_A312E01B:
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_AF09E3:
-        m_Texture: {fileID: 2800000, guid: 9cbe24a69c0cad24bb0a7415fa980ada, type: 3}
+        m_Texture: {fileID: 2800000, guid: ef8354fa5d7e8ba40b5662ab71616b30, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -82,7 +82,7 @@ Material:
     - Vector1_3DACEB9C: 9
     - Vector1_478E8D91: 1
     - Vector1_4C02AE25: 1
-    - Vector1_4FFC54BC: 0.3
+    - Vector1_4FFC54BC: 0.85
     - Vector1_517006F: 0.1
     - Vector1_553846FF: 62
     - Vector1_5906ABF6: 0.95
@@ -104,11 +104,11 @@ Material:
     - _EnvironmentReflections: 1
     - _Float1: -0.5
     - _Float2: 1
-    - _GeneralShift: 0.46
+    - _GeneralShift: 1.37
     - _Highlight1Power: 61
     - _Highlight1Strength: 0.547
     - _Highlight2Power: 230
-    - _Highlight2Strength: 0.323
+    - _Highlight2Strength: 0
     - _Jitter: 1.06
     - _NormalStrength: 0
     - _ReceiveShadows: 1
@@ -121,10 +121,10 @@ Material:
     m_Colors:
     - Color_68C4C488: {r: 0.9622641, g: 0.81247777, b: 0.8201194, a: 0}
     - Color_809F49D3: {r: 0.3773585, g: 0.3008188, b: 0.3008188, a: 1}
-    - Color_CEAB9558: {r: 0.16981128, g: 0.1369704, b: 0.1369704, a: 1}
+    - Color_CEAB9558: {r: 1, g: 0.8726415, b: 0.8726415, a: 1}
     - Color_E4206776: {r: 0.4811321, g: 0.44708973, b: 0.44708973, a: 1}
     - Vector2_2F175FF: {r: 5, g: 1, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 0.8745098, b: 0.8745098, a: 1}
+    - _BaseColor: {r: 0.49394804, g: 0.5253694, b: 0.5660378, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight1Color: {r: 0.3764706, g: 0.3019608, b: 0.3019608, a: 1}
     - _Highlight2Color: {r: 0.3300107, g: 0.5202335, b: 0.6792453, a: 1}

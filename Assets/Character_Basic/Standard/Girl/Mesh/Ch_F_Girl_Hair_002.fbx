@@ -9,10 +9,10 @@ FBXHeaderExtension:  {
 		Year: 2025
 		Month: 9
 		Day: 1
-		Hour: 0
-		Minute: 49
-		Second: 15
-		Millisecond: 703
+		Hour: 1
+		Minute: 1
+		Second: 16
+		Millisecond: 868
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.1.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -34,13 +34,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2022"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "31/08/2025 16:49:15.702"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "31/08/2025 17:01:16.863"
 			P: "Original|FileName", "KString", "", "", "D:\Unity_material\Assets\Character_Basic\Standard\Girl\Mesh\Ch_F_Girl_Hair_002.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2022"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "31/08/2025 16:49:15.702"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "31/08/2025 17:01:16.863"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\Administrator\Documents\3ds Max 2022"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "E:\work\2024\测试\源之宇宙_泉州\Mamianqun_01_b\Max\Mamianqun_01.max"
 		}
@@ -60,7 +60,7 @@ GlobalSettings:  {
 		P: "UnitScaleFactor", "double", "Number", "",1
 		P: "OriginalUnitScaleFactor", "double", "Number", "",1
 		P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
-		P: "DefaultCamera", "KString", "", "", "Producer Front"
+		P: "DefaultCamera", "KString", "", "", "Producer Perspective"
 		P: "TimeMode", "enum", "", "",6
 		P: "TimeProtocol", "enum", "", "",2
 		P: "SnapOnFrameMode", "enum", "", "",0
@@ -77,7 +77,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 2319557020832, "", "Scene" {
+	Document: 2317322136432, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -296,7 +296,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 2318144681008, "Geometry::", "Mesh" {
+	Geometry: 2319817446768, "Geometry::", "Mesh" {
 		Vertices: *19989 {
 			a: -4.52794027328491,-5.64612770080566,163.924224853516,-5.34318017959595,-4.63034200668335,163.488296508789,-5.93612289428711,-4.18889284133911,161.809951782227,-5.07243824005127,-4.99118852615356,162.38639831543,-4.56540632247925,-5.8417649269104,162.653503417969,-6.29393768310547,-3.38991546630859,162.590515136719,-4.1485538482666,-4.47856950759888,165.895034790039,-5.18589878082275,-3.14775943756104,165.751571655273,-6.49102306365967,-1.63246893882751,164.787231445313,-4.39453125,-0.706376612186432,167.126327514648,-3.25303840637207,-2.56735301017761,167.262008666992,-5.69303274154663,0.923602104187012,166.237289428711,-3.54260945320129,1.98415422439575,167.567932128906,-4.86606693267822,3.2197744846344,166.770294189453,-2.77470636367798,4.10897302627563,167.402648925781,-4.18465328216553,4.81136178970337,166.76594543457,-2.29808187484741,0.158736243844032,167.99462890625,-1.55100762844086,2.89978241920471,167.909545898438,1.01743817329407,5.10645914077759,167.593505859375,0.624941408634186,4.71343564987183,167.781631469727,2.98821330070496,-4.89443302154541,166.715347290039,1.76255691051483,-5.36958789825439,166.661224365234,2.28548145294189,-6.26206827163696,165.571716308594,3.42305040359497,-5.74400854110718,165.504486083984,5.06669425964355,-5.3008131980896,162.830978393555,5.54160308837891,-4.49170637130737,162.779434204102,6.05233287811279,-4.5716495513916,163.731506347656,5.01175355911255,-5.49021673202515,163.962371826172,4.3889946937561,-5.963294506073,164.026168823242,4.51134347915649,-5.94988393783569,162.763320922852,5.73148441314697,-3.33791637420654,165.741302490234,4.43288564682007,-4.16069459915161,166.317520141602,4.8092212677002,-4.96601152420044,165.187728881836,6.05795097351074,-4.12163305282593,164.730010986328,4.14138889312744,-5.37151384353638,165.384796142578,2.427659034729,-3.88642692565918,167.579711914063,1.23058128356934,-4.31540441513062,167.40837097168,5.21856594085693,-2.36266374588013,166.541427612305,3.92482566833496,-3.22383904457092,167.161224365234,4.579430103302,-1.06990349292755,167.084991455078,
 3.32134389877319,-1.99532532691956,167.774139404297,2.50893402099609,-2.01093554496765,168.14811706543,3.20561385154724,-3.57558393478394,167.441329956055,2.12802076339722,1.52651214599609,168.246032714844,1.576296210289,3.45692896842957,168.050689697266,1.08790743350983,3.04614949226379,168.389739990234,1.56412816047668,1.08025336265564,168.737716674805,3.81452441215515,0.555899381637573,167.444976806641,2.71505498886108,-0.390171766281128,168.157516479492,2.08071231842041,-0.791001081466675,168.504455566406,3.01584792137146,2.41401600837708,167.719940185547,2.18111824989319,4.21376943588257,167.662796020508,1.44327449798584,5.70853281021118,167.373229980469,-1.47741985321045,3.60529828071594,167.419769287109,-2.7863245010376,-6.15812492370605,165.831466674805,-1.18434047698975,-6.69462585449219,166.420959472656,0.195456698536873,-6.78583669662476,166.246917724609,1.63617706298828,-6.2077488899231,166.45329284668,2.29039788246155,-7.99709844589233,162.198837280273,2.31169319152832,-7.58483362197876,163.629425048828,1.20785391330719,-7.97379732131958,163.46110534668,1.35858535766602,-8.43221855163574,162.066009521484,3.79408478736877,-6.79749155044556,162.583892822266,3.80886316299438,-6.66421461105347,163.6708984375,3.04624676704407,-5.44880676269531,166.128051757813,-0.0693107023835182,-8.01202392578125,163.579406738281,-1.67598044872284,-7.70552015304565,163.661285400391,-1.24697947502136,-8.21308708190918,162.554580688477,0.322512418031693,-8.53641128540039,162.115280151367,0.166886299848557,-2.81576752662659,168.582534790039,-0.966296970844269,-3.06671667098999,168.351959228516,-0.52494603395462,-5.21736812591553,167.341705322266,0.885066449642181,-4.89476013183594,167.62060546875,2.2649884223938,-4.39399003982544,167.318450927734,1.27156114578247,-2.42015886306763,168.295608520508,-1.70989775657654,-4.7903094291687,167.685928344727,-2.99310159683228,-4.61804533004761,166.892211914063,-1.75892603397369,-3.0472559928894,168.355270385742,-2.59211134910583,-2.84818625450134,167.702239990234,-2.15475153923035,-0.565800726413727,168.01887512207,
@@ -1800,7 +1800,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 2319175581328, "Model::Ch_F_Girl_Hair_002", "Mesh" {
+	Model: 2320054654992, "Model::Ch_F_Girl_Hair_002", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1821,7 +1821,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 2319567116096, "Material::Hair 1", "" {
+	Material: 2319177475616, "Material::Hair 1", "" {
 		Version: 102
 		ShadingModel: "unknown"
 		MultiLayer: 0
@@ -1931,7 +1931,7 @@ Objects:  {
 			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
 		}
 	}
-	Video: 2319817083056, "Video::Map #58", "Clip" {
+	Video: 2319817056176, "Video::Map #58", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "E:\work\2024\3D角色\Ch_F_BaseBody_001\Render\BH_hairstyle_O.tga"
@@ -1941,7 +1941,7 @@ Objects:  {
 		Filename: "E:\work\2024\3D角色\Ch_F_BaseBody_001\Render\BH_hairstyle_O.tga"
 		RelativeFilename: "E:\work\2024\3D角色\Ch_F_BaseBody_001\Render\BH_hairstyle_O.tga"
 	}
-	Texture: 2319817082576, "Texture::Map #58", "" {
+	Texture: 2319817071536, "Texture::Map #58", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::Map #58"
@@ -1957,7 +1957,7 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	Implementation: 2319140874352, "Implementation::Hair 1_Implementation", "" {
+	Implementation: 2319176756752, "Implementation::Hair 1_Implementation", "" {
 		Version: 100
 		Properties70:  {
 			P: "ShaderLanguage", "KString", "", "", "AiOSL"
@@ -1965,7 +1965,7 @@ Objects:  {
 			P: "RootBindingName", "KString", "", "", "root"
 		}
 	}
-	BindingTable: 2319814047760, "BindingTable::root 2", "" {
+	BindingTable: 2319814075120, "BindingTable::root 5", "" {
 		Version: 100
 		Properties70:  {
 			P: "TargetName", "KString", "", "", "root"
@@ -2060,16 +2060,16 @@ Objects:  {
 		Entry: "3dsMax|Parameters|cutout_map_on", "FbxPropertyEntry", "cutout_map_on", "FbxSemanticEntry"
 		Entry: "3dsMax|Parameters|displacement_map_amt", "FbxPropertyEntry", "displacement_map_amt", "FbxSemanticEntry"
 	}
-	CollectionExclusive: 2319571538720, "DisplayLayer::1.5", "DisplayLayer" {
+	CollectionExclusive: 2318242464736, "DisplayLayer::1.5", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.450980392156863,0.450980392156863,0.450980392156863
 		}
 	}
-	CollectionExclusive: 2319571539488, "DisplayLayer::zhanzi:layer1", "DisplayLayer" {
+	CollectionExclusive: 2318242465120, "DisplayLayer::zhanzi:layer1", "DisplayLayer" {
 	}
-	CollectionExclusive: 2317286633472, "DisplayLayer::zhanzi:layer2", "DisplayLayer" {
+	CollectionExclusive: 2318242462816, "DisplayLayer::zhanzi:layer2", "DisplayLayer" {
 	}
-	CollectionExclusive: 2317286634624, "DisplayLayer::body", "DisplayLayer" {
+	CollectionExclusive: 2317272968160, "DisplayLayer::body", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.0235294117647059,0.498039215686275,0.0235294117647059
 		}
@@ -2082,29 +2082,29 @@ Objects:  {
 Connections:  {
 	
 	;Model::Ch_F_Girl_Hair_002, Model::RootNode
-	C: "OO",2319175581328,0
+	C: "OO",2320054654992,0
 	
 	;Material::Hair 1, Model::Ch_F_Girl_Hair_002
-	C: "OO",2319567116096,2319175581328
+	C: "OO",2319177475616,2320054654992
 	
 	;Geometry::, Model::Ch_F_Girl_Hair_002
-	C: "OO",2318144681008,2319175581328
+	C: "OO",2319817446768,2320054654992
 	
 	;Texture::Map #58, Material::Hair 1
-	C: "OP",2319817082576,2319567116096, "DiffuseColor"
+	C: "OP",2319817071536,2319177475616, "DiffuseColor"
 	
 	;Texture::Map #58, Material::Hair 1
-	C: "OP",2319817082576,2319567116096, "3dsMax|Parameters|base_color_map"
+	C: "OP",2319817071536,2319177475616, "3dsMax|Parameters|base_color_map"
 	
 	;Video::Map #58, Texture::Map #58
-	C: "OO",2319817083056,2319817082576
+	C: "OO",2319817056176,2319817071536
 	
 	;Material::Hair 1, Implementation::Hair 1_Implementation
-	C: "OO",2319567116096,2319140874352
+	C: "OO",2319177475616,2319176756752
 	
-	;BindingTable::root 2, Implementation::Hair 1_Implementation
-	C: "OO",2319814047760,2319140874352
+	;BindingTable::root 5, Implementation::Hair 1_Implementation
+	C: "OO",2319814075120,2319176756752
 	
 	;Model::Ch_F_Girl_Hair_002, DisplayLayer::1.5
-	C: "OO",2319175581328,2319571538720
+	C: "OO",2320054654992,2318242464736
 }
