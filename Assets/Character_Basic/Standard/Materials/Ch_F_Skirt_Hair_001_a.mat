@@ -95,10 +95,10 @@ Material:
     - Vector1_F48C082A: 0.2
     - Vector1_FAAF2867: 0.33
     - _AO: 0
-    - _AlphaCutoff: 0.8
+    - _AlphaCutoff: 1
     - _Cull: 0
     - _CullMode: 0
-    - _DitherThreshold: 0.5
+    - _DitherThreshold: 0.33
     - _EdgeGradient: 0.1
     - _EnableAO: 0
     - _EnvironmentReflections: 1
@@ -109,12 +109,12 @@ Material:
     - _Highlight2Power: 401
     - _Highlight2Strength: 0.322
     - _Jitter: 1
-    - _NormalStrength: 1
+    - _NormalStrength: 0
     - _ReceiveShadows: 1
     - _RimEdge: 5
     - _RimStrength: 0.3
     - _ShiftMapTilingU: 0.85
-    - _Smoothness: 0
+    - _Smoothness: 0.2
     - _SpecularHighlights: 1
     - _dou: 0
     m_Colors:
@@ -123,7 +123,7 @@ Material:
     - Color_CEAB9558: {r: 0.16981128, g: 0.1369704, b: 0.1369704, a: 1}
     - Color_E4206776: {r: 0.4811321, g: 0.44708973, b: 0.44708973, a: 1}
     - Vector2_2F175FF: {r: 5, g: 1, b: 0, a: 0}
-    - _BaseColor: {r: 0.16862746, g: 0.13725491, b: 0.13725491, a: 1}
+    - _BaseColor: {r: 0.6698113, g: 0.5718672, b: 0.5718672, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight1Color: {r: 0.37647057, g: 0.30196077, b: 0.30196077, a: 1}
     - _Highlight2Color: {r: 0.6320754, g: 0.58139014, b: 0.58139014, a: 1}

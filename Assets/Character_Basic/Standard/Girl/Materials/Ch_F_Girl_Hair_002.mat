@@ -104,7 +104,7 @@ Material:
     - _EnvironmentReflections: 1
     - _Float1: -0.5
     - _Float2: 1
-    - _GeneralShift: 0.86
+    - _GeneralShift: 0.85
     - _Highlight1Power: 62
     - _Highlight1Strength: 1
     - _Highlight2Power: 385
