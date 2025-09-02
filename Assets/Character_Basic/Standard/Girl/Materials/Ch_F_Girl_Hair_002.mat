@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: ef8354fa5d7e8ba40b5662ab71616b30, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -104,13 +104,13 @@ Material:
     - _EnvironmentReflections: 1
     - _Float1: -0.5
     - _Float2: 1
-    - _GeneralShift: 0.85
+    - _GeneralShift: 0.5
     - _Highlight1Power: 62
     - _Highlight1Strength: 1
     - _Highlight2Power: 385
     - _Highlight2Strength: 0.95
-    - _Jitter: 1
-    - _NormalStrength: 0
+    - _Jitter: 0.935
+    - _NormalStrength: 3
     - _ReceiveShadows: 1
     - _RimEdge: 5
     - _RimStrength: 1
@@ -124,7 +124,7 @@ Material:
     - Color_CEAB9558: {r: 0.16981128, g: 0.1369704, b: 0.1369704, a: 1}
     - Color_E4206776: {r: 0.4811321, g: 0.44708973, b: 0.44708973, a: 1}
     - Vector2_2F175FF: {r: 5, g: 1, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 0.8745099, b: 0.8745099, a: 1}
+    - _BaseColor: {r: 0.8207547, g: 0.70848167, b: 0.70848167, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight1Color: {r: 0.3764706, g: 0.3019608, b: 0.3019608, a: 1}
     - _Highlight2Color: {r: 0.48235297, g: 0.44705886, b: 0.44705886, a: 1}

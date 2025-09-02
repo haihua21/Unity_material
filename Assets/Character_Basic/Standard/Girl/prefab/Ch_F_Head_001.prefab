@@ -7384,8 +7384,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: 4adf95014bd1f524caf1bce691ec0f4b, type: 2}
   - {fileID: 2100000, guid: 34f8ff892db73a048b0a9cdd5693996c, type: 2}
-  - {fileID: 2100000, guid: 8307c6652da3f024497ab1829bb0b78b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7572,6 +7572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8547513366294184207}
   - component: {fileID: 8547513366284381931}
+  - component: {fileID: 470337145}
   m_Layer: 0
   m_Name: Ch_F_Head_001
   m_TagString: Untagged
@@ -7617,6 +7618,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &470337145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547513366293896495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d09beba3c63254eb5f6dc67c69ccd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XYZspeed: {x: 0, y: 10, z: 0}
 --- !u!1 &8547513366293896497
 GameObject:
   m_ObjectHideFlags: 0

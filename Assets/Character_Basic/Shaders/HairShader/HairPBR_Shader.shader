@@ -9,8 +9,8 @@ Shader "ASE/HairPBR"
 		_BaseColor("Base Color", Color) = (1,1,1,0)
 		_Smoothness("Smoothness", Range( 0 , 1)) = 0.5
 		_AlphaCutoff("Alpha Cutoff", Range( 0 , 1)) = 0
-		_NormalMap("Normal Map", 2D) = "white" {}
-		_NormalStrength("NormalStrength", Range( 0 , 1)) = 1
+		_NormalMap("Normal Map", 2D) = "bump" {}
+		_NormalStrength("NormalStrength", Range( 0 , 3)) = 1
 		_ShiftMap("Shift Map", 2D) = "white" {}
 		_ShiftMapTilingU("Shift Map Tiling U", Range( 0.1 , 5)) = 3
 		_Jitter("Jitter", Range( 0 , 2)) = 0.5
@@ -21,6 +21,10 @@ Shader "ASE/HairPBR"
 		_Highlight2Color("Highlight 2 Color", Color) = (0.5019608,0.5019608,0.5019608,0)
 		_Highlight2Power("Highlight 2 Power", Range( 0 , 1000)) = 100
 		_Highlight2Strength("Highlight 2 Strength", Range( 0 , 1)) = 1
+		_RimColor("Rim Color", Color) = (0.5019608,0.5019608,0.5019608,0)
+		_RimEdge("Rim Edge", Range( 2 , 10)) = 5
+		_RimStrength("Rim Strength", Range( 0 , 1)) = 1
+		_EdgeGradient("Edge Gradient", Range( 0.1 , 5)) = 1
 		_DitherThreshold("Dither Threshold", Range( 0 , 1)) = 0.6
 		[ASEEnd][Enum(UnityEngine.Rendering.CullMode)]_CullMode("Cull Mode", Float) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
@@ -274,16 +278,20 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _Highlight1Color;
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
 			float4 _NormalMap_ST;
+			float4 _RimColor;
+			float4 _Highlight1Color;
 			float4 _Highlight2Color;
+			float _CullMode;
 			float _Smoothness;
 			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _EdgeGradient;
 			float _Highlight2Strength;
 			float _Highlight2Power;
-			float _CullMode;
 			float _Highlight1Strength;
 			float _Highlight1Power;
 			float _GeneralShift;
@@ -574,11 +582,21 @@ Shader "ASE/HairPBR"
 				float smoothstepResult81 = smoothstep( -1.0 , 0.0 , dotResult58);
 				float3 lerpResult175 = lerp( float3( 0,0,0 ) , (( ( ( smoothstepResult62 * ( pow( sqrt( ( 1.0 - ( dotResult61 * dotResult61 ) ) ) , _Highlight1Power ) * _Highlight1Strength ) ) * _Highlight1Color ) + ( ( smoothstepResult81 * ( pow( sqrt( ( 1.0 - ( dotResult58 * dotResult58 ) ) ) , _Highlight2Power ) * _Highlight2Strength ) ) * _Highlight2Color ) )).rgb , ase_vface);
 				float3 Anisotropy90 = lerpResult175;
-				float3 Albedo128 = ( BaseColor111 + Anisotropy90 );
+				float3 LightDir95 = _MainLightPosition.xyz;
+				float fresnelNdotV92 = dot( WorldNormal, LightDir95 );
+				float fresnelNode92 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV92, _EdgeGradient ) );
+				float fresnelNdotV98 = dot( WorldNormal, WorldViewDirection );
+				float fresnelNode98 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV98, _RimEdge ) );
+				float3 lerpResult163 = lerp( float3( 0,0,0 ) , (( ( 1.0 - fresnelNode92 ) * fresnelNode98 * _RimColor * _RimStrength )).rgb , ase_vface);
+				float3 RimLight105 = lerpResult163;
+				float3 Albedo128 = ( BaseColor111 + Anisotropy90 + RimLight105 );
 				
 				float2 uv_NormalMap = IN.ase_texcoord7.xy * _NormalMap_ST.xy + _NormalMap_ST.zw;
-				float3 lerpResult121 = lerp( float3(0.5,0.5,1) , (tex2D( _NormalMap, uv_NormalMap )).rgb , _NormalStrength);
-				float3 NormalMap124 = lerpResult121;
+				float3 tex2DNode120 = UnpackNormalScale( tex2D( _NormalMap, uv_NormalMap ), 1.0f );
+				float2 appendResult194 = (float2(tex2DNode120.r , tex2DNode120.g));
+				float2 break197 = ( appendResult194 * _NormalStrength );
+				float3 appendResult196 = (float3(break197.x , break197.y , tex2DNode120.b));
+				float3 NormalMap124 = appendResult196;
 				
 				float lerpResult152 = lerp( 0.0 , _Smoothness , ase_vface);
 				
@@ -814,16 +832,20 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _Highlight1Color;
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
 			float4 _NormalMap_ST;
+			float4 _RimColor;
+			float4 _Highlight1Color;
 			float4 _Highlight2Color;
+			float _CullMode;
 			float _Smoothness;
 			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _EdgeGradient;
 			float _Highlight2Strength;
 			float _Highlight2Power;
-			float _CullMode;
 			float _Highlight1Strength;
 			float _Highlight1Power;
 			float _GeneralShift;
@@ -1166,16 +1188,20 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _Highlight1Color;
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
 			float4 _NormalMap_ST;
+			float4 _RimColor;
+			float4 _Highlight1Color;
 			float4 _Highlight2Color;
+			float _CullMode;
 			float _Smoothness;
 			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _EdgeGradient;
 			float _Highlight2Strength;
 			float _Highlight2Power;
-			float _CullMode;
 			float _Highlight1Strength;
 			float _Highlight1Power;
 			float _GeneralShift;
@@ -1491,16 +1517,20 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _Highlight1Color;
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
 			float4 _NormalMap_ST;
+			float4 _RimColor;
+			float4 _Highlight1Color;
 			float4 _Highlight2Color;
+			float _CullMode;
 			float _Smoothness;
 			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _EdgeGradient;
 			float _Highlight2Strength;
 			float _Highlight2Power;
-			float _CullMode;
 			float _Highlight1Strength;
 			float _Highlight1Power;
 			float _GeneralShift;
@@ -1754,7 +1784,14 @@ Shader "ASE/HairPBR"
 				float smoothstepResult81 = smoothstep( -1.0 , 0.0 , dotResult58);
 				float3 lerpResult175 = lerp( float3( 0,0,0 ) , (( ( ( smoothstepResult62 * ( pow( sqrt( ( 1.0 - ( dotResult61 * dotResult61 ) ) ) , _Highlight1Power ) * _Highlight1Strength ) ) * _Highlight1Color ) + ( ( smoothstepResult81 * ( pow( sqrt( ( 1.0 - ( dotResult58 * dotResult58 ) ) ) , _Highlight2Power ) * _Highlight2Strength ) ) * _Highlight2Color ) )).rgb , ase_vface);
 				float3 Anisotropy90 = lerpResult175;
-				float3 Albedo128 = ( BaseColor111 + Anisotropy90 );
+				float3 LightDir95 = _MainLightPosition.xyz;
+				float fresnelNdotV92 = dot( ase_worldNormal, LightDir95 );
+				float fresnelNode92 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV92, _EdgeGradient ) );
+				float fresnelNdotV98 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode98 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV98, _RimEdge ) );
+				float3 lerpResult163 = lerp( float3( 0,0,0 ) , (( ( 1.0 - fresnelNode92 ) * fresnelNode98 * _RimColor * _RimStrength )).rgb , ase_vface);
+				float3 RimLight105 = lerpResult163;
+				float3 Albedo128 = ( BaseColor111 + Anisotropy90 + RimLight105 );
 				
 				float temp_output_115_0 = (temp_output_107_0).a;
 				float4 screenPos = IN.ase_texcoord6;
@@ -1852,16 +1889,20 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _Highlight1Color;
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
 			float4 _NormalMap_ST;
+			float4 _RimColor;
+			float4 _Highlight1Color;
 			float4 _Highlight2Color;
+			float _CullMode;
 			float _Smoothness;
 			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _EdgeGradient;
 			float _Highlight2Strength;
 			float _Highlight2Power;
-			float _CullMode;
 			float _Highlight1Strength;
 			float _Highlight1Power;
 			float _GeneralShift;
@@ -2110,7 +2151,14 @@ Shader "ASE/HairPBR"
 				float smoothstepResult81 = smoothstep( -1.0 , 0.0 , dotResult58);
 				float3 lerpResult175 = lerp( float3( 0,0,0 ) , (( ( ( smoothstepResult62 * ( pow( sqrt( ( 1.0 - ( dotResult61 * dotResult61 ) ) ) , _Highlight1Power ) * _Highlight1Strength ) ) * _Highlight1Color ) + ( ( smoothstepResult81 * ( pow( sqrt( ( 1.0 - ( dotResult58 * dotResult58 ) ) ) , _Highlight2Power ) * _Highlight2Strength ) ) * _Highlight2Color ) )).rgb , ase_vface);
 				float3 Anisotropy90 = lerpResult175;
-				float3 Albedo128 = ( BaseColor111 + Anisotropy90 );
+				float3 LightDir95 = _MainLightPosition.xyz;
+				float fresnelNdotV92 = dot( ase_worldNormal, LightDir95 );
+				float fresnelNode92 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV92, _EdgeGradient ) );
+				float fresnelNdotV98 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode98 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV98, _RimEdge ) );
+				float3 lerpResult163 = lerp( float3( 0,0,0 ) , (( ( 1.0 - fresnelNode92 ) * fresnelNode98 * _RimColor * _RimStrength )).rgb , ase_vface);
+				float3 RimLight105 = lerpResult163;
+				float3 Albedo128 = ( BaseColor111 + Anisotropy90 + RimLight105 );
 				
 				float temp_output_115_0 = (temp_output_107_0).a;
 				float4 screenPos = IN.ase_texcoord6;
@@ -2198,16 +2246,20 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _Highlight1Color;
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
 			float4 _NormalMap_ST;
+			float4 _RimColor;
+			float4 _Highlight1Color;
 			float4 _Highlight2Color;
+			float _CullMode;
 			float _Smoothness;
 			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _EdgeGradient;
 			float _Highlight2Strength;
 			float _Highlight2Power;
-			float _CullMode;
 			float _Highlight1Strength;
 			float _Highlight1Power;
 			float _GeneralShift;
@@ -2563,16 +2615,20 @@ Shader "ASE/HairPBR"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _Highlight1Color;
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
 			float4 _NormalMap_ST;
+			float4 _RimColor;
+			float4 _Highlight1Color;
 			float4 _Highlight2Color;
+			float _CullMode;
 			float _Smoothness;
 			float _NormalStrength;
+			float _RimStrength;
+			float _RimEdge;
+			float _EdgeGradient;
 			float _Highlight2Strength;
 			float _Highlight2Power;
-			float _CullMode;
 			float _Highlight1Strength;
 			float _Highlight1Power;
 			float _GeneralShift;
@@ -2865,11 +2921,21 @@ Shader "ASE/HairPBR"
 				float smoothstepResult81 = smoothstep( -1.0 , 0.0 , dotResult58);
 				float3 lerpResult175 = lerp( float3( 0,0,0 ) , (( ( ( smoothstepResult62 * ( pow( sqrt( ( 1.0 - ( dotResult61 * dotResult61 ) ) ) , _Highlight1Power ) * _Highlight1Strength ) ) * _Highlight1Color ) + ( ( smoothstepResult81 * ( pow( sqrt( ( 1.0 - ( dotResult58 * dotResult58 ) ) ) , _Highlight2Power ) * _Highlight2Strength ) ) * _Highlight2Color ) )).rgb , ase_vface);
 				float3 Anisotropy90 = lerpResult175;
-				float3 Albedo128 = ( BaseColor111 + Anisotropy90 );
+				float3 LightDir95 = _MainLightPosition.xyz;
+				float fresnelNdotV92 = dot( WorldNormal, LightDir95 );
+				float fresnelNode92 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV92, _EdgeGradient ) );
+				float fresnelNdotV98 = dot( WorldNormal, WorldViewDirection );
+				float fresnelNode98 = ( 0.0 + 1.0 * pow( 1.0 - fresnelNdotV98, _RimEdge ) );
+				float3 lerpResult163 = lerp( float3( 0,0,0 ) , (( ( 1.0 - fresnelNode92 ) * fresnelNode98 * _RimColor * _RimStrength )).rgb , ase_vface);
+				float3 RimLight105 = lerpResult163;
+				float3 Albedo128 = ( BaseColor111 + Anisotropy90 + RimLight105 );
 				
 				float2 uv_NormalMap = IN.ase_texcoord7.xy * _NormalMap_ST.xy + _NormalMap_ST.zw;
-				float3 lerpResult121 = lerp( float3(0.5,0.5,1) , (tex2D( _NormalMap, uv_NormalMap )).rgb , _NormalStrength);
-				float3 NormalMap124 = lerpResult121;
+				float3 tex2DNode120 = UnpackNormalScale( tex2D( _NormalMap, uv_NormalMap ), 1.0f );
+				float2 appendResult194 = (float2(tex2DNode120.r , tex2DNode120.g));
+				float2 break197 = ( appendResult194 * _NormalStrength );
+				float3 appendResult196 = (float3(break197.x , break197.y , tex2DNode120.b));
+				float3 NormalMap124 = appendResult196;
 				
 				float lerpResult152 = lerp( 0.0 , _Smoothness , ase_vface);
 				
@@ -3047,8 +3113,7 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;97;-7751.664,-213.8438;Inherit;Tru
 Node;AmplifyShaderEditor.ComponentMaskNode;116;-8740.259,-3220.843;Inherit;False;True;True;True;False;1;0;COLOR;0,0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.ComponentMaskNode;115;-8947.917,-3051.399;Inherit;False;False;False;False;True;1;0;COLOR;0,0,0,0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.CommentaryNode;137;-5429.341,-2716.333;Inherit;False;1097.158;493.0706;AO;6;136;134;133;135;149;148;;1,0.5518868,0.5518868,1;0;0
-Node;AmplifyShaderEditor.CommentaryNode;125;-6731.478,-2734.012;Inherit;False;1145.903;517.176;Normal Map;6;123;124;122;121;120;127;;0.5424528,0.9858343,1,1;0;0
-Node;AmplifyShaderEditor.SamplerNode;120;-6673.478,-2684.012;Inherit;True;Property;_NormalMap;Normal Map;4;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.CommentaryNode;125;-7364.914,-2750.202;Inherit;False;1286.198;398.1029;Normal Map;7;123;124;194;195;197;196;120;;0.5424528,0.9858343,1,1;0;0
 Node;AmplifyShaderEditor.RangedFloatNode;149;-5349.524,-2474.705;Inherit;False;Property;_AO;AO;8;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.CommentaryNode;131;-4164.179,-1346.271;Inherit;False;730.7373;367.8313;Comment;5;112;110;114;109;128;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.StepOpNode;139;-8978.033,-2651.923;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
@@ -3057,23 +3122,17 @@ Node;AmplifyShaderEditor.RegisterLocalVarNode;111;-8515.276,-3221.391;Inherit;Fa
 Node;AmplifyShaderEditor.LerpOp;148;-5032.524,-2599.705;Inherit;False;3;0;FLOAT;1;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;112;-4114.179,-1296.271;Inherit;False;111;BaseColor;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.LerpOp;141;-8782.901,-2638.181;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;1;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ComponentMaskNode;127;-6362.787,-2676.979;Inherit;False;True;True;True;False;1;0;COLOR;0,0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.StaticSwitch;134;-4829.433,-2647.969;Inherit;False;Property;_EnableAO;Enable AO;6;0;Create;True;0;0;0;False;0;False;0;0;0;True;;Toggle;2;Key0;Key1;Create;True;True;All;9;1;FLOAT;0;False;0;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;143;-8580.622,-2674.107;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;109;-3898.66,-1232.44;Inherit;True;2;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.LerpOp;121;-6122.032,-2658.536;Inherit;True;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;109;-3898.66,-1232.44;Inherit;True;3;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;136;-4531.183,-2645.262;Inherit;False;AO;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode;124;-5876.176,-2662.829;Inherit;False;NormalMap;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.RegisterLocalVarNode;117;-8401.677,-2647.746;Inherit;False;Alpha;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;135;-4774.183,-2535.262;Inherit;False;Constant;_Float0;Float 0;20;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.DitheringNode;142;-9035.901,-2545.181;Inherit;False;0;False;4;0;FLOAT;0;False;1;SAMPLER2D;;False;2;FLOAT4;0,0,0,0;False;3;SAMPLERSTATE;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;140;-9297.324,-2653.022;Inherit;False;Property;_DitherThreshold;Dither Threshold;23;0;Create;True;0;0;0;False;0;False;0.6;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;145;-8882.816,-2435.723;Inherit;False;Constant;_Float1;Float 1;24;0;Create;True;0;0;0;False;0;False;-0.5;-0.5;-2;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.GetLocalVarNode;118;-2686.302,-891.0328;Inherit;False;117;Alpha;1;0;OBJECT;;False;1;FLOAT;0
-Node;AmplifyShaderEditor.GetLocalVarNode;138;-2699.174,-978.4644;Inherit;False;136;AO;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;147;-2757.612,-799.7073;Inherit;False;Property;_AlphaCutoff;Alpha Cutoff;3;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;119;-3002.185,-1205.22;Inherit;False;Property;_Smoothness;Smoothness;2;0;Create;True;0;0;0;False;0;False;0.5;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;156;-3497.061,-928.098;Inherit;False;Property;_CullMode;Cull Mode;24;1;[Enum];Create;True;0;0;1;UnityEngine.Rendering.CullMode;True;0;False;1;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.ColorNode;102;-8008.52,-10.10147;Inherit;False;Property;_RimColor;Rim Color;19;0;Create;True;0;0;0;False;0;False;0.5019608,0.5019608,0.5019608,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.FaceVariableNode;155;-2853.298,-1116.798;Inherit;False;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;152;-2639.555,-1207.518;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
@@ -3091,9 +3150,6 @@ Node;AmplifyShaderEditor.GetLocalVarNode;110;-4113.662,-1204.44;Inherit;False;90
 Node;AmplifyShaderEditor.RegisterLocalVarNode;128;-3657.442,-1237.255;Inherit;False;Albedo;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.ComponentMaskNode;130;-5007.093,-1207.168;Inherit;False;True;True;True;False;1;0;COLOR;0,0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.GetLocalVarNode;114;-4109.063,-1113.467;Inherit;False;105;RimLight;1;0;OBJECT;;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.GetLocalVarNode;126;-2924.798,-1339.405;Inherit;False;124;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.Vector3Node;122;-6559.036,-2479.636;Inherit;False;Constant;_Vector0;Vector 0;17;0;Create;True;0;0;0;False;0;False;0.5,0.5,1;0,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
-Node;AmplifyShaderEditor.RangedFloatNode;123;-6489.036,-2320.636;Inherit;False;Property;_NormalStrength;NormalStrength;5;0;Create;True;0;0;0;False;0;False;1;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;163;-7240.092,-232.4524;Inherit;False;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.FaceVariableNode;162;-7414.835,-112.7324;Inherit;False;0;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;175;-4782.436,-1230.995;Inherit;False;3;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;1;FLOAT3;0
@@ -3114,16 +3170,23 @@ Node;AmplifyShaderEditor.RegisterLocalVarNode;33;-9506.42,-387.0414;Inherit;Fals
 Node;AmplifyShaderEditor.RegisterLocalVarNode;90;-4611.185,-1222.254;Inherit;False;Anisotropy;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.VertexBinormalNode;44;-8795.201,-1571.006;Inherit;True;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.FunctionNode;181;-7581.501,-1102.575;Inherit;False;Blinn-Phong Half Vector;-1;;2;91a149ac9d615be429126c95e20753ce;0;0;1;FLOAT3;0
-Node;AmplifyShaderEditor.GetLocalVarNode;38;-8651.706,-914.7312;Inherit;False;34;ShiftHeightControl_B;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;30;-8282.384,-1002.668;Inherit;True;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.GetLocalVarNode;188;-2654.808,-1385.803;Inherit;False;187;test;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.NormalVertexDataNode;183;-8912.13,-1220.366;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.TangentVertexDataNode;186;-9082.753,-1040.402;Inherit;True;1;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.NormalVertexDataNode;189;-9119.44,-730.5835;Inherit;False;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TransformPositionNode;184;-8735.13,-1224.366;Inherit;False;World;Tangent;False;Fast;True;1;0;FLOAT3;0,0,0;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
-Node;AmplifyShaderEditor.GetLocalVarNode;132;-2659.882,-1534.87;Inherit;False;128;Albedo;1;0;OBJECT;;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.NormalizeNode;43;-8500.048,-1154.326;Inherit;False;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.RegisterLocalVarNode;187;-8596.107,-734.6453;Inherit;False;test;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.GetLocalVarNode;132;-2659.882,-1534.87;Inherit;False;128;Albedo;1;0;OBJECT;;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.GetLocalVarNode;126;-2924.798,-1339.405;Inherit;False;124;NormalMap;1;0;OBJECT;;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.SamplerNode;120;-7311.249,-2670.903;Inherit;True;Property;_NormalMap;Normal Map;4;0;Create;True;0;0;0;False;0;False;-1;e109905c411b0f84e82eaaf2705ece30;None;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.DynamicAppendNode;196;-6458.51,-2634.943;Inherit;False;FLOAT3;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.BreakToComponentsNode;197;-6603.51,-2638.943;Inherit;False;FLOAT2;1;0;FLOAT2;0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;195;-6748.51,-2646.943;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.DynamicAppendNode;194;-6908.911,-2649.443;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.RegisterLocalVarNode;124;-6303.922,-2629.82;Inherit;False;NormalMap;-1;True;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.RangedFloatNode;123;-7009.267,-2483.316;Inherit;False;Property;_NormalStrength;NormalStrength;5;0;Create;True;0;0;0;False;0;False;1;0;0;3;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;156;-3497.061,-928.098;Inherit;False;Property;_CullMode;Cull Mode;24;1;[Enum];Create;True;0;0;1;UnityEngine.Rendering.CullMode;True;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.GetLocalVarNode;38;-8636.706,-922.7312;Inherit;False;34;ShiftHeightControl_B;1;0;OBJECT;;False;1;FLOAT;0
+Node;AmplifyShaderEditor.GetLocalVarNode;138;-2699.174,-978.4644;Inherit;False;136;AO;1;0;OBJECT;;False;1;FLOAT;0
+Node;AmplifyShaderEditor.GetLocalVarNode;118;-2686.302,-891.0328;Inherit;False;117;Alpha;1;0;OBJECT;;False;1;FLOAT;0
 WireConnection;13;0;14;0
 WireConnection;10;0;13;0
 WireConnection;17;1;16;0
@@ -3200,7 +3263,6 @@ WireConnection;148;1;133;1
 WireConnection;148;2;149;0
 WireConnection;141;0;142;0
 WireConnection;141;2;139;0
-WireConnection;127;0;120;0
 WireConnection;134;1;135;0
 WireConnection;134;0;148;0
 WireConnection;143;0;115;0
@@ -3208,11 +3270,8 @@ WireConnection;143;1;141;0
 WireConnection;143;2;145;0
 WireConnection;109;0;112;0
 WireConnection;109;1;110;0
-WireConnection;121;0;122;0
-WireConnection;121;1;127;0
-WireConnection;121;2;123;0
+WireConnection;109;2;114;0
 WireConnection;136;0;134;0
-WireConnection;124;0;121;0
 WireConnection;117;0;143;0
 WireConnection;152;1;119;0
 WireConnection;152;2;155;0
@@ -3243,6 +3302,14 @@ WireConnection;30;0;43;0
 WireConnection;30;1;38;0
 WireConnection;184;0;183;0
 WireConnection;43;0;184;0
-WireConnection;187;0;43;0
+WireConnection;196;0;197;0
+WireConnection;196;1;197;1
+WireConnection;196;2;120;3
+WireConnection;197;0;195;0
+WireConnection;195;0;194;0
+WireConnection;195;1;123;0
+WireConnection;194;0;120;1
+WireConnection;194;1;120;2
+WireConnection;124;0;196;0
 ASEEND*/
-//CHKSM=A776E8D928DA16BAC90CF1F19F3C45FB042DF3DC
+//CHKSM=56F055654DD34093D52CFDE906E8D8928AFD4D4A
