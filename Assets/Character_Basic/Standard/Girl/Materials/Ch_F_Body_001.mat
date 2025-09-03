@@ -7,36 +7,35 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MI_Woman_eye 1
-  m_Shader: {fileID: 4800000, guid: dfecd54c9dc91ab45972e5b51792a310, type: 3}
-  m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP _SPECULAR_SETUP
+  m_Name: Ch_F_Body_001
+  m_Shader: {fileID: 4800000, guid: 1fa26dd10b8b24b3baa6b8731ec2176b, type: 3}
+  m_ShaderKeywords: _DISTANCEFADE _NORMALMAP _NORMALMAPDIFFUSE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 79896269463b6be41bac5068af4ef0a0, type: 3}
+        m_Texture: {fileID: 2800000, guid: ef2cac07ffce6ab47a3eced540e7c2a1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: eb063ee10ed427a469486da0308f6304, type: 3}
+        m_Texture: {fileID: 2800000, guid: e84637707ded2f64aac2be40aa9fab40, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _CustomMap1:
+    - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _CustomMap2:
+    - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _CustomMap3:
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -45,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fb959f8b20435c444bfc970f347632f3, type: 3}
+        m_Texture: {fileID: 2800000, guid: ce37396f0b277ad4cbe98d36a9f22b56, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -56,77 +55,96 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SSSAOMap:
+    - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SSSAOMap:
+        m_Texture: {fileID: 2800000, guid: ef105ba28cb27a74f9ba3024393dd04c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SkinLUT:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 7c074690366590a4092f2f26aa962a50, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: 8f3fb56161a96924db6e0c281d5a4513, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
-    - _ApplyNormal: 0
-    - _ApplyNormalDiffuse: 0
-    - _Bias: 3
+    - _ApplyNormal: 1
+    - _ApplyNormalDiffuse: 1
+    - _Bias: 4.5
     - _Blend: 0
     - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Culling: 0
-    - _Curvature: 0.5
+    - _Curvature: 0.999
     - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
     - _Distortion: 0.01
     - _DstBlend: 0
-    - _EnableDistanceFade: 0
+    - _EnableDistanceFade: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Metallic: 0.019
-    - _OcclusionStrength: 1
+    - _Metallic: 0
+    - _OcclusionStrength: 0.65
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReadMask: 255
     - _ReceiveShadows: 1
     - _Rim: 0
-    - _RimFrequency: 0
-    - _RimMinPower: 1
+    - _RimFrequency: 1
+    - _RimMinPower: 2.93
     - _RimPerPositionFrequency: 1
     - _RimPower: 2
-    - _ShadowStrength: 0.7
-    - _Sharpness: 2.49
-    - _SkinShadowBias: 1
-    - _SkinShadowSamplingBias: 0
-    - _Smoothness: 0.988
+    - _ShadowStrength: 0.203
+    - _SkinShadowBias: 0.1
+    - _SkinShadowSamplingBias: 0.0037
+    - _Smoothness: 0.47
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Stencil: 0
+    - _Stencil: 92
     - _StencilComp: 8
     - _StencilFail: 0
     - _StencilOp: 0
     - _StencilZFail: 0
     - _Surface: 0
-    - _TranslucencyPower: 7
-    - _TranslucencyStrength: 1
-    - _V1: 0.0954
-    - _V2: 1
-    - _WorkflowMode: 0
+    - _TranslucencyPower: 4.82
+    - _TranslucencyStrength: 0.482
+    - _WorkflowMode: 1
     - _WriteMask: 255
     - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
-    - _BaseColor: {r: 0.8117647, g: 0.78428775, b: 0.70980394, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DistanceFade: {r: 2500, g: 0.001, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _DistanceFade: {r: 400, g: 0.01, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SubsurfaceColor: {r: 1, g: 0.39999998, b: 0.24999997, a: 1}
+    - _RimColor: {r: 0, g: 0.43137255, b: 0.8509804, a: 0.3529412}
+    - _SpecColor: {r: 0.24150054, g: 0.24831069, b: 0.254717, a: 1}
+    - _SubsurfaceColor: {r: 1, g: 0.41065738, b: 0.25098038, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &9081688476028200077
+--- !u!114 &4371971560176290333
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,4 +156,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
+  version: 4
