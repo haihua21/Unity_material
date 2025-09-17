@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3940388037085418462}
   m_Layer: 0
-  m_Name: pf_gemstone
+  m_Name: pf_gemstone_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6231532384409598012}
-  m_Mesh: {fileID: -1329428106362500198, guid: 162982463fa895745bde174f60f3979d, type: 3}
+  m_Mesh: {fileID: 1406429771862422583, guid: c178f1de1cb8c7d41b01975b2c65c232, type: 3}
 --- !u!23 &1077233591812148409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 95cb6954ca5e5eb4f81dd5a7abc17720, type: 2}
+  - {fileID: 2100000, guid: 017842642a190e34daece095500e8c29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

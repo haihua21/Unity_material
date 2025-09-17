@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5055266166733257692
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ai_sere_gemstone_001
+  m_Shader: {fileID: 4800000, guid: c909a382685a8b549b90e504df9d4f01, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CubeMap:
+        m_Texture: {fileID: 8900000, guid: 5a9057cac6fcfb74a8cbfa2be4e9c4eb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LutMap:
+        m_Texture: {fileID: 2800000, guid: 96970b430e8a2ec41bbd7638bd0a46e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Matcap:
+        m_Texture: {fileID: 2800000, guid: d64b7d365305e814f850c56e6fccf81f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Matcap_NormalMap:
+        m_Texture: {fileID: 2800000, guid: 2b8c207e7227ab5489cf46bee3c6df5c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SOMSMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AO: 0.5
+    - _AlphaCutoff: 0.5
+    - _CubeMapBlue: 2.93
+    - _CubeMapInt: 0.6
+    - _Decal_AO: 0.7
+    - _FresnelBias: -0.0593
+    - _FresnelPower: 6.92
+    - _FresnelScale: 3.55
+    - _LutMapIntensity: 1.58
+    - _LutMapPower: 1.5
+    - _MatcapDepthStrength: -1
+    - _MatcapInt: 2.5
+    - _MatcapNormalStrength: 0.6
+    - _MatcapPower: 1.24
+    - _Matcap_DepthTile: 1
+    - _Matcap_NormalTile: 1
+    - _NormalStrength: 1
+    - _NormalTile: 1
+    - _ReflectSpeed: 1
+    - _Specular: 0.26
+    - _TileLut: 1
+    m_Colors:
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LutMapColor: {r: 0.16420433, g: 0.8490566, b: 0.17636146, a: 1}
+    - _MatcapColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_BuildTextureStacks: []
