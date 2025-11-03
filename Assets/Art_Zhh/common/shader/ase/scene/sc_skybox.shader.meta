@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 977422639de456d4193cfaab0115fd7a
 ShaderImporter:
   externalObjects: {}
-  defaultTextures: []
+  defaultTextures:
+  - _BillboardMap: {fileID: 2800000, guid: 0aed8cbdfac4eb34d8bdb6d8e6b28f89, type: 3}
   nonModifiableTextures: []
   preprocessorOverride: 0
   userData: 

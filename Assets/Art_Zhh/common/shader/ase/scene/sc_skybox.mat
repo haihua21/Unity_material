@@ -10,7 +10,7 @@ Material:
   m_Name: sc_skybox
   m_Shader: {fileID: 4800000, guid: 977422639de456d4193cfaab0115fd7a, type: 3}
   m_ShaderKeywords: _ROTATION_ON_ON
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,8 +19,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BillboardMap:
+        m_Texture: {fileID: 2800000, guid: 0aed8cbdfac4eb34d8bdb6d8e6b28f89, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CubeMap:
         m_Texture: {fileID: 8900000, guid: ebe8248e8a163694c88a21c99db2cf63, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _sc_u1_02_billboard_002_d:
+        m_Texture: {fileID: 2800000, guid: 0aed8cbdfac4eb34d8bdb6d8e6b28f89, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -29,9 +37,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaCutoff: 0.5
-    - _Exposure: 0.63
-    - _Rotation: 236
+    - _Cus_Exposure: 1
+    - _EnableFog: 0
+    - _Exposure: 1
+    - _Float3: 0.82
+    - _Float6: 1
+    - _FogFill: 0.882
+    - _FogHeight: 0.172
+    - _FogSmoothness: 0.131
+    - _Rotation: 226
     - _Rotation_On: 1
+    - _Tposition: -0.12
+    - _XTile: 3
+    - _YTile: 8
+    - __dirty: 0
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0}
